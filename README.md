@@ -29,3 +29,4 @@ exceeding certain character limits would be an issue we need to address when des
 using the API
 3. Implementing an interface - we have yet to decide how we’re going to display the information and move the data back 
 and forth from the database to the user
+4. Google API key needs to be set as an environmental variable in the IDE, need to find out how to implement it in anstandalone progarm 
