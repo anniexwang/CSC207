@@ -26,7 +26,7 @@ https://cloud.google.com/translate/docs/reference/rest/v2/translate
 ![Screenshot](documentation_API.png)
 
 ## Example Output for Java Code
-![Screenshot](API_Call_example.png)
+![Screenshot](API Call example.png)
 
 ## Technical Problems
 1. Google’s Cloud Translate API only offers limited features and functionality for free - accessing extra features or 
