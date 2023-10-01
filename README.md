@@ -22,6 +22,12 @@ it will have 3 or more columns, one for the word, and the rest for the translati
 ## Documentation link:
 https://cloud.google.com/translate/docs/reference/rest/v2/translate
 
+## Screenshot of API
+![Screenshot](documentation_API.png)
+
+## Example Output for Java Code
+![Screenshot](API_Call_example.png)
+
 ## Technical Problems
 1. Google’s Cloud Translate API only offers limited features and functionality for free - accessing extra features or 
 exceeding certain character limits would be an issue we need to address when designing our software
