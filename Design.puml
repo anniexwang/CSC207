@@ -1,4 +1,34 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+class User{
+String user
+File csv
+translate(Original word)
+printTranslation(wordTranslated)
+storeTranslation(Translated)
+toChart(File csv)
+languageNum(int)
+}
+
+class Phrase{
+skinparam String langDetected
+skinparam float langConfidence
+- String word
+
+
+}
+
+'class Translated{
+'- HashMap<String, Phrase> translated
+'}
+
+class Original{
+- Phrase original
+}
+
+Phrase *-- Original
+'Phrase *-- Translated
+
+
 @enduml
