@@ -2,33 +2,28 @@
 'https://plantuml.com/sequence-diagram
 
 class User{
-String user
-File csv
-translate(Original word)
-printTranslation(wordTranslated)
-storeTranslation(Translated)
-toChart(File csv)
-languageNum(int)
+String username
+String password
+TranslationHistory translationHistory
 }
 
-class Phrase{
-skinparam String langDetected
-skinparam float langConfidence
-- String word
-
-
+class Translation{
+translate(User user, String phrase, String languageOut)
+translate(User user, String phrase, String languageOut, String languageIn)
 }
 
-'class Translated{
-'- HashMap<String, Phrase> translated
-'}
-
-class Original{
-- Phrase original
+class TranslationHistory{
 }
 
-Phrase *-- Original
-'Phrase *-- Translated
+class Composer{
+String phraseOriginal
+String phraseTranslated
+String language
+Date timestamp
+}
+User <-- Translation
+User o-- TranslationHistory
+TranslationHistory o-- Composer
 
 
 @enduml
