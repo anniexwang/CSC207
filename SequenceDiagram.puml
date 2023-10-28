@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Actor -> Translation: translate
+Actor <-- Translation: translation
+
+Translation -> TranslationHistory: save
+Actor <-- TranslationHistory: saved
+
+TranslationHistory -> Composer: save
+Actor <-- Composer: saved
+@enduml
