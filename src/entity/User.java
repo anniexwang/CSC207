@@ -1,2 +1,4 @@
-package entity;public interface User {
+package entity;
+
+public interface User {
 }
