@@ -1,2 +1,4 @@
-package view;public class TableView {
+package view;
+
+public class TableView {
 }

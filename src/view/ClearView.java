@@ -1,2 +1,4 @@
-package view;public class ClearView {
+package view;
+
+public class ClearView {
 }

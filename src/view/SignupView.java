@@ -1,2 +1,4 @@
-package view;public class SignupView {
+package view;
+
+public class SignupView {
 }

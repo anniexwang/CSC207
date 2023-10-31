@@ -1,2 +1,4 @@
-package view;public class HistoryView {
+package view;
+
+public class HistoryView {
 }
