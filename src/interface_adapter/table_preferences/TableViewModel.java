@@ -1,4 +1,4 @@
-package interface_adapter.login;
+package interface_adapter.table_preferences;
 
-public class LoginViewModel {
+public class TableViewModel {
 }

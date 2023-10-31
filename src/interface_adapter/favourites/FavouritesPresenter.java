@@ -1,4 +1,4 @@
-package interface_adapter.login;
+package interface_adapter.favourites;
 
-public class LoginPresenter {
+public class FavouritesPresenter {
 }

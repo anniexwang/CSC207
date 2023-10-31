@@ -1,4 +1,4 @@
-package interface_adapter.login;
+package interface_adapter.history;
 
-public class LoginViewModel {
+public class HistoryViewModel {
 }

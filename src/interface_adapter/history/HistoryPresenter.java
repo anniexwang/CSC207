@@ -1,4 +1,4 @@
-package interface_adapter.login;
+package interface_adapter.history;
 
-public class LoginPresenter {
+public class HistoryPresenter {
 }

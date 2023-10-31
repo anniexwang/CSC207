@@ -1,4 +1,4 @@
-package interface_adapter.login;
+package interface_adapter.signup;
 
-public class LoginPresenter {
+public class SignupPresenter {
 }

@@ -1,4 +1,4 @@
-package interface_adapter.login;
+package interface_adapter.translation;
 
-public class LoginController {
+public class TranslationController {
 }
