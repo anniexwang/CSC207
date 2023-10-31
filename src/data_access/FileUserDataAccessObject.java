@@ -1,2 +1,4 @@
-package data_access;public class FileUserDataAccessObject {
+package data_access;
+
+public class FileUserDataAccessObject {
 }
