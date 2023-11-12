@@ -1,4 +1,11 @@
-package use_case.login;
+package use_case.table_preferences;
 
-public interface LoginUserDataAccessInterface {
+import entity.User;
+
+public interface TableUserDataAccessInterface {
+    boolean existsByName(String identifier);
+
+    void save(User user);
+
+    User get(String username);
 }

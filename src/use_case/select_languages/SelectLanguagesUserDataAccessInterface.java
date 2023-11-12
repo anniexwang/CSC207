@@ -1,8 +1,8 @@
-package use_case.table_preferences;
+package use_case.select_languages;
 
 import entity.User;
 
-public interface TableUserDataAccessInterface {
+public interface SelectLanguagesUserDataAccessInterface {
     boolean existsByName(String identifier);
 
     void save(User user);

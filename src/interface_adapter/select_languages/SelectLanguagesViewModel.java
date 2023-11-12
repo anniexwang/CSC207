@@ -1,24 +1,22 @@
 package interface_adapter.select_languages;
 
+import interface_adapter.ViewModel;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class SelectLanguageViewModel {
+public class SelectLanguagesViewModel extends ViewModel {
     public final String TITLE_LABEL = "Table Preferences View";
-    public final String TABLE_TYPE_LABEL = "Type";
-    public final String LANGUAGE_LABEL = "Language";
-    public final String SORT_TYPE_LABEL = "Sort";
-
-    public final String ADD_LANGUAGE_BUTTON_LABEL = "+ Add Language";
+    public final String LANGUAGE_LABEL = "Language"; //TODO: concatenate with i ( Language 1, Language 2, etc.)
     public final String GO_BUTTON_LABEL = "Go";
 
-    private SelectLanguageState state = new SelectLanguageState();
+    private SelectLanguagesState state = new SelectLanguagesState();
 
-    public SelectLanguageViewModel() {
-        super();
+    public SelectLanguagesViewModel() {
+        super("Table Preferences View");
     }
 
-    public void setState(SelectLanguageState state) {
+    public void setState(SelectLanguagesState state) {
         this.state = state;
     }
 
@@ -34,7 +32,9 @@ public class SelectLanguageViewModel {
         support.addPropertyChangeListener(listener);
     }
 
-    public SelectLanguageState getState() {
+    public SelectLanguagesState getState() {
         return state;
     }
+
+    public void getLanguages(){}; //TODO: get languages from csv file for drop down menu in View
 }

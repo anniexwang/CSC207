@@ -1,43 +1,46 @@
-package interface_adapter.table_preferences;
+package interface_adapter.number_languages;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.history.HistoryState;
-import interface_adapter.history.HistoryViewModel;
+import interface_adapter.select_languages.SelectLanguagesState;
+import interface_adapter.select_languages.SelectLanguagesViewModel;
+import interface_adapter.number_languages.NumberLanguagesState;
+import interface_adapter.number_languages.NumberLanguagesViewModel;
+import use_case.number_languages.NumberLanguagesOutputBoundary;
+import use_case.number_languages.NumberLanguagesOutputData;
 import use_case.table_preferences.TableOutputBoundary;
 import use_case.table_preferences.TableOutputData;
 
-public class TablePresenter implements TableOutputBoundary {
-    private final TableViewModel tableViewModel;
-    private final HistoryViewModel historyViewModel;
+public class NumberLanguagesPresenter implements NumberLanguagesOutputBoundary {
+    private final NumberLanguagesViewModel numberLanguagesViewModel;
+    private final SelectLanguagesViewModel selectLanguagesViewModel;
     private ViewManagerModel viewManagerModel;
 
-    public TablePresenter(ViewManagerModel viewManagerModel,
-                           TableViewModel tableViewModel,
-                           HistoryViewModel historyViewModel) {
+    public NumberLanguagesPresenter(ViewManagerModel viewManagerModel,
+                                    NumberLanguagesViewModel numberLanguagesViewModel,
+                                    SelectLanguagesViewModel selectLanguagesViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.tableViewModel = tableViewModel;
-        this.historyViewModel = historyViewModel;
+        this.numberLanguagesViewModel = numberLanguagesViewModel;
+        this.selectLanguagesViewModel = selectLanguagesViewModel;
     }
 
     @Override
-    public void prepareSuccessView(TableOutputData response) {
+    public void prepareSuccessView(NumberLanguagesOutputData response) {
         // On success, switch to the login view.
 //        LocalDateTime responseTime = LocalDateTime.parse(response.getCreationTime());
 //        response.setCreationTime(responseTime.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
 
-        TableState tableState = tableViewModel.getState();
-        HistoryState historyState = historyViewModel.getState();
-//        tableState.setUsername(response.getUsername());
-        this.historyViewModel.setState(historyState);
-        historyViewModel.firePropertyChanged();
-        viewManagerModel.setActiveView(historyViewModel.getViewName());
+        NumberLanguagesState numberLanguagesState = numberLanguagesViewModel.getState();
+        SelectLanguagesState selectLanguagesState = selectLanguagesViewModel.getState();
+        this.selectLanguagesViewModel.setState(selectLanguagesState);
+        selectLanguagesViewModel.firePropertyChanged();
+        viewManagerModel.setActiveView(selectLanguagesViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
     @Override
     public void prepareFailView(String error) {
-        TableState tableState = tableViewModel.getState();
+        NumberLanguagesState numberLanguagesState = numberLanguagesViewModel.getState();
 //        tableState.setUsernameError(error);
-        tableViewModel.firePropertyChanged();
+        numberLanguagesViewModel.firePropertyChanged();
     }
 }

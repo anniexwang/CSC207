@@ -1,23 +1,13 @@
-package use_case.table_preferences;
+package use_case.number_languages;
 
-public class TableInputData {
-    final private String tableType;
-    final private String[] languages;
-    final private String sortType;
+public class NumberLanguagesInputData {
+    final private String numberLanguages;
 
-    public TableInputData(String tableType, String[] languages, String sortType) {
-        this.tableType = tableType;
-        this.languages = languages;
-        this.sortType = sortType;
+    public NumberLanguagesInputData(String numberLanguages) {
+        this.numberLanguages = numberLanguages;
     }
 
-    String getTableType() {
-        return tableType;
-    }
-
-    String[] getLanguages() {return languages;}
-
-    String getSortType() {
-        return sortType;
+    String getNumberLanguages() {
+        return numberLanguages;
     }
 }

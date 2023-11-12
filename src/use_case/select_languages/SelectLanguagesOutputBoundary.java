@@ -1,7 +1,7 @@
-package use_case.table_preferences;
+package use_case.select_languages;
 
-public interface TableOutputBoundary {
-    void prepareSuccessView(TableOutputData user);
+public interface SelectLanguagesOutputBoundary {
+    void prepareSuccessView(SelectLanguagesOutputData user);
 
     void prepareFailView(String error);
 }

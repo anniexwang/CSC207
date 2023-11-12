@@ -1,31 +1,27 @@
 package interface_adapter.number_languages;
 
+import interface_adapter.ViewModel;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class NumberLanguageViewModel {
-    public final String TITLE_LABEL = "Table Preferences View";
-    public final String TABLE_TYPE_LABEL = "Type";
-    public final String LANGUAGE_LABEL = "Language";
-    public final String SORT_TYPE_LABEL = "Sort";
-
-    public final String ADD_LANGUAGE_BUTTON_LABEL = "+ Add Language";
+public class NumberLanguagesViewModel extends ViewModel {
+    public final String TITLE_LABEL = "Number of Languages View";
+    public final String LANGUAGE_LABEL = "Number of Languages";
     public final String GO_BUTTON_LABEL = "Go";
 
-    private NumberLanguageState state = new NumberLanguageState();
+    private NumberLanguagesState state = new NumberLanguagesState();
 
-    public NumberLanguageViewModel() {
-        super();
+    public NumberLanguagesViewModel() {
+        super("Number of Languages View");
     }
 
-    public void setState(NumberLanguageState state) {
+    public void setState(NumberLanguagesState state) {
         this.state = state;
     }
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    // This is what the Signup Presenter will call to let the ViewModel know
-    // to alert the View
     public void firePropertyChanged() {
         support.firePropertyChange("state", null, this.state);
     }
@@ -34,7 +30,7 @@ public class NumberLanguageViewModel {
         support.addPropertyChangeListener(listener);
     }
 
-    public NumberLanguageState getState() {
+    public NumberLanguagesState getState() {
         return state;
     }
 }

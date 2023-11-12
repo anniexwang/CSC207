@@ -1,71 +1,31 @@
 package interface_adapter.select_languages;
 
-public class SelectLanguageState {
-    private String tableType = "";
-//    private String usernameError = null;
-    private String language = "";
-//    private String passwordError = null;
-    private String sortType = "";
-//    private String repeatPasswordError = null;
+public class SelectLanguagesState {
+    private String[] languages = {};
+    private String languagesError = null;
 
-    public SelectLanguageState(SelectLanguageState copy) {
-        tableType = copy.tableType;
-//        usernameError = copy.usernameError;
-        language = copy.language;
-//        passwordError = copy.passwordError;
-        sortType = copy.sortType;
-//        repeatPasswordError = copy.repeatPasswordError;
+    public SelectLanguagesState(SelectLanguagesState copy) {
+        languages = copy.languages;
+        languagesError = copy.languagesError;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
-    public SelectLanguageState() {}
+    public SelectLanguagesState() {}
 
-    public String getTableType() {
-        return tableType;
+    public String[] getLanguages() {
+        return languages;
     }
 
-//    public String getUsernameError() {
-//        return usernameError;
-//    }
-
-    public String getLanguage() {
-        return language;
+    public String getLanguagesError() {
+        return languagesError;
     }
 
-//    public String getPasswordError() {
-//        return passwordError;
-//    }
-
-    public String getSortType() {
-        return sortType;
+    public void setLanguages(String[] languages) {
+        this.languages = languages;
     }
 
-//    public String getRepeatPasswordError() {
-//        return repeatPasswordError;
-//    }
-
-    public void setTableType(String username) {
-        this.tableType = tableType;
+    public void setLanguagesError(String languagesError) {
+        this.languagesError = languagesError;
     }
-
-//    public void setUsernameError(String usernameError) {
-//        this.usernameError = usernameError;
-//    }
-
-    public void setLanguage(String password) {
-        this.language = language;
-    }
-
-//    public void setPasswordError(String passwordError) {
-//        this.passwordError = passwordError;
-//    }
-
-    public void setSortType(String repeatPassword) {
-        this.sortType = sortType;
-    }
-
-//    public void setRepeatPasswordError(String repeatPasswordError) {
-//        this.repeatPasswordError = repeatPasswordError;
-//    }
 }
 

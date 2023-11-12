@@ -1,21 +1,21 @@
-package use_case.table_preferences;
+package use_case.number_languages;
 
-import data_access.UserTableDataAccessInterface;
+import data_access.UserNumberLanguagesDataAccessInterface;
 
-public class TableInteractor implements TableInputBoundary {
-    final UserTableDataAccessInterface userDataAccessObject;
-    final TableOutputBoundary userPresenter;
+public class NumberLanguagesInteractor implements NumberLanguagesInputBoundary {
+    final UserNumberLanguagesDataAccessInterface userDataAccessObject;
+    final NumberLanguagesOutputBoundary userPresenter;
 
-    public TableInteractor(UserTableDataAccessInterface userTableDataAccessInterface,
-                            TableOutputBoundary tableOutputBoundary) {
-        this.userDataAccessObject = userTableDataAccessInterface;
+    public NumberLanguagesInteractor(UserNumberLanguagesDataAccessInterface userNumberLanguagesDataAccessInterface,
+                                     NumberLanguagesOutputBoundary tableOutputBoundary) {
+        this.userDataAccessObject = userNumberLanguagesDataAccessInterface;
         this.userPresenter = tableOutputBoundary;
     }
 
     @Override
-    public void execute(TableInputData tableInputData) {
-        TableOutputData tableOutputData = new TableOutputData(tableInputData.getTableType(), tableInputData.getLanguages(), tableInputData.getSortType());
-        userPresenter.prepareSuccessView(tableOutputData);
+    public void execute(NumberLanguagesInputData numberLanguagesInputData) {
+        NumberLanguagesOutputData numberLanguagesOutputData = new NumberLanguagesOutputData(numberLanguagesInputData.getNumberLanguages());
+        userPresenter.prepareSuccessView(numberLanguagesOutputData);
         }
     }
 

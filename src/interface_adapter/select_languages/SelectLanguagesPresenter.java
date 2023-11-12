@@ -1,31 +1,32 @@
-package interface_adapter.table_preferences;
+package interface_adapter.select_languages;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.history.HistoryState;
 import interface_adapter.history.HistoryViewModel;
-import use_case.table_preferences.TableOutputBoundary;
-import use_case.table_preferences.TableOutputData;
+import use_case.select_languages.SelectLanguagesOutputBoundary;
+import use_case.select_languages.SelectLanguagesOutputData;
 
-public class TablePresenter implements TableOutputBoundary {
-    private final TableViewModel tableViewModel;
+
+public class SelectLanguagesPresenter implements SelectLanguagesOutputBoundary {
+    private final SelectLanguagesViewModel selectLanguagesViewModel;
     private final HistoryViewModel historyViewModel;
     private ViewManagerModel viewManagerModel;
 
-    public TablePresenter(ViewManagerModel viewManagerModel,
-                           TableViewModel tableViewModel,
-                           HistoryViewModel historyViewModel) {
+    public SelectLanguagesPresenter(ViewManagerModel viewManagerModel,
+                                    SelectLanguagesViewModel selectLanguagesViewModel,
+                                    HistoryViewModel historyViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.tableViewModel = tableViewModel;
+        this.selectLanguagesViewModel = selectLanguagesViewModel;
         this.historyViewModel = historyViewModel;
     }
 
     @Override
-    public void prepareSuccessView(TableOutputData response) {
+    public void prepareSuccessView(SelectLanguagesOutputData response) {
         // On success, switch to the login view.
 //        LocalDateTime responseTime = LocalDateTime.parse(response.getCreationTime());
 //        response.setCreationTime(responseTime.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
 
-        TableState tableState = tableViewModel.getState();
+        SelectLanguagesState selectLanguagesState = selectLanguagesViewModel.getState();
         HistoryState historyState = historyViewModel.getState();
 //        tableState.setUsername(response.getUsername());
         this.historyViewModel.setState(historyState);
@@ -36,8 +37,8 @@ public class TablePresenter implements TableOutputBoundary {
 
     @Override
     public void prepareFailView(String error) {
-        TableState tableState = tableViewModel.getState();
+        SelectLanguagesState selectLanguagesState = selectLanguagesViewModel.getState();
 //        tableState.setUsernameError(error);
-        tableViewModel.firePropertyChanged();
+        selectLanguagesViewModel.firePropertyChanged();
     }
 }

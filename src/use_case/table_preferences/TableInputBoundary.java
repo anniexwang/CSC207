@@ -1,4 +1,5 @@
-package use_case.login;
+package use_case.table_preferences;
 
-public interface LoginInputBoundary {
+public interface TableInputBoundary {
+    void execute(TableInputData tableInputData);
 }

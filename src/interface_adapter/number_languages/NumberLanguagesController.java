@@ -1,18 +1,20 @@
-package interface_adapter.table_preferences;
+package interface_adapter.number_languages;
 
+import use_case.number_languages.NumberLanguagesInputBoundary;
+import use_case.number_languages.NumberLanguagesInputData;
 import use_case.table_preferences.TableInputBoundary;
 import use_case.table_preferences.TableInputData;
 
-public class TableController {
-    final TableInputBoundary userTableUseCaseInteractor;
-    public TableController(TableInputBoundary userTableUseCaseInteractor) {
-        this.userTableUseCaseInteractor = userTableUseCaseInteractor;
+public class NumberLanguagesController {
+    final NumberLanguagesInputBoundary userNumberLanguagesUseCaseInteractor;
+    public NumberLanguagesController(NumberLanguagesInputBoundary userNumberLanguagesUseCaseInteractor) {
+        this.userNumberLanguagesUseCaseInteractor = userNumberLanguagesUseCaseInteractor;
     }
 
-    public void execute(String username, String password1, String password2) {
-        TableInputData tableInputData = new TableInputData(
-                username, password1, password2);
+    public void execute(String numberLanguages) {
+        NumberLanguagesInputData numberLanguagesInputData = new NumberLanguagesInputData(
+                numberLanguages);
 
-        userTableUseCaseInteractor.execute(tableInputData);
+        userNumberLanguagesUseCaseInteractor.execute(numberLanguagesInputData);
     }
 }

@@ -1,4 +1,5 @@
-package use_case.retrieve_translation;
+package use_case.retrieve_favourites;
 
-public interface RetrieveTranslationOutputBoundary {
+public interface RetrieveFavouritesOutputBoundary {
+    //TODO: implement
 }

@@ -1,18 +1,17 @@
-package interface_adapter.table_preferences;
+package interface_adapter.select_languages;
 
-import use_case.table_preferences.TableInputBoundary;
-import use_case.table_preferences.TableInputData;
+import use_case.select_languages.SelectLanguagesInputBoundary;
+import use_case.select_languages.SelectLanguagesInputData;
 
-public class TableController {
-    final TableInputBoundary userTableUseCaseInteractor;
-    public TableController(TableInputBoundary userTableUseCaseInteractor) {
-        this.userTableUseCaseInteractor = userTableUseCaseInteractor;
+public class SelectLanguagesController {
+    final SelectLanguagesInputBoundary userSelectLanguagesUseCaseInteractor;
+    public SelectLanguagesController(SelectLanguagesInputBoundary userSelectLanguagesUseCaseInteractor) {
+        this.userSelectLanguagesUseCaseInteractor = userSelectLanguagesUseCaseInteractor;
     }
 
-    public void execute(String username, String password1, String password2) {
-        TableInputData tableInputData = new TableInputData(
-                username, password1, password2);
+    public void execute(String[] languages) {
+        SelectLanguagesInputData selectLanguagesInputData = new SelectLanguagesInputData(languages);
 
-        userTableUseCaseInteractor.execute(tableInputData);
+        userSelectLanguagesUseCaseInteractor.execute(selectLanguagesInputData);
     }
 }

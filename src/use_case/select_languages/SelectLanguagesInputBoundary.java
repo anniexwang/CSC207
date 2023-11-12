@@ -1,5 +1,5 @@
-package use_case.table_preferences;
+package use_case.select_languages;
 
-public interface TableInputBoundary {
-    void execute(TableInputData tableInputData);
+public interface SelectLanguagesInputBoundary {
+    void execute(SelectLanguagesInputData selectLanguagesInputData);
 }

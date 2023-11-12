@@ -1,4 +1,4 @@
-package use_case.set_favourite;
+package use_case.retrieve_translation;
 
-public interface SetFavouriteInputBoundary {
+public interface RetrieveTranslationInputBoundary {
 }
