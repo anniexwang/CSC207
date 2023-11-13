@@ -28,7 +28,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         csvFile = new File(csvPath);
         headers.put("username", 0);
         headers.put("password", 1);
-        headers.put("creation_time", 2);
+        headers.put("translation_history", 2);
+        headers.put("favorites",3);
 
         if (csvFile.length() == 0) {
             save();
@@ -38,16 +39,17 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
                 String header = reader.readLine();
 
                 // For later: clean this up by creating a new Exception subclass and handling it in the UI.
-                assert header.equals("username,password,creation_time");
+                assert header.equals("username,password,translation_history,favorites");
 
                 String row;
                 while ((row = reader.readLine()) != null) {
                     String[] col = row.split(",");
                     String username = String.valueOf(col[headers.get("username")]);
                     String password = String.valueOf(col[headers.get("password")]);
-                    String creationTimeText = String.valueOf(col[headers.get("creation_time")]);
-                    LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
-                    User user = userFactory.create(username, password, ldt);
+                    // Assuming that translation_history and favorites are stored as semicolon-separated strings in the CSV file
+                    ArrayList<String> translation_history = new ArrayList<>(Arrays.asList(col[headers.get("translation_history")].split(";")));
+                    ArrayList<String> favorites = new ArrayList<>(Arrays.asList(col[headers.get("favorites")].split(";")));
+                    User user = userFactory.create(username, password, translation_history, favorites);
                     accounts.put(username, user);
                 }
             }
@@ -73,8 +75,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
             writer.newLine();
 
             for (User user : accounts.values()) {
-                String line = String.format("%s,%s,%s",
-                        user.getName(), user.getPassword(), user.getCreationTime());
+                String line = String.format("%s,%s,%s,%s,%s",
+                        user.getName(), user.getPassword(), user.getTranslationHistory(), user.getFavorites());
                 writer.write(line);
                 writer.newLine();
             }
