@@ -71,8 +71,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
             @Override
             public void actionPerformed(ActionEvent evt) {
                 if (evt.getSource().equals(cancel)) {
-                    // Use ViewManagerModel to switch to SignupView
-
+                    loginController.goToSignUp();
                 }
             }
         });

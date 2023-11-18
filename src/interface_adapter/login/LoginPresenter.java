@@ -16,16 +16,19 @@ import view.SignupView;
 
 public class LoginPresenter implements LoginOutputBoundary {
 
+    private final SignupViewModel signupViewModel;
     private final LoginViewModel loginViewModel;
     private final LoggedInViewModel loggedInViewModel;
     private ViewManagerModel viewManagerModel;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
                           LoggedInViewModel loggedInViewModel,
+                          SignupViewModel signupViewModel,
                           LoginViewModel loginViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.loggedInViewModel = loggedInViewModel;
         this.loginViewModel = loginViewModel;
+        this.signupViewModel = signupViewModel;
     }
 
     @Override
@@ -41,11 +44,9 @@ public class LoginPresenter implements LoginOutputBoundary {
         this.viewManagerModel.firePropertyChanged();
     }
 
-    public void prepareCancelView() {
-        SignupState signupState = new SignupState();
-        SignupViewModel signupViewModel = new SignupViewModel();
-        this.viewManagerModel.setActiveView(signupViewModel.getViewName()); // Use the identifier for your SignupView.
-        this. viewManagerModel.firePropertyChanged();
+    public void goToSignUp() {
+        this.viewManagerModel.setActiveView(signupViewModel.getViewName()); // Use the correct view name for SignupView
+        this.viewManagerModel.firePropertyChanged();
     }
 
     @Override
