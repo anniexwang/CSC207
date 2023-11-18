@@ -24,6 +24,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     private final JButton signUp;
     private final JButton cancel;
+    private final JButton skipToLogin;
+
 
     public SignupView(SignupController controller, SignupViewModel signupViewModel) {
 
@@ -46,6 +48,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         buttons.add(signUp);
         cancel = new JButton(signupViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
+        skipToLogin = new JButton("Skip to Login");
+        buttons.add(skipToLogin);
 
         signUp.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
@@ -95,7 +99,17 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
-        System.out.println("Cancel not implemented yet.");
+        if (evt.getSource() == cancel) {
+            // Clear all input fields
+            usernameInputField.setText("");
+            passwordInputField.setText("");
+            repeatPasswordInputField.setText("");
+
+            // Optionally, reset any error states or messages
+            SignupState currentState = signupViewModel.getState();
+            currentState.setUsernameError(null); // Assuming there's a method to set an error message
+            signupViewModel.setState(currentState);
+        }
     }
 
     @Override
