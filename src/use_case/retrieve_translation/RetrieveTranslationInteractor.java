@@ -2,11 +2,7 @@ package use_case.retrieve_translation;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
 import data_access.UserRetrieveTranslationDataAccessInterface;
-import com.google.cloud.translate.v3.LocationName;
-import com.google.cloud.translate.v3.TranslateTextRequest;
-import com.google.cloud.translate.v3.TranslateTextResponse;
 import com.google.cloud.translate.Translate;
-import use_case.retrieve_favourites.RetrieveFavouritesInputData;
 
 public class RetrieveTranslationInteractor implements RetrieveTranslationInputBoundary
 {
