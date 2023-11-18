@@ -61,6 +61,11 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         accounts.put(user.getName(), user);
         this.save();
     }
+
+    @Override
+    public User get(String username) {
+        return null;
+    }
 //
 //    @Override
 //    public User get(String username) {
@@ -75,7 +80,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
             writer.newLine();
 
             for (User user : accounts.values()) {
-                String line = String.format("%s,%s,%s,%s,%s",
+                String line = String.format("%s,%s,%s,%s",
                         user.getName(), user.getPassword(), user.getTranslationHistory(), user.getFavorites());
                 writer.write(line);
                 writer.newLine();
