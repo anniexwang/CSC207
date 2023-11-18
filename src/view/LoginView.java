@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Objects;
 
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -30,13 +31,23 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     final JButton cancel;
     private final LoginController loginController;
     private  ViewManagerModel viewManagerModel = new ViewManagerModel();
+    private final JLabel imageLabel;
 
     public LoginView(LoginViewModel loginViewModel, LoginController controller) {
+
 
         this.loginController = controller;
         this.loginViewModel = loginViewModel;
         this.loginViewModel.addPropertyChangeListener(this);
         this.viewManagerModel = viewManagerModel;
+
+        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/AA.jpg"))); // Replace with your image path
+        imageLabel = new JLabel(imageIcon);
+
+        // Set the alignment of the image label to center
+        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        this.add(imageLabel);
 
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
