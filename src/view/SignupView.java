@@ -64,11 +64,13 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 }
         );
         cancel.addActionListener(this);
-
-        // This makes a new KeyListener implementing class, instantiates it, and
-        // makes it listen to keystrokes in the usernameInputField.
-        //
-        // Notice how it has access to instance variables in the enclosing class!
+        skipToLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call method in SignupPresenter to handle view change
+                signupController.goToLogin();
+            }
+        });
         usernameInputField.addKeyListener(
                 new KeyListener() {
                     @Override

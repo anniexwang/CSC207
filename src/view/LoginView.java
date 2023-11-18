@@ -4,6 +4,7 @@ import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupState;
+import interface_adapter.ViewManagerModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,12 +29,14 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     final JButton logIn;
     final JButton cancel;
     private final LoginController loginController;
+    private  ViewManagerModel viewManagerModel = new ViewManagerModel();
 
     public LoginView(LoginViewModel loginViewModel, LoginController controller) {
 
         this.loginController = controller;
         this.loginViewModel = loginViewModel;
         this.loginViewModel.addPropertyChangeListener(this);
+        this.viewManagerModel = viewManagerModel;
 
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -68,11 +71,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
             @Override
             public void actionPerformed(ActionEvent evt) {
                 if (evt.getSource().equals(cancel)) {
-                    // Here, we refer to SignupView.this to get the enclosing instance of SignupView
-                    Window window = SwingUtilities.windowForComponent(LoginView.this);
-                    if (window instanceof JFrame) {
-                        ((JFrame) window).dispose();
-                    }
+                    // Use ViewManagerModel to switch to SignupView
+
                 }
             }
         });
@@ -129,14 +129,24 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         System.out.println("Click " + evt.getActionCommand());
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        LoginState state = (LoginState) evt.getNewValue();
-        setFields(state);
-    }
+
+
 
     private void setFields(LoginState state) {
         usernameInputField.setText(state.getUsername());
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if ("state".equals(evt.getPropertyName())) {
+            LoginState state = loginViewModel.getState();
+            if (state.getUsernameError() != null && !state.getUsernameError().isEmpty()) {
+                JOptionPane.showMessageDialog(this, state.getUsernameError());
+                state.setUsernameError(null); // Reset error message after displaying
+                loginViewModel.setState(state);
+                usernameInputField.setText("");
+                passwordInputField.setText("");
+            }
+        }
+    }
 }
