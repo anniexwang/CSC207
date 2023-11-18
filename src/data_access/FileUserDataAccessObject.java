@@ -22,6 +22,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
     private UserFactory userFactory;
 
+    //private helper to get rid of the brackets when reading the csv file
     private ArrayList<String> parseCsvField(String field) {
         if (field == null || field.isEmpty()) {
             return new ArrayList<>();
