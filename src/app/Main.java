@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             // Load the custom Goblin font
-                Font goblinFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/view/cc.ttf")).deriveFont(12f); // Adjust the font size as needed
+                Font goblinFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/view/cc.ttf")).deriveFont(30f); // Adjust the font size as needed
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(goblinFont);
 

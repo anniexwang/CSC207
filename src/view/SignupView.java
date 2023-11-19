@@ -12,22 +12,23 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
+
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     // Constants
-    public final String viewName = "sign up";
+    public final String viewName = "sign up"; // Name of the view
 
     // Controllers and view models
-    private final SignupController signupController;
-    private final SignupViewModel signupViewModel;
+    private final SignupController signupController; // Controller for the signup process
+    private final SignupViewModel signupViewModel; // View model for signup
 
     // UI components
-    private final JTextField usernameInputField = new JTextField(15);
-    private final JPasswordField passwordInputField = new JPasswordField(15);
-    private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
-    private final JButton signUp;
-    private final JButton cancel;
-    private final JButton skipToLogin;
-    private final JLabel imageLabel;
+    private final JTextField usernameInputField = new JTextField(15); // Input field for username
+    private final JPasswordField passwordInputField = new JPasswordField(15); // Input field for password
+    private final JPasswordField repeatPasswordInputField = new JPasswordField(15); // Input field for repeating the password
+    private final JButton signUp; // Button for signing up
+    private final JButton cancel; // Button to cancel the signup
+    private final JButton skipToLogin; // Button to skip to login screen
+    private final JLabel imageLabel; // Label to display an image
     private Clip audioClip; // Clip for playing audio
     private boolean isMuted = false; // Mute state
 
@@ -36,15 +37,14 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.signupController = controller; // Assign the controller
         this.signupViewModel = signupViewModel; // Assign the view model
         this.signupViewModel.addPropertyChangeListener(this); // Add this view as a listener to the view model
-        this.add(createMuteButton());
+
+        // Set background color of the panel
+        this.setBackground(Color.BLACK);
+
         // Image setup
         ImageIcon imageIcon = new ImageIcon(getClass().getResource("/AA.jpg")); // Load the image
         imageLabel = new JLabel(imageIcon); // Create a label for the image
         imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the image label
-
-
-
-
 
         // Title setup
         JLabel title = new JLabel(SignupViewModel.TITLE_LABEL); // Create title label
@@ -59,6 +59,9 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         signUp = createRainbowButton(signupViewModel.SIGNUP_BUTTON_LABEL); // Create a signup button with rainbow effect
         cancel = createRainbowButton(signupViewModel.CANCEL_BUTTON_LABEL); // Create a cancel button with rainbow effect
         skipToLogin = createRainbowButton("Skip to Login"); // Create a skip-to-login button with rainbow effect
+
+        // Add the mute button to the view
+        this.add(createMuteButton());
 
         // Panel for buttons
         JPanel buttons = new JPanel(); // Create a panel to hold buttons
@@ -81,10 +84,38 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.add(repeatPasswordInfo);
         this.add(buttons);
 
+        // Set background and foreground for each component
+        setComponentColors(this);
+
         // Start playing background music
-        playBackgroundMusic("src/view/power.wav");
+        playBackgroundMusic("src/view/power.wav"); // Replace with your music file path
     }
 
+    // Method to set colors for components in the container
+    private void setComponentColors(Container container) {
+        for (Component comp : container.getComponents()) {
+            comp.setForeground(Color.WHITE); // Set text color to white
+            comp.setBackground(Color.BLACK); // Set background to black
+
+            // Set opaque to true for proper background painting
+            if (comp instanceof JComponent) {
+                ((JComponent) comp).setOpaque(true);
+            }
+
+            // Recursive call for container components
+            if (comp instanceof Container) {
+                setComponentColors((Container) comp);
+            }
+        }
+
+        // Special handling for top-level container
+        container.setBackground(Color.BLACK);
+        if (container instanceof JComponent) {
+            ((JComponent) container).setOpaque(true);
+        }
+    }
+
+    // Method to play background music
     private void playBackgroundMusic(String filePath) {
         try {
             // Open an audio input stream
@@ -100,6 +131,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
             e.printStackTrace(); // Handle exceptions
         }
     }
+
+    // Method to create a mute button
     private JButton createMuteButton() {
         JButton muteButton = new RainbowButton("Mute");
         muteButton.addActionListener(new ActionListener() {
@@ -115,9 +148,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         });
         return muteButton;
     }
-
-
-
 
     // Method to create a button with a rainbow hover effect
     private JButton createRainbowButton(String text) {
@@ -150,8 +180,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         }
     }
 
-
-
     // Inner class for a JButton with a rainbow hover effect
     static class RainbowButton extends JButton {
         private final Timer timer; // Timer for animation
@@ -181,7 +209,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 @Override
                 public void mouseExited(MouseEvent e) {
                     timer.stop(); // Stop the timer on mouse exit
-                    setBackground(UIManager.getColor("Button.background")); // Reset the background color
+                    setBackground(Color.BLACK); // Reset the background color
                 }
             });
         }
@@ -190,5 +218,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         protected void paintComponent(Graphics g) {
             super.paintComponent(g); // Paint the component normally
         }
+
     }
+
 }
