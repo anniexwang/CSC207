@@ -150,16 +150,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         }
     }
 
-    // Main method for testing the view
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Signup View");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.add(new SignupView(null, null)); // Add the SignupView to the frame
-            frame.pack(); // Pack the frame
-            frame.setVisible(true); // Make the frame visible
-        });
-    }
+
 
     // Inner class for a JButton with a rainbow hover effect
     static class RainbowButton extends JButton {
