@@ -101,7 +101,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         }
     }
     private JButton createMuteButton() {
-        JButton muteButton = new JButton("Mute");
+        JButton muteButton = new RainbowButton("Mute");
         muteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
