@@ -16,12 +16,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            // Load the custom Goblin font
-                Font goblinFont = Font.createFont(Font.TRUETYPE_FONT, new File("src/view/cc.ttf")).deriveFont(30f); // Adjust the font size as needed
+            // Load the custom Goblin font as a resource stream
+            InputStream fontStream = Main.class.getResourceAsStream("/cc.ttf"); // Adjust the path as needed
+            Font goblinFont = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(30f); // Adjust the font size as needed
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(goblinFont);
 
@@ -60,7 +62,7 @@ public class Main {
             applyFontToComponent(loginView, goblinFont);
             views.add(loginView, loginView.viewName);
 
-            LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
+            LoggedInView loggedInView = new LoggedInView(loggedInViewModel, viewManagerModel);
             applyFontToComponent(loggedInView, goblinFont);
             views.add(loggedInView, loggedInView.viewName);
 

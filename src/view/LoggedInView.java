@@ -2,7 +2,7 @@ package view;
 
 import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.logged_in.LoggedInViewModel;
-import interface_adapter.login.LoginState;
+import interface_adapter.ViewManagerModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,16 +15,20 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
 
     public final String viewName = "logged in";
     private final LoggedInViewModel loggedInViewModel;
+    private final ViewManagerModel viewManagerModel; // Add this line
 
     JLabel username;
-
     final JButton logOut;
 
     /**
-     * A window with a title and a JButton.
+     * A window with a title, a label, and a JButton.
+     * @param loggedInViewModel The view model for the logged-in state.
+     * @param viewManagerModel The model for managing views.
      */
-    public LoggedInView(LoggedInViewModel loggedInViewModel) {
+    public LoggedInView(LoggedInViewModel loggedInViewModel, ViewManagerModel viewManagerModel) { // Modify constructor
         this.loggedInViewModel = loggedInViewModel;
+        this.viewManagerModel = viewManagerModel; // Set the view manager model
+
         this.loggedInViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel("Logged In Screen");
@@ -51,7 +55,10 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
+        if (evt.getSource() == logOut) {
+            viewManagerModel.setActiveView("log in"); // Change to the login view
+            viewManagerModel.firePropertyChanged();
+        }
     }
 
     @Override
