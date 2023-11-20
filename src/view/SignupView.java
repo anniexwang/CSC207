@@ -11,6 +11,7 @@ import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.*;
+import java.util.Objects;
 
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     // Constants
@@ -24,10 +25,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final JTextField usernameInputField = new JTextField(15); // Input field for username
     private final JPasswordField passwordInputField = new JPasswordField(15); // Input field for password
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15); // Input field for repeating the password
-    private final JButton signUp; // Button for signing up
     private final JButton cancel; // Button to cancel the signup
-    private final JButton skipToLogin; // Button to skip to login screen
-    private final JLabel imageLabel; // Label to display an image
     private Clip audioClip; // Clip for playing audio
     private boolean isMuted = false; // Mute state
 
@@ -41,8 +39,9 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.setBackground(Color.BLACK);
 
         // Image setup
-        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/AA.jpg")); // Load the image
-        imageLabel = new JLabel(imageIcon); // Create a label for the image
+        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/AA.jpg"))); // Load the image
+        // Label to display an image
+        JLabel imageLabel = new JLabel(imageIcon); // Create a label for the image
         imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the image label
 
         // Title setup
@@ -51,13 +50,15 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         // Setup for username, password, and repeat password fields
         LabelTextPanel usernameInfo = new LabelTextPanel(new JLabel(SignupViewModel.USERNAME_LABEL), usernameInputField);
-        LabelTextPanel passwordInfo = new LabelTextPanel(new JLabel(signupViewModel.PASSWORD_LABEL), passwordInputField);
-        LabelTextPanel repeatPasswordInfo = new LabelTextPanel(new JLabel(signupViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
+        LabelTextPanel passwordInfo = new LabelTextPanel(new JLabel(SignupViewModel.PASSWORD_LABEL), passwordInputField);
+        LabelTextPanel repeatPasswordInfo = new LabelTextPanel(new JLabel(SignupViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
 
         // Buttons setup
-        signUp = createRainbowButton(signupViewModel.SIGNUP_BUTTON_LABEL); // Create a signup button with rainbow effect
-        cancel = createRainbowButton(signupViewModel.CANCEL_BUTTON_LABEL); // Create a cancel button with rainbow effect
-        skipToLogin = createRainbowButton("Skip to Login"); // Create a skip-to-login button with rainbow effect
+        // Button for signing up
+        JButton signUp = createRainbowButton(SignupViewModel.SIGNUP_BUTTON_LABEL); // Create a signup button with rainbow effect
+        cancel = createRainbowButton(SignupViewModel.CANCEL_BUTTON_LABEL); // Create a cancel button with rainbow effect
+        // Button to skip to login screen
+        JButton skipToLogin = createRainbowButton("Skip to Login"); // Create a skip-to-login button with rainbow effect
 
         // Add the mute button to the view
         this.add(createMuteButton());
@@ -87,7 +88,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         setComponentColors(this);
 
         // Start playing background music
-        playBackgroundMusic("/power.wav");
+        playBackgroundMusic();
     }
 
     // Method to set colors for components in the container
@@ -115,9 +116,9 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     }
 
     // Method to play background music
-    private void playBackgroundMusic(String resourcePath) {
+    private void playBackgroundMusic() {
         try {
-            InputStream audioStream = getClass().getResourceAsStream(resourcePath);
+            InputStream audioStream = getClass().getResourceAsStream("/power.wav");
             if (audioStream != null) {
                 // Convert InputStream to byte array
                 byte[] audioBytes = toByteArray(audioStream);
@@ -131,7 +132,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 audioClip.start();
                 audioClip.loop(Clip.LOOP_CONTINUOUSLY);
             } else {
-                System.err.println("Audio file not found: " + resourcePath);
+                System.err.println("Audio file not found: " + "/power.wav");
             }
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
@@ -167,8 +168,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     // Method to create a button with a rainbow hover effect
     private JButton createRainbowButton(String text) {
-        RainbowButton button = new RainbowButton(text);
-        return button;
+        return new RainbowButton(text);
     }
 
     // Action performed method for handling button clicks
