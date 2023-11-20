@@ -23,8 +23,7 @@ public class Writer {
     static void writeNewFile(String filePath, Map<String, TranslationEntry> translationHistory) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
             // Write header
-            writer.write("in, out,time\n");
-
+            writer.write("Original, Translation, Date & Time\n"); //Write header
             writeTranslationMap(translationHistory, writer);
         }
     }
