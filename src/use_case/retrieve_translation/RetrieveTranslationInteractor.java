@@ -9,7 +9,7 @@ public class RetrieveTranslationInteractor implements RetrieveTranslationInputBo
     final UserRetrieveTranslationDataAccessInterface userDataAccessObject;
     final RetrieveTranslationOutputBoundary userPresenter;
 
-    private String api = "AIzaSyAORNlqu0L0NZBzt-ddgWsSYWYTwEOut-A";
+    private final String api = "AIzaSyAORNlqu0L0NZBzt-ddgWsSYWYTwEOut-A";
 
     public RetrieveTranslationInteractor(UserRetrieveTranslationDataAccessInterface userDataAccessObject,
                                          RetrieveTranslationOutputBoundary userPresenter) {
