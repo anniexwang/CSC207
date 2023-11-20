@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Objects;
 
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "sign up";
@@ -25,10 +26,17 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final JButton signUp;
     private final JButton cancel;
     private final JButton skipToLogin;
+    private final JLabel imageLabel;
 
 
     public SignupView(SignupController controller, SignupViewModel signupViewModel) {
+        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/AA.jpg"))); // Replace with your image path
+        imageLabel = new JLabel(imageIcon);
 
+        // Set the alignment of the image label to center
+        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        this.add(imageLabel);
         this.signupController = controller;
         this.signupViewModel = signupViewModel;
         signupViewModel.addPropertyChangeListener(this);
@@ -64,11 +72,13 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 }
         );
         cancel.addActionListener(this);
-
-        // This makes a new KeyListener implementing class, instantiates it, and
-        // makes it listen to keystrokes in the usernameInputField.
-        //
-        // Notice how it has access to instance variables in the enclosing class!
+        skipToLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call method in SignupPresenter to handle view change
+                signupController.goToLogin();
+            }
+        });
         usernameInputField.addKeyListener(
                 new KeyListener() {
                     @Override

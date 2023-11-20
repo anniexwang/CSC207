@@ -22,6 +22,19 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
     private UserFactory userFactory;
 
+    //private helper to get rid of the brackets when reading the csv file
+    private ArrayList<String> parseCsvField(String field) {
+        if (field == null || field.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        // Remove leading and trailing brackets if they exist
+        String trimmedField = field.replaceAll("^\\[|\\]$", "");
+
+        // Split the string by semicolons into an array and create a list
+        return new ArrayList<>(Arrays.asList(trimmedField.split(";")));
+    }
+
     public FileUserDataAccessObject(String csvPath, UserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
 
@@ -46,10 +59,12 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
                     String[] col = row.split(",");
                     String username = String.valueOf(col[headers.get("username")]);
                     String password = String.valueOf(col[headers.get("password")]);
-                    // Assuming that translation_history and favorites are stored as semicolon-separated strings in the CSV file
-                    ArrayList<String> translation_history = new ArrayList<>(Arrays.asList(col[headers.get("translation_history")].split(";")));
-                    ArrayList<String> favorites = new ArrayList<>(Arrays.asList(col[headers.get("favorites")].split(";")));
-                    User user = userFactory.create(username, password, translation_history, favorites);
+
+                    // Parse translation_history and favorites by splitting the string and removing brackets if present
+                    ArrayList<String> translationHistory = parseCsvField(col[headers.get("translation_history")]);
+                    ArrayList<String> favorites = parseCsvField(col[headers.get("favorites")]);
+
+                    User user = userFactory.create(username, password, translationHistory, favorites);
                     accounts.put(username, user);
                 }
             }

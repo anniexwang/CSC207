@@ -19,8 +19,6 @@ import java.io.IOException;
 
 public class SignupUseCaseFactory {
 
-
-    /** Prevent instantiation. */
     private SignupUseCaseFactory() {}
 
     public static SignupView create(
@@ -28,8 +26,8 @@ public class SignupUseCaseFactory {
             SignupViewModel signupViewModel, SignupUserDataAccessInterface userDataAccessObject) {
 
         try {
-            SignupController signupController = createUserSignupUseCase(viewManagerModel, signupViewModel, loginViewModel, userDataAccessObject);
-
+            SignupController signupController = createUserSignupUseCase(
+                    viewManagerModel, signupViewModel, loginViewModel, userDataAccessObject);
 
             return new SignupView(signupController, signupViewModel);
         } catch (IOException e) {
@@ -38,16 +36,18 @@ public class SignupUseCaseFactory {
 
         return null;
     }
+
     private static SignupController createUserSignupUseCase(
             ViewManagerModel viewManagerModel, SignupViewModel signupViewModel,
             LoginViewModel loginViewModel, SignupUserDataAccessInterface userDataAccessObject)
             throws IOException {
 
-        SignupOutputBoundary signupOutputBoundary = new SignupPresenter(viewManagerModel, signupViewModel, loginViewModel);
+        SignupOutputBoundary signupOutputBoundary = new SignupPresenter(
+                viewManagerModel, signupViewModel, loginViewModel);
         UserFactory userFactory = new CommonUserFactory();
         SignupInputBoundary userSignupInteractor = new SignupInteractor(
                 userDataAccessObject, signupOutputBoundary, userFactory);
 
-        return new SignupController(userSignupInteractor);
+        return new SignupController(userSignupInteractor, (SignupPresenter) signupOutputBoundary);
     }
 }

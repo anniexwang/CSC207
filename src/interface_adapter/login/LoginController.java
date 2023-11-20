@@ -6,17 +6,20 @@ import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInputData;
 
 public class LoginController {
+    private final LoginInputBoundary loginUseCaseInteractor;
+    private final LoginPresenter loginPresenter;
 
-    final LoginInputBoundary loginUseCaseInteractor;
-    public LoginController(LoginInputBoundary loginUseCaseInteractor) {
+    public LoginController(LoginInputBoundary loginUseCaseInteractor, LoginPresenter loginPresenter) {
         this.loginUseCaseInteractor = loginUseCaseInteractor;
+        this.loginPresenter = loginPresenter;
     }
 
-
     public void execute(String username, String password) {
-        LoginInputData loginInputData = new LoginInputData(
-                username, password);
-
+        LoginInputData loginInputData = new LoginInputData(username, password);
         loginUseCaseInteractor.execute(loginInputData);
+    }
+
+    public void goToSignUp() {
+        loginPresenter.goToSignUp();
     }
 }

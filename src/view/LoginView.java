@@ -4,6 +4,7 @@ import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupState;
+import interface_adapter.ViewManagerModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Objects;
 
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -28,12 +30,24 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     final JButton logIn;
     final JButton cancel;
     private final LoginController loginController;
+    private  ViewManagerModel viewManagerModel = new ViewManagerModel();
+    private final JLabel imageLabel;
 
     public LoginView(LoginViewModel loginViewModel, LoginController controller) {
+
 
         this.loginController = controller;
         this.loginViewModel = loginViewModel;
         this.loginViewModel.addPropertyChangeListener(this);
+        this.viewManagerModel = viewManagerModel;
+
+        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/AA.jpg"))); // Replace with your image path
+        imageLabel = new JLabel(imageIcon);
+
+        // Set the alignment of the image label to center
+        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        this.add(imageLabel);
 
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -68,11 +82,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
             @Override
             public void actionPerformed(ActionEvent evt) {
                 if (evt.getSource().equals(cancel)) {
-                    // Here, we refer to SignupView.this to get the enclosing instance of SignupView
-                    Window window = SwingUtilities.windowForComponent(LoginView.this);
-                    if (window instanceof JFrame) {
-                        ((JFrame) window).dispose();
-                    }
+                    loginController.goToSignUp();
                 }
             }
         });
@@ -129,14 +139,28 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         System.out.println("Click " + evt.getActionCommand());
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        LoginState state = (LoginState) evt.getNewValue();
-        setFields(state);
-    }
+
+
 
     private void setFields(LoginState state) {
         usernameInputField.setText(state.getUsername());
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if ("state".equals(evt.getPropertyName())) {
+            LoginState state = loginViewModel.getState();
+            if (state.getUsernameError() != null && !state.getUsernameError().isEmpty()) {
+                JOptionPane.showMessageDialog(this, state.getUsernameError());
+                // Reset error message and username/password fields
+                state.setUsernameError(null);
+                state.setUsername("");
+                state.setPassword("");
+                loginViewModel.setState(state);
+                usernameInputField.setText("");
+                passwordInputField.setText("");
+            }
+        }
     }
 
 }
