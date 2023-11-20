@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Date;
 
-
+//TranslationHistory
 public class TranslationHistory implements ITranslationHistory{
     private Map<String, TranslationEntry> translationHistory;
 
