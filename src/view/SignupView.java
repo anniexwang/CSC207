@@ -10,8 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     // Constants
@@ -88,7 +87,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         setComponentColors(this);
 
         // Start playing background music
-        playBackgroundMusic("src/view/power.wav"); // Replace with your music file path
+        playBackgroundMusic("/power.wav");
     }
 
     // Method to set colors for components in the container
@@ -116,22 +115,39 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     }
 
     // Method to play background music
-    private void playBackgroundMusic(String filePath) {
+    private void playBackgroundMusic(String resourcePath) {
         try {
-            // Open an audio input stream
-            File audioFile = new File(filePath);
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audioFile);
-            audioClip = AudioSystem.getClip(); // Assign to the member variable
-            audioClip.open(audioInputStream);
+            InputStream audioStream = getClass().getResourceAsStream(resourcePath);
+            if (audioStream != null) {
+                // Convert InputStream to byte array
+                byte[] audioBytes = toByteArray(audioStream);
+                // Create an InputStream from the byte array
+                InputStream byteArrayInputStream = new ByteArrayInputStream(audioBytes);
+                // Create an AudioInputStream from the InputStream
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(byteArrayInputStream);
 
-            // Start playing the music
-            audioClip.start();
-            audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+                audioClip = AudioSystem.getClip();
+                audioClip.open(audioInputStream);
+                audioClip.start();
+                audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+            } else {
+                System.err.println("Audio file not found: " + resourcePath);
+            }
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace(); // Handle exceptions
+            e.printStackTrace();
         }
     }
 
+    // Helper method to convert InputStream to byte array
+    private byte[] toByteArray(InputStream in) throws IOException {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len;
+        while ((len = in.read(buffer)) != -1) {
+            out.write(buffer, 0, len);
+        }
+        return out.toByteArray();
+    }
     // Method to create a mute button
     private JButton createMuteButton() {
         JButton muteButton = new RainbowButton("Mute");
