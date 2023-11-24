@@ -1,5 +1,6 @@
 package app;
 
+import view.AudioManager; // Import the AudioManager class
 import data_access.FileUserDataAccessObject;
 import entity.CommonUserFactory;
 import interface_adapter.login.LoginViewModel;
@@ -53,12 +54,15 @@ public class Main {
                 throw new RuntimeException(e);
             }
 
+            // Create an instance of AudioManager
+            AudioManager audioManager = new AudioManager("/power.wav");
+
             // Creating views
-            SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject);
+            SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject, audioManager); // Pass AudioManager
             applyFontToComponent(signupView, goblinFont);
             views.add(signupView, signupView.viewName);
 
-            LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, signupViewModel, userDataAccessObject);
+            LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, signupViewModel, userDataAccessObject, audioManager); // Pass AudioManager
             applyFontToComponent(loginView, goblinFont);
             views.add(loginView, loginView.viewName);
 

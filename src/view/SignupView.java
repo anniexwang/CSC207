@@ -19,21 +19,25 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     // Controllers and view models
     private final SignupController signupController; // Controller for the signup process
-    private final SignupViewModel signupViewModel; // View model for signup
 
     // UI components
     private final JTextField usernameInputField = new JTextField(15); // Input field for username
     private final JPasswordField passwordInputField = new JPasswordField(15); // Input field for password
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15); // Input field for repeating the password
-    private final JButton cancel; // Button to cancel the signup
-    private Clip audioClip; // Clip for playing audio
-    private boolean isMuted = false; // Mute state
+    private final JButton cancel;
+    private JButton muteButton;
+    private Timer muteButtonUpdateTimer;
+
+
+    private final AudioManager audioManager;
 
     // Constructor
-    public SignupView(SignupController controller, SignupViewModel signupViewModel) {
+    public SignupView(SignupController controller, SignupViewModel signupViewModel, AudioManager audioManager) {
         this.signupController = controller;
-        this.signupViewModel = signupViewModel;
-        this.signupViewModel.addPropertyChangeListener(this);
+        this.audioManager = audioManager;
+
+        // View model for signup
+        signupViewModel.addPropertyChangeListener(this);
 
         // Container panel for all components
         JPanel containerPanel = new JPanel();
@@ -59,10 +63,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         // Buttons setup
         JButton signUp = createRainbowButton(SignupViewModel.SIGNUP_BUTTON_LABEL);
         cancel = createRainbowButton(SignupViewModel.CANCEL_BUTTON_LABEL);
-        JButton skipToLogin = createRainbowButton("Skip to Login");
-
-        // Add the mute button
-        containerPanel.add(createMuteButton());
+        cancel.addActionListener(this);
+        JButton skipToLogin = createRainbowButton(SignupViewModel.SKIP_BUTTON_LABEL);
 
         // Panel for buttons
         JPanel buttons = new JPanel();
@@ -72,10 +74,13 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         // Add action listeners to buttons
         signUp.addActionListener(e -> signupController.execute(usernameInputField.getText(), new String(passwordInputField.getPassword()), new String(repeatPasswordInputField.getPassword())));
-        cancel.addActionListener(this);
+        cancel.addActionListener(e -> signupController.handleCancel());
         skipToLogin.addActionListener(e -> signupController.goToLogin());
 
+
         // Add components to the container panel
+        muteButton = createMuteButton();
+        containerPanel.add(muteButton);
         containerPanel.add(imageLabel);
         containerPanel.add(title);
         containerPanel.add(usernameInfo);
@@ -96,7 +101,17 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         setComponentColors(containerPanel);
 
         // Start playing background music
-        playBackgroundMusic();
+        audioManager.startBackgroundMusic();
+        muteButtonUpdateTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Check and update the mute button text based on audioManager.isMuted()
+                if (audioManager != null) {
+                    muteButton.setText(audioManager.isMuted() ? "Unmute" : "Mute");
+                }
+            }
+        });
+        muteButtonUpdateTimer.start();
     }
 
     // Method to set colors for components in the container
@@ -123,75 +138,42 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         }
     }
 
-    // Method to play background music
-    private void playBackgroundMusic() {
-        try {
-            InputStream audioStream = getClass().getResourceAsStream("/power.wav");
-            if (audioStream != null) {
-                // Convert InputStream to byte array
-                byte[] audioBytes = toByteArray(audioStream);
-                // Create an InputStream from the byte array
-                InputStream byteArrayInputStream = new ByteArrayInputStream(audioBytes);
-                // Create an AudioInputStream from the InputStream
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(byteArrayInputStream);
 
-                audioClip = AudioSystem.getClip();
-                audioClip.open(audioInputStream);
-                audioClip.start();
-                audioClip.loop(Clip.LOOP_CONTINUOUSLY);
-            } else {
-                System.err.println("Audio file not found: " + "/power.wav");
-            }
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Helper method to convert InputStream to byte array
-    private byte[] toByteArray(InputStream in) throws IOException {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1024];
-        int len;
-        while ((len = in.read(buffer)) != -1) {
-            out.write(buffer, 0, len);
-        }
-        return out.toByteArray();
-    }
-
-    // Method to create a mute button
     private JButton createMuteButton() {
-        JButton muteButton = new RainbowButton("Mute");
-        muteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (audioClip != null) {
-                    isMuted = !isMuted; // Toggle mute state
-                    FloatControl gainControl = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
-                    gainControl.setValue(isMuted ? gainControl.getMinimum() : gainControl.getMaximum()); // Mute or unmute
-                    muteButton.setText(isMuted ? "Unmute" : "Mute"); // Update button text
-                }
-            }
+        JButton muteButton = new RainbowButton(audioManager.isMuted() ? "Unmute" : "Mute");
+        muteButton.setName("MuteButton"); // Set a unique name to identify the button later
+        muteButton.addActionListener(e -> {
+            // Toggle mute using AudioManager
+            audioManager.toggleMute();
+            // Update the mute button text
+            muteButton.setText(audioManager.isMuted() ? "Unmute" : "Mute");
         });
         return muteButton;
     }
+
+    // Method to update the mute button's text based on the mute state
+
+
     private JButton createRainbowButton(String text) {
         return new RainbowButton(text);
     }
-
 
     // Action performed method for handling button clicks
     @Override
     public void actionPerformed(ActionEvent evt) {
         if (evt.getSource() == cancel) {
-            // Clear all text fields when cancel is clicked
-            usernameInputField.setText("");
-            passwordInputField.setText("");
-            repeatPasswordInputField.setText("");
-            // Reset any error state in the view model
-            SignupState currentState = signupViewModel.getState();
-            currentState.setUsernameError(null);
-            signupViewModel.setState(currentState);
+            clearFormFields();
+            signupController.handleCancel();
         }
+    }
+
+    /**
+     * Clears all text fields in the form.
+     */
+    private void clearFormFields() {
+        usernameInputField.setText("");
+        passwordInputField.setText("");
+        repeatPasswordInputField.setText("");
     }
 
     // Property change listener to respond to changes in the view model
