@@ -13,6 +13,7 @@ import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginInteractor;
 import use_case.login.LoginUserDataAccessInterface;
 import view.LoginView;
+import view.AudioManager; // Import the AudioManager class
 
 import javax.swing.*;
 import java.io.IOException;
@@ -26,12 +27,13 @@ public class LoginUseCaseFactory {
             LoginViewModel loginViewModel,
             LoggedInViewModel loggedInViewModel,
             SignupViewModel signupViewModel,
-            LoginUserDataAccessInterface userDataAccessObject) {
+            LoginUserDataAccessInterface userDataAccessObject,
+            AudioManager audioManager) { // Add AudioManager as a parameter
 
         try {
             LoginController loginController = createLoginUseCase(
                     viewManagerModel, loginViewModel, loggedInViewModel, signupViewModel, userDataAccessObject);
-            return new LoginView(loginViewModel, loginController);
+            return new LoginView(loginViewModel, loginController, audioManager); // Pass AudioManager to LoginView
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
             return null;
