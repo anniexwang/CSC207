@@ -31,22 +31,25 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     // Constructor
     public SignupView(SignupController controller, SignupViewModel signupViewModel) {
-        this.signupController = controller; // Assign the controller
-        this.signupViewModel = signupViewModel; // Assign the view model
-        this.signupViewModel.addPropertyChangeListener(this); // Add this view as a listener to the view model
+        this.signupController = controller;
+        this.signupViewModel = signupViewModel;
+        this.signupViewModel.addPropertyChangeListener(this);
+
+        // Container panel for all components
+        JPanel containerPanel = new JPanel();
+        containerPanel.setLayout(new BoxLayout(containerPanel, BoxLayout.Y_AXIS));
 
         // Set background color of the panel
-        this.setBackground(Color.BLACK);
+        containerPanel.setBackground(Color.BLACK);
 
         // Image setup
-        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/AA.jpg"))); // Load the image
-        // Label to display an image
-        JLabel imageLabel = new JLabel(imageIcon); // Create a label for the image
-        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the image label
+        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/AA.jpg")));
+        JLabel imageLabel = new JLabel(imageIcon);
+        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Title setup
-        JLabel title = new JLabel(SignupViewModel.TITLE_LABEL); // Create title label
-        title.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the title label
+        JLabel title = new JLabel(SignupViewModel.TITLE_LABEL);
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Setup for username, password, and repeat password fields
         LabelTextPanel usernameInfo = new LabelTextPanel(new JLabel(SignupViewModel.USERNAME_LABEL), usernameInputField);
@@ -54,38 +57,43 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         LabelTextPanel repeatPasswordInfo = new LabelTextPanel(new JLabel(SignupViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
 
         // Buttons setup
-        // Button for signing up
-        JButton signUp = createRainbowButton(SignupViewModel.SIGNUP_BUTTON_LABEL); // Create a signup button with rainbow effect
-        cancel = createRainbowButton(SignupViewModel.CANCEL_BUTTON_LABEL); // Create a cancel button with rainbow effect
-        // Button to skip to login screen
-        JButton skipToLogin = createRainbowButton("Skip to Login"); // Create a skip-to-login button with rainbow effect
+        JButton signUp = createRainbowButton(SignupViewModel.SIGNUP_BUTTON_LABEL);
+        cancel = createRainbowButton(SignupViewModel.CANCEL_BUTTON_LABEL);
+        JButton skipToLogin = createRainbowButton("Skip to Login");
 
-        // Add the mute button to the view
-        this.add(createMuteButton());
+        // Add the mute button
+        containerPanel.add(createMuteButton());
 
         // Panel for buttons
-        JPanel buttons = new JPanel(); // Create a panel to hold buttons
-        buttons.add(signUp); // Add the signup button
-        buttons.add(cancel); // Add the cancel button
-        buttons.add(skipToLogin); // Add the skip-to-login button
+        JPanel buttons = new JPanel();
+        buttons.add(signUp);
+        buttons.add(cancel);
+        buttons.add(skipToLogin);
 
         // Add action listeners to buttons
         signUp.addActionListener(e -> signupController.execute(usernameInputField.getText(), new String(passwordInputField.getPassword()), new String(repeatPasswordInputField.getPassword())));
         cancel.addActionListener(this);
         skipToLogin.addActionListener(e -> signupController.goToLogin());
 
-        // Set the layout of the panel
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        // Add components to the panel
-        this.add(imageLabel);
-        this.add(title);
-        this.add(usernameInfo);
-        this.add(passwordInfo);
-        this.add(repeatPasswordInfo);
-        this.add(buttons);
+        // Add components to the container panel
+        containerPanel.add(imageLabel);
+        containerPanel.add(title);
+        containerPanel.add(usernameInfo);
+        containerPanel.add(passwordInfo);
+        containerPanel.add(repeatPasswordInfo);
+        containerPanel.add(buttons);
+
+        // Add container panel to a JScrollPane
+        JScrollPane scrollPane = new JScrollPane(containerPanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        // Set the layout of the main panel and add the JScrollPane
+        this.setLayout(new BorderLayout());
+        this.add(scrollPane, BorderLayout.CENTER);
 
         // Set background and foreground for each component
-        setComponentColors(this);
+        setComponentColors(containerPanel);
 
         // Start playing background music
         playBackgroundMusic();
@@ -149,6 +157,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         }
         return out.toByteArray();
     }
+
     // Method to create a mute button
     private JButton createMuteButton() {
         JButton muteButton = new RainbowButton("Mute");
@@ -165,11 +174,10 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         });
         return muteButton;
     }
-
-    // Method to create a button with a rainbow hover effect
     private JButton createRainbowButton(String text) {
         return new RainbowButton(text);
     }
+
 
     // Action performed method for handling button clicks
     @Override
@@ -195,46 +203,4 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
             JOptionPane.showMessageDialog(this, state.getUsernameError());
         }
     }
-
-    // Inner class for a JButton with a rainbow hover effect
-    static class RainbowButton extends JButton {
-        private final Timer timer; // Timer for animation
-        private float hue = 0.0f; // Hue value for the color
-
-        public RainbowButton(String text) {
-            super(text);
-            setContentAreaFilled(false);
-            setOpaque(true);
-
-            // Setup timer to change color
-            timer = new Timer(50, e -> {
-                hue += 0.01f; // Increment hue
-                if (hue > 1.0f) {
-                    hue = 0.0f; // Reset hue if it goes beyond 1
-                }
-                setBackground(Color.getHSBColor(hue, 0.7f, 0.7f)); // Set background color based on hue
-            });
-
-            // Add mouse listener for hover effect
-            addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    timer.start(); // Start the timer on mouse enter
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    timer.stop(); // Stop the timer on mouse exit
-                    setBackground(Color.BLACK); // Reset the background color
-                }
-            });
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g); // Paint the component normally
-        }
-
-    }
-
 }
