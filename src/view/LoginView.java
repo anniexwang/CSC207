@@ -99,6 +99,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         // Start playing background music
         audioManager.startBackgroundMusic();
 
+
         // Initialize and start the timer to periodically update mute button text
         muteButtonUpdateTimer = new Timer(1000, new ActionListener() {
             @Override

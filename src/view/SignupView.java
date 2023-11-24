@@ -102,6 +102,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         // Start playing background music
         audioManager.startBackgroundMusic();
+
+        // Timer to update the mute button text
         muteButtonUpdateTimer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
