@@ -101,6 +101,25 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         // Start playing background music
         audioController.play();
 
+        usernameInputField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                LoginState currentState = loginViewModel.getState();
+                currentState.setUsername(usernameInputField.getText());
+                loginViewModel.setState(currentState);
+            }
+        });
+
+        passwordInputField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                LoginState currentState = loginViewModel.getState();
+                currentState.setPassword(new String(passwordInputField.getPassword()));
+                loginViewModel.setState(currentState);
+            }
+        });
+
+
 
         // Initialize and start the timer to periodically update mute button text
         int delay = 1000; // Delay in milliseconds (1 second)
@@ -118,6 +137,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         }
 
     }
+
+
 
     /**
      * Handles the login action.
@@ -178,9 +199,11 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         }
     }
 
-    @Override
+    /**
+     * React to a button click that results in evt.
+     */
     public void actionPerformed(ActionEvent evt) {
-        // Logic for handling action events
+        System.out.println("Click " + evt.getActionCommand());
     }
 
     @Override
@@ -199,4 +222,5 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
             }
         }
     }
+
 }
