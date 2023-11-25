@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.Audio.AudioController;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
@@ -29,12 +30,12 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private Timer muteButtonUpdateTimer;
 
 
-    private final AudioManager audioManager;
+    private  AudioController audioController;
 
     // Constructor
-    public SignupView(SignupController controller, SignupViewModel signupViewModel, AudioManager audioManager) {
+    public SignupView(SignupController controller, SignupViewModel signupViewModel, AudioController audioController) {
         this.signupController = controller;
-        this.audioManager = audioManager;
+        this.audioController = audioController;
 
         // View model for signup
         signupViewModel.addPropertyChangeListener(this);
@@ -101,15 +102,15 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         setComponentColors(containerPanel);
 
         // Start playing background music
-        audioManager.startBackgroundMusic();
+
 
         // Timer to update the mute button text
         muteButtonUpdateTimer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Check and update the mute button text based on audioManager.isMuted()
-                if (audioManager != null) {
-                    muteButton.setText(audioManager.isMuted() ? "Unmute" : "Mute");
+                if (audioController != null) {
+                    muteButton.setText(audioController.isMuted() ? "Unmute" : "Mute");
                 }
             }
         });
@@ -142,13 +143,13 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
 
     private JButton createMuteButton() {
-        JButton muteButton = new RainbowButton(audioManager.isMuted() ? "Unmute" : "Mute");
+        JButton muteButton = new RainbowButton(audioController.isMuted() ? "Unmute" : "Mute");
         muteButton.setName("MuteButton"); // Set a unique name to identify the button later
         muteButton.addActionListener(e -> {
             // Toggle mute using AudioManager
-            audioManager.toggleMute();
+            audioController.mute();
             // Update the mute button text
-            muteButton.setText(audioManager.isMuted() ? "Unmute" : "Mute");
+            muteButton.setText(audioController.isMuted() ? "Unmute" : "Mute");
         });
         return muteButton;
     }

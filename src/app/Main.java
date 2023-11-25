@@ -1,5 +1,8 @@
 package app;
 
+import data_access.AudioDataAccessObject;
+import interface_adapter.Audio.AudioController;
+import use_case.Audio.AudioInputData;
 import view.AudioManager; // Import the AudioManager class
 import data_access.FileUserDataAccessObject;
 import entity.CommonUserFactory;
@@ -7,6 +10,7 @@ import interface_adapter.login.LoginViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.ViewManagerModel;
+import use_case.Audio.AudioInteractor;
 
 import view.LoggedInView;
 import view.LoginView;
@@ -54,15 +58,20 @@ public class Main {
                 throw new RuntimeException(e);
             }
 
-            // Create an instance of AudioManager
-            AudioManager audioManager = new AudioManager("/power.wav");
+
+            // Create new AudioController using factory method
+            AudioController audioController = AudioControllerFactory.createAudioController("src/power.wav");
+
+
+//            // Create an instance of AudioManager
+//            AudioManager audioManager = new AudioManager("/power.wav");
 
             // Creating views
-            SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject, audioManager); // Pass AudioManager
+            SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject, audioController); // Pass audioController
             applyFontToComponent(signupView, goblinFont);
             views.add(signupView, signupView.viewName);
 
-            LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, signupViewModel, userDataAccessObject, audioManager); // Pass AudioManager
+            LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, signupViewModel, userDataAccessObject, audioController); // Pass audioController
             applyFontToComponent(loginView, goblinFont);
             views.add(loginView, loginView.viewName);
 
