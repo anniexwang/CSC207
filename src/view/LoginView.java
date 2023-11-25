@@ -169,14 +169,9 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
      */
     private JButton createMuteButton() {
         JButton muteButton = new RainbowButton(audioController.isMuted() ? "Unmute" : "Mute");
-        muteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (audioController != null) {
-                    audioController.mute();
-                    muteButton.setText(audioController.isMuted() ? "Unmute" : "Mute");
-                }
-            }
+        muteButton.addActionListener(e -> {
+            audioController.mute();
+            muteButton.setText(audioController.isMuted() ? "Unmute" : "Mute");
         });
         return muteButton;
     }
