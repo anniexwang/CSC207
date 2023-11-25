@@ -11,7 +11,7 @@ import entity.UserFactory;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
-import view.AudioManager;
+import interface_adapter.Audio.AudioController;
 import view.SignupView;
 
 import javax.swing.*;
@@ -23,13 +23,13 @@ public class SignupUseCaseFactory {
 
     public static SignupView create(
             ViewManagerModel viewManagerModel, LoginViewModel loginViewModel,
-            SignupViewModel signupViewModel, SignupUserDataAccessInterface userDataAccessObject, AudioManager audioManager) {
+            SignupViewModel signupViewModel, SignupUserDataAccessInterface userDataAccessObject, AudioController audioController) {
 
         try {
             SignupController signupController = createUserSignupUseCase(
                     viewManagerModel, signupViewModel, loginViewModel, userDataAccessObject);
 
-            return new SignupView(signupController, signupViewModel, audioManager);
+            return new SignupView(signupController, signupViewModel, audioController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }
