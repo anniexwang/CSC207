@@ -28,11 +28,13 @@ public class SelectLanguagesPresenter implements SelectLanguagesOutputBoundary {
 
         SelectLanguagesState selectLanguagesState = selectLanguagesViewModel.getState();
         HistoryState historyState = historyViewModel.getState();
+        historyState.setLanguages(response.getLanguages());
 //        tableState.setUsername(response.getUsername());
         this.historyViewModel.setState(historyState);
-        historyViewModel.firePropertyChanged();
-        viewManagerModel.setActiveView(historyViewModel.getViewName());
-        viewManagerModel.firePropertyChanged();
+//        this.historyViewModel.getData();
+        this.historyViewModel.firePropertyChanged();
+        this.viewManagerModel.setActiveView(historyViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
     }
 
     @Override

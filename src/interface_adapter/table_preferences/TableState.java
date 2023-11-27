@@ -1,16 +1,18 @@
 package interface_adapter.table_preferences;
 
+import interface_adapter.history.HistoryState;
+
 public class TableState {
     private String tableType = "";
     private String tableTypeError = null;
     private String sortType = "";
-//    private String repeatPasswordError = null;
+    private String sortTypeError = null;
 
     public TableState(TableState copy) {
         tableType = copy.tableType;
-//        usernameError = copy.usernameError;
+        tableTypeError = copy.tableTypeError;
         sortType = copy.sortType;
-//        repeatPasswordError = copy.repeatPasswordError;
+        sortTypeError = copy.sortTypeError;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -28,23 +30,25 @@ public class TableState {
         return sortType;
     }
 
-//    public String getRepeatPasswordError() {
-//        return repeatPasswordError;
-//    }
+    public String getSortTypeError() {
+        return sortType;
+    }
 
-    public void setTableType(String username) {
+    public void setTableType(String tableType) {
+
+        System.out.println("TableState: setTableType successful");
         this.tableType = tableType;
     }
 
     public void setTableTypeError(String tableTypeError) {
         this.tableTypeError = tableTypeError;
     }
-    public void setSortType(String repeatPassword) {
+    public void setSortType(String sortType) {
         this.sortType = sortType;
     }
 
-//    public void setRepeatPasswordError(String repeatPasswordError) {
-//        this.repeatPasswordError = repeatPasswordError;
-//    }
+    public void setSortTypeError(String sortTypeError) {
+        this.sortTypeError = sortTypeError;
+    }
 }
 

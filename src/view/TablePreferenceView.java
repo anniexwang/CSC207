@@ -1,5 +1,7 @@
 package view;
 
+import interface_adapter.history.HistoryViewModel;
+import interface_adapter.history.HistoryState;
 import interface_adapter.table_preferences.TableController;
 import interface_adapter.table_preferences.TableState;
 import interface_adapter.table_preferences.TableViewModel;
@@ -12,35 +14,46 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TablePreferenceView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    public final String viewName = "Table Preferences";
+    public final String viewName = "Table Preferences View";
     private final TableViewModel tableViewModel;
 
     private final TableController tableController;
 
+    private final HistoryViewModel historyViewModel;
+
     private String[] tableTypes = {"Select", "Only Words", "All", "By Language"};
     private String[] sortTypes = {"Select", "Alphabetical", "Language", "Time Created", "Word Size"};
-    final JComboBox typeDropDown = new JComboBox();
+    final JComboBox tableDropDown = new JComboBox();
+
+    private final JLabel tableErrorField = new JLabel();
     final JComboBox sortDropDown = new JComboBox();
-    //TODO: add error field
+
+    private final JLabel sortErrorField = new JLabel();
+    // TODO: get error labels to work
     final JButton go;
 
     /**
      * A window with a title and a JButton.
      */
-    public TablePreferenceView(TableController tableController, TableViewModel tableViewModel) {
+//    public TablePreferenceView(TableController tableController, TableViewModel tableViewModel) {
+    public TablePreferenceView(TableController tableController, TableViewModel tableViewModel, HistoryViewModel historyViewModel) {
 //    public TablePreferenceView(TableViewModel tableViewModel) {
+        this.tableController = tableController;
         this.tableViewModel = tableViewModel;
         this.tableViewModel.addPropertyChangeListener(this);
-        this.tableController = tableController;
+        this.historyViewModel = historyViewModel;
+//        this.historyViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel(tableViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         for (int i = 0; i < tableTypes.length; i++) {
-            typeDropDown.addItem(tableTypes[i]);
+            tableDropDown.addItem(tableTypes[i]);
         }
 
         for (int i = 0; i < sortTypes.length; i++) {
@@ -48,7 +61,7 @@ public class TablePreferenceView extends JPanel implements ActionListener, Prope
         }
 
         LabelTextPanel typeInfo = new LabelTextPanel(
-                new JLabel(tableViewModel.TABLE_TYPE_LABEL), typeDropDown);
+                new JLabel(tableViewModel.TABLE_TYPE_LABEL), tableDropDown);
         LabelTextPanel sortInfo = new LabelTextPanel(
                 new JLabel(tableViewModel.SORT_TYPE_LABEL), sortDropDown);
 
@@ -56,48 +69,64 @@ public class TablePreferenceView extends JPanel implements ActionListener, Prope
         go = new JButton(tableViewModel.GO_BUTTON_LABEL);
         buttons.add(go);
 
-        typeDropDown.addActionListener(this);
+        tableDropDown.addActionListener(this);
         sortDropDown.addActionListener(this);
+//        go.addActionListener(this);
+        //TODO: delete after, used to test when buttons are clicked
+
         go.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 if (evt.getSource().equals(go)) {
-                    TableState currentState = tableViewModel.getState();
+//                    TableState currentState = tableViewModel.getState();
+                    tableController.execute((String) tableDropDown.getSelectedItem(), (String) sortDropDown.getSelectedItem());
+//                    historyViewModel.firePropertyChanged();
+//                    tableController.execute(
+//                            currentState.getTableType(),
+//                            currentState.getSortType()
 
-                    tableController.execute(
-                            currentState.getTableType(),
-                            currentState.getSortType()
-                    );
                 }
             }
         });
 
-        typeDropDown.addKeyListener(new KeyListener() {
+        tableDropDown.addKeyListener(new KeyListener() {
             @Override
-            public void keyTyped(KeyEvent e) {}
+            public void keyTyped(KeyEvent e) {
+            }
 
             @Override
             public void keyPressed(KeyEvent e) {
                 TableState currentState = tableViewModel.getState();
-                currentState.setTableType(typeDropDown.getName());
+                currentState.setTableType((String) tableDropDown.getSelectedItem());
+//                HistoryState historyState = historyViewModel.getState();
+//                historyState.setHistoryTableType((String) tableDropDown.getSelectedItem());
+//                historyViewModel.setTableType((String) tableDropDown.getSelectedItem());
+//                System.out.println((String) tableDropDown.getSelectedItem());
                 tableViewModel.setState(currentState);
+//                historyViewModel.getData();
+//                historyViewModel.firePropertyChanged();
+//                historyViewModel.getData((String) tableDropDown.getSelectedItem());
             }
 
             @Override
-            public void keyReleased(KeyEvent e) {}
+            public void keyReleased(KeyEvent e) {
+            }
         });
         sortDropDown.addKeyListener(new KeyListener() {
             @Override
-            public void keyTyped(KeyEvent e) {}
+            public void keyTyped(KeyEvent e) {
+            }
 
             @Override
             public void keyPressed(KeyEvent e) {
                 TableState currentState = tableViewModel.getState();
-                currentState.setSortType(sortDropDown.getName());
+                currentState.setSortType((String) sortDropDown.getSelectedItem());
                 tableViewModel.setState(currentState);
+
             }
 
             @Override
-            public void keyReleased(KeyEvent e) {}
+            public void keyReleased(KeyEvent e) {
+            }
         });
 //        go.addKeyListener(new KeyListener() {
 //            @Override
@@ -118,7 +147,9 @@ public class TablePreferenceView extends JPanel implements ActionListener, Prope
 
         this.add(title);
         this.add(typeInfo);
+        this.add(tableErrorField);
         this.add(sortInfo);
+        this.add(sortErrorField);
         this.add(buttons);
     }
 
@@ -128,16 +159,59 @@ public class TablePreferenceView extends JPanel implements ActionListener, Prope
     public void actionPerformed(ActionEvent evt) {
 
         System.out.println("Click " + evt.getActionCommand());
+        if (evt.getSource().equals(tableDropDown)) {
+            System.out.println((String) tableDropDown.getSelectedItem());
+//            System.out.println("TablePreferenceView: historyViewModel.getData(): " + historyViewModel.getData());
+            HistoryState historyState = historyViewModel.getState();
+            historyState.setHistoryTableType((String) tableDropDown.getSelectedItem());
+//            historyViewModel.getData();
+//            ArrayList<List<String>> data = historyViewModel.getData();
+//            historyViewModel.setData();
+//            System.out.println("TablePreferenceView: historyViewModel.getData(): " + historyViewModel.getData());
+//            System.out.println("TablePreferenceView: historyViewModel.getData(): " + historyViewModel.convertToStringArray(historyViewModel.getData()));
+//            historyViewModel.firePropertyChanged();
+
+//            historyViewModel.setState(historyState);
+        }
+
+//        historyViewModel.getData();
+        if (evt.getSource().equals(sortDropDown)) {
+            System.out.println((String) sortDropDown.getSelectedItem());
+//            System.out.println("TablePreferenceView: historyViewModel.getData(): " + historyViewModel.getData());
+            HistoryState historyState = historyViewModel.getState();
+            historyState.setHistorySortType((String) sortDropDown.getSelectedItem());
+//            historyViewModel.getData();
+//            ArrayList<List<String>> data = historyViewModel.getData();
+//            historyViewModel.setData();
+//            System.out.println("TablePreferenceView: historyViewModel.sort(historyViewModel.getData()): " + historyViewModel.sort(historyViewModel.getData()));
+//            historyViewModel.firePropertyChanged();
+
+//            System.out.println("TablePreferenceView: historyViewModel.getData(): " + historyViewModel.convertToStringArray(historyViewModel.getData()));
+        }
+
         if (evt.getSource().equals(go)) {
-            tableController.execute(typeDropDown.getName(), sortDropDown.getName());
+//            tableController.execute((String) tableDropDown.getSelectedItem(), (String) sortDropDown.getSelectedItem());
+//            System.out.println("TablePreferenceView: historyViewModel.getData(): " + historyViewModel.getData());
+//            HistoryState historyState = historyViewModel.getState();
+//            historyState.setHistoryTableType((String) sortDropDown.getSelectedItem());
+//            historyViewModel.getData();
+            historyViewModel.firePropertyChanged();
         }
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         TableState state = (TableState) evt.getNewValue();
+        System.out.println("TablePreferenceView propertyChange state: " + state);
+//        HistoryState historyState = (HistoryState) evt.getNewValue();
+//        HistoryState historyState = historyViewModel.getState();
+//        historyState.setTableType((String) tableDropDown.getSelectedItem());
         if (state.getTableTypeError() != null) {
-            JOptionPane.showMessageDialog(this, state.getTableTypeError()); //TODO: edit each error
+            JOptionPane.showMessageDialog(this, state.getTableTypeError());
+
         }
+//        if (historyState.getTableTypeError() != null) {
+//            JOptionPane.showMessageDialog(this, historyState.getTableTypeError());
+//        }
     }
 }
