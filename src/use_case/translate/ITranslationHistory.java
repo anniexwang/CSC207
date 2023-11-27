@@ -10,6 +10,6 @@ public interface ITranslationHistory {
     String getTranslation(String in);
     List<String> getAllTranslations();
     List<String> getFullTranslationHistory();
-    void write(String filePath) throws IOException;
+    void write(String username, String filePath) throws IOException;
 }
 

@@ -2,7 +2,6 @@ package use_case.translate;
 
 import java.io.IOException;
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.Map;
 import java.util.Date;
 
 
-public class TranslationHistory implements ITranslationHistory{
+public class TranslationHistory implements ITranslationHistory {
     private final Map<String, TranslationEntry> translationHistory;
 
     public TranslationHistory() {
@@ -25,15 +24,16 @@ public class TranslationHistory implements ITranslationHistory{
     @Override
     public String getTranslation(String key) {
         TranslationEntry entry = translationHistory.get(key);
-        if (entry != null){
-            return entry.getTranslation();}
+        if (entry != null) {
+            return entry.getTranslation();
+        }
         return null;
     }
 
     @Override
     public List<String> getAllTranslations() {
         List<String> allTranslations = new ArrayList<>();
-        for (TranslationEntry entry : translationHistory.values()){
+        for (TranslationEntry entry : translationHistory.values()) {
             allTranslations.add(entry.getTranslation());
             allTranslations.add(entry.getOutLanguage());
         }
@@ -43,8 +43,8 @@ public class TranslationHistory implements ITranslationHistory{
     @Override
     public List<String> getFullTranslationHistory() {
         List<String> fullTranslationHistory = new ArrayList<>();
-        for (TranslationEntry entry : translationHistory.values()){
-            List<String> translationInfo = new ArrayList<>();
+        for (TranslationEntry entry : translationHistory.values()) {
+            // List<String> translationInfo = new ArrayList<>();
 
             fullTranslationHistory.add(String.valueOf(entry));
             fullTranslationHistory.add(entry.getInLanguage());
@@ -56,12 +56,9 @@ public class TranslationHistory implements ITranslationHistory{
     }
 
     @Override
-    public void write(String filePath) throws IOException {
+    public void write(String username, String filePath) throws IOException {
         File file = new File(filePath);
-        if (file.exists()) {
-            Writer.appendToFile(filePath, translationHistory);
-        } else {
-            Writer.writeNewFile(filePath, translationHistory);
-        }
+        Writer.insertTranslationHistoryToFile(username, filePath, getFullTranslationHistory());
     }
 }
+
