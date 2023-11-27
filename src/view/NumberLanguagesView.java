@@ -1,5 +1,7 @@
 package view;
 
+import interface_adapter.history.HistoryState;
+import interface_adapter.history.HistoryViewModel;
 import interface_adapter.number_languages.NumberLanguagesController;
 import interface_adapter.number_languages.NumberLanguagesState;
 import interface_adapter.number_languages.NumberLanguagesViewModel;
@@ -15,9 +17,11 @@ import java.beans.PropertyChangeListener;
 
 public class NumberLanguagesView extends JPanel implements ActionListener, PropertyChangeListener {
 
-    public final String viewName = "Number of Languages";
+    public final String viewName = "Number of Languages View";
     private final NumberLanguagesViewModel numberLanguagesViewModel;
     private final NumberLanguagesController numberLanguagesController;
+    private final HistoryViewModel historyViewModel;
+
     private final JTextField numberLanguagesInputField = new JTextField(15);
     //TODO: add error field
     final JButton go;
@@ -25,12 +29,13 @@ public class NumberLanguagesView extends JPanel implements ActionListener, Prope
     /**
      * A window with a title and a JButton.
      */
-    public NumberLanguagesView(NumberLanguagesController numberLanguagesController, NumberLanguagesViewModel numberLanguagesViewModel) {
+    public NumberLanguagesView(NumberLanguagesController numberLanguagesController, NumberLanguagesViewModel numberLanguagesViewModel, HistoryViewModel historyViewModel) {
 //    public NumberLanguagesView(NumberLanguagesViewModel numberLanguagesViewModel) {
 
         this.numberLanguagesViewModel = numberLanguagesViewModel;
         this.numberLanguagesViewModel.addPropertyChangeListener(this);
         this.numberLanguagesController = numberLanguagesController;
+        this.historyViewModel = historyViewModel;
 
         JLabel title = new JLabel(numberLanguagesViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -80,6 +85,10 @@ public class NumberLanguagesView extends JPanel implements ActionListener, Prope
      */
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
+//        historyViewModel.getData();
+        HistoryState historyState = historyViewModel.getState();
+//        System.out.println("NumberLanguagesView: historyViewModel.getData(): " + historyViewModel.getData());
+
     }
 
     @Override

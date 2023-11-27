@@ -6,14 +6,14 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class SelectLanguagesViewModel extends ViewModel {
-    public final String TITLE_LABEL = "Table Preferences View";
+    public final String TITLE_LABEL = "Select Languages View";
     public final String LANGUAGE_LABEL = "Language"; //TODO: concatenate with i ( Language 1, Language 2, etc.)
     public final String GO_BUTTON_LABEL = "Go";
 
     private SelectLanguagesState state = new SelectLanguagesState();
 
     public SelectLanguagesViewModel() {
-        super("Table Preferences View");
+        super("Select Languages View");
     }
 
     public void setState(SelectLanguagesState state) {

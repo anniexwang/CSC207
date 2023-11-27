@@ -23,7 +23,7 @@ public class NumberLanguagesViewModel extends ViewModel {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public void firePropertyChanged() {
-        support.firePropertyChange("state", null, this.state);
+        support.firePropertyChange("view", null, this.state);
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

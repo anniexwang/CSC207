@@ -1,12 +1,10 @@
 package use_case.number_languages;
 
-import data_access.UserNumberLanguagesDataAccessInterface;
-
 public class NumberLanguagesInteractor implements NumberLanguagesInputBoundary {
-    final UserNumberLanguagesDataAccessInterface userDataAccessObject;
+    final NumberLanguagesUserDataAccessInterface userDataAccessObject;
     final NumberLanguagesOutputBoundary userPresenter;
 
-    public NumberLanguagesInteractor(UserNumberLanguagesDataAccessInterface userNumberLanguagesDataAccessInterface,
+    public NumberLanguagesInteractor(NumberLanguagesUserDataAccessInterface userNumberLanguagesDataAccessInterface,
                                      NumberLanguagesOutputBoundary tableOutputBoundary) {
         this.userDataAccessObject = userNumberLanguagesDataAccessInterface;
         this.userPresenter = tableOutputBoundary;
@@ -16,6 +14,6 @@ public class NumberLanguagesInteractor implements NumberLanguagesInputBoundary {
     public void execute(NumberLanguagesInputData numberLanguagesInputData) {
         NumberLanguagesOutputData numberLanguagesOutputData = new NumberLanguagesOutputData(numberLanguagesInputData.getNumberLanguages());
         userPresenter.prepareSuccessView(numberLanguagesOutputData);
-        }
     }
+}
 

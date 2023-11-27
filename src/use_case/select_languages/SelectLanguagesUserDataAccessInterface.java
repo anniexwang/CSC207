@@ -2,10 +2,15 @@ package use_case.select_languages;
 
 import entity.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public interface SelectLanguagesUserDataAccessInterface {
-    boolean existsByName(String identifier);
+//    boolean existsByName(String identifier);
+//
+//    void save(User user);
+//
 
-    void save(User user);
-
-    User get(String username);
+//    String[] getHeader();
+//    ArrayList<List<String>> getData();
 }

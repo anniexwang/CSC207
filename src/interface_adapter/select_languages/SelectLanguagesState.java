@@ -1,6 +1,8 @@
 package interface_adapter.select_languages;
 
-public class SelectLanguagesState {
+import interface_adapter.history.HistoryState;
+
+public class SelectLanguagesState extends HistoryState {
     private String[] languages = {};
     private String languagesError = null;
 

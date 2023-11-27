@@ -1,12 +1,10 @@
 package use_case.select_languages;
 
-import data_access.UserSelectLanguagesDataAccessInterface;
-
 public class SelectLanguagesInteractor implements SelectLanguagesInputBoundary {
-    final UserSelectLanguagesDataAccessInterface userDataAccessObject;
+    final SelectLanguagesUserDataAccessInterface userDataAccessObject;
     final SelectLanguagesOutputBoundary userPresenter;
 
-    public SelectLanguagesInteractor(UserSelectLanguagesDataAccessInterface userSelectLanguagesDataAccessInterface,
+    public SelectLanguagesInteractor(SelectLanguagesUserDataAccessInterface userSelectLanguagesDataAccessInterface,
                                      SelectLanguagesOutputBoundary selectLanguagesOutputBoundary) {
         this.userDataAccessObject = userSelectLanguagesDataAccessInterface;
         this.userPresenter = selectLanguagesOutputBoundary;
@@ -16,6 +14,6 @@ public class SelectLanguagesInteractor implements SelectLanguagesInputBoundary {
     public void execute(SelectLanguagesInputData selectLanguagesInputData) {
         SelectLanguagesOutputData selectLanguagesOutputData = new SelectLanguagesOutputData(selectLanguagesInputData.getLanguages());
         userPresenter.prepareSuccessView(selectLanguagesOutputData);
-        }
     }
+}
 

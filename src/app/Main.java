@@ -5,11 +5,16 @@ import interface_adapter.Audio.AudioController;
 import use_case.Audio.AudioInputData;
 import view.AudioManager; // Import the AudioManager class
 import data_access.FileUserDataAccessObject;
+import data_access.FileTranslationHistoryDataAccessObject;
 import entity.CommonUserFactory;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.number_languages.NumberLanguagesViewModel;
+import interface_adapter.select_languages.SelectLanguagesViewModel;
+import interface_adapter.table_preferences.TableViewModel;
+import interface_adapter.history.HistoryViewModel;
 import use_case.Audio.AudioInteractor;
 
 import view.LoggedInView;
@@ -49,6 +54,10 @@ public class Main {
             LoginViewModel loginViewModel = new LoginViewModel();
             LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
             SignupViewModel signupViewModel = new SignupViewModel();
+            TableViewModel tableViewModel = new TableViewModel();
+            NumberLanguagesViewModel numberLanguagesViewModel = new NumberLanguagesViewModel();
+            SelectLanguagesViewModel selectLanguagesViewModel = new SelectLanguagesViewModel();
+            HistoryViewModel historyViewModel = new HistoryViewModel();
 
             // Data access object
             FileUserDataAccessObject userDataAccessObject;
@@ -56,6 +65,14 @@ public class Main {
                 userDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            }
+          
+            //Translation History Data Access Object
+            FileTranslationHistoryDataAccessObject translationHistoryDataAccessObject;
+            try {
+              translationHistoryDataAccessObject = new FileTranslationHistoryDataAccessObject("./src/translations.csv");
+            } catch (IOException e) {
+              throw new RuntimeException(e);
             }
 
 
@@ -78,6 +95,18 @@ public class Main {
             LoggedInView loggedInView = new LoggedInView(loggedInViewModel, viewManagerModel);
             applyFontToComponent(loggedInView, goblinFont);
             views.add(loggedInView, loggedInView.viewName);
+    
+            TablePreferenceView tablePreferenceView = TableUseCaseFactory.create(viewManagerModel, tableViewModel, numberLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
+            views.add(tablePreferenceView, tablePreferenceView.viewName);
+
+            NumberLanguagesView numberLanguagesView = NumberLanguagesUseCaseFactory.create(viewManagerModel, numberLanguagesViewModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
+            views.add(numberLanguagesView, numberLanguagesView.viewName);
+
+            SelectLanguagesView selectLanguagesView = SelectLanguagesUseCaseFactory.create(viewManagerModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
+            views.add(selectLanguagesView, selectLanguagesView.viewName);
+
+            HistoryView historyView = new HistoryView(historyViewModel);
+            views.add(historyView, historyView.viewName);
 
             // Activate the initial view
             viewManagerModel.setActiveView(signupView.viewName);
