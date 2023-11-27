@@ -1,4 +1,11 @@
-package use_case.signup;
+package use_case.login;
 
-public interface SignupUserDataAccessInterface {
+import entity.User;
+
+public interface LoginUserDataAccessInterface {
+    boolean existsByName(String identifier);
+
+    void save(User user);
+
+    User get(String username);
 }

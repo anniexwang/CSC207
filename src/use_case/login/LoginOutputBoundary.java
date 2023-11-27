@@ -1,4 +1,7 @@
-package use_case.signup;
+package use_case.login;
 
-public interface SignUpOutputBoundary {
+public interface LoginOutputBoundary {
+    void prepareSuccessView(use_case.login.LoginOutputData user);
+
+    void prepareFailView(String error);
 }

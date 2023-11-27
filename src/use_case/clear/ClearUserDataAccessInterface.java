@@ -1,4 +1,8 @@
-package use_case.login;
+package use_case.clear;
 
-public interface LoginUserDataAccessInterface {
-}
+import java.util.List;
+
+public interface ClearUserDataAccessInterface {
+    void clearUser();
+
+    String getDeletedUserName();}

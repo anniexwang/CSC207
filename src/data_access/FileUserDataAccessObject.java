@@ -22,13 +22,27 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
     private UserFactory userFactory;
 
+    //private helper to get rid of the brackets when reading the csv file
+    private ArrayList<String> parseCsvField(String field) {
+        if (field == null || field.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        // Remove leading and trailing brackets if they exist
+        String trimmedField = field.replaceAll("^\\[|\\]$", "");
+
+        // Split the string by semicolons into an array and create a list
+        return new ArrayList<>(Arrays.asList(trimmedField.split(";")));
+    }
+
     public FileUserDataAccessObject(String csvPath, UserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
 
         csvFile = new File(csvPath);
         headers.put("username", 0);
         headers.put("password", 1);
-        headers.put("creation_time", 2);
+        headers.put("translation_history", 2);
+        headers.put("favorites",3);
 
         if (csvFile.length() == 0) {
             save();
@@ -38,16 +52,19 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
                 String header = reader.readLine();
 
                 // For later: clean this up by creating a new Exception subclass and handling it in the UI.
-                assert header.equals("username,password,creation_time");
+                assert header.equals("username,password,translation_history,favorites");
 
                 String row;
                 while ((row = reader.readLine()) != null) {
                     String[] col = row.split(",");
                     String username = String.valueOf(col[headers.get("username")]);
                     String password = String.valueOf(col[headers.get("password")]);
-                    String creationTimeText = String.valueOf(col[headers.get("creation_time")]);
-                    LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
-                    User user = userFactory.create(username, password, ldt);
+
+                    // Parse translation_history and favorites by splitting the string and removing brackets if present
+                    ArrayList<String> translationHistory = parseCsvField(col[headers.get("translation_history")]);
+                    ArrayList<String> favorites = parseCsvField(col[headers.get("favorites")]);
+
+                    User user = userFactory.create(username, password, translationHistory, favorites);
                     accounts.put(username, user);
                 }
             }
@@ -59,11 +76,13 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         accounts.put(user.getName(), user);
         this.save();
     }
-//
-//    @Override
-//    public User get(String username) {
-//        return accounts.get(username);
-//    }
+
+
+
+    @Override
+    public User get(String username) {
+        return accounts.get(username);
+    }
 
     private void save() {
         BufferedWriter writer;
@@ -73,8 +92,8 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
             writer.newLine();
 
             for (User user : accounts.values()) {
-                String line = String.format("%s,%s,%s",
-                        user.getName(), user.getPassword(), user.getCreationTime());
+                String line = String.format("%s,%s,%s,%s",
+                        user.getName(), user.getPassword(), user.getTranslationHistory(), user.getFavorites());
                 writer.write(line);
                 writer.newLine();
             }

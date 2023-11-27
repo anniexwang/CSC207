@@ -1,4 +1,11 @@
-package use_case.login;
+package use_case.clear;
 
-public class LoginInputData {
+public class ClearInputData{
+    private String username;
+    private String password;
+
+    public ClearInputData(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }

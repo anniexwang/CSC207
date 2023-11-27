@@ -1,4 +1,5 @@
-package use_case.signup;
+package use_case.login;
 
-public interface SignupInputBoundary {
+public interface LoginInputBoundary {
+    void execute(use_case.login.LoginInputData loginInputData);
 }

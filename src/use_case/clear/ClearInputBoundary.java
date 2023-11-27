@@ -1,4 +1,5 @@
-package use_case.login;
+package use_case.clear;
 
-public interface LoginInputBoundary {
+public interface ClearInputBoundary {
+    void execute(use_case.clear.ClearInputData clearInputData);
 }

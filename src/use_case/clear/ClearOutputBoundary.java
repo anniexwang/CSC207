@@ -1,4 +1,7 @@
-package use_case.login;
+package use_case.clear;
 
-public interface LoginOutputBoundary {
+public interface ClearOutputBoundary {
+    void prepareSuccessView(ClearOutputData clearOutputData);
+
+    void prepareFailView(String error);
 }
