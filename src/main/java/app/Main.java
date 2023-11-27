@@ -15,12 +15,8 @@ import interface_adapter.number_languages.NumberLanguagesViewModel;
 import interface_adapter.select_languages.SelectLanguagesViewModel;
 import interface_adapter.table_preferences.TableViewModel;
 import interface_adapter.history.HistoryViewModel;
+import view.*;
 import use_case.Audio.AudioInteractor;
-
-import view.LoggedInView;
-import view.LoginView;
-import view.SignupView;
-import view.ViewManager;
 
 import javax.swing.*;
 import java.awt.*;
