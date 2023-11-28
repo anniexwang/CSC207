@@ -48,7 +48,9 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         containerPanel.setBackground(Color.BLACK);
 
         // Image setup
-        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/AA.jpg")));
+        File imageFile = new File("Resources\\AA.jpg"); // Replace with the actual file path
+        ImageIcon imageIcon = new ImageIcon(imageFile.getAbsolutePath());
+
         JLabel imageLabel = new JLabel(imageIcon);
         imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 

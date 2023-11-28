@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.util.Objects;
 
 /**
@@ -53,7 +54,9 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         containerPanel.setBackground(Color.BLACK);
 
         // Image setup
-        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/AA.jpg")));
+        File imageFile = new File("Resources\\AA.jpg"); // Replace with the actual file path
+        ImageIcon imageIcon = new ImageIcon(imageFile.getAbsolutePath());
+
         JLabel imageLabel = new JLabel(imageIcon);
         imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 

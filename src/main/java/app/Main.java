@@ -17,6 +17,7 @@ import interface_adapter.table_preferences.TableViewModel;
 import interface_adapter.history.HistoryViewModel;
 import view.*;
 import use_case.Audio.AudioInteractor;
+import java.io.File;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,16 +25,19 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+
 public class Main {
     public static void main(String[] args) {
+
+
         try {
-            // Load the custom Goblin font as a resource stream
-            InputStream fontStream = Main.class.getResourceAsStream("/cc.ttf"); // Adjust the path as needed
-            Font goblinFont = Font.createFont(Font.TRUETYPE_FONT, fontStream).deriveFont(30f); // Adjust the font size as needed
+            // Load the custom Goblin font directly from a file
+            File fontFile = new File("resources\\cc.ttf"); // Absolute path to the font file
+            Font goblinFont = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(30f); // Adjust the font size as needed
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(goblinFont);
 
-            // Main application window setup
+    // Main application window setup
             JFrame application = new JFrame("Translayte");
             application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,6 +45,7 @@ public class Main {
             CardLayout cardLayout = new CardLayout();
             JPanel views = new JPanel(cardLayout);
             application.add(views);
+
 
             // View manager model
             ViewManagerModel viewManagerModel = new ViewManagerModel();
