@@ -7,6 +7,10 @@
     <groupId>groupId</groupId>
     <artifactId>translayte</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <maven.compiler.source>18</maven.compiler.source>
+        <maven.compiler.target>18</maven.compiler.target>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -15,5 +19,18 @@
             <version>2.3.4</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>18</source>
+                    <target>18</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
