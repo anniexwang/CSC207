@@ -30,22 +30,19 @@ public class LoginUseCaseFactory {
             LoginUserDataAccessInterface userDataAccessObject,
             AudioController audioController) { // Add AudioManager as a parameter
 
-        try {
+
             LoginController loginController = createLoginUseCase(
                     viewManagerModel, loginViewModel, loggedInViewModel, signupViewModel, userDataAccessObject);
             return new LoginView(loginViewModel, loginController, audioController); // Pass AudioManager to LoginView
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not open user data file.");
-            return null;
-        }
+
     }
 
-    private static LoginController createLoginUseCase(
+    public static LoginController createLoginUseCase(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
             LoggedInViewModel loggedInViewModel,
             SignupViewModel signupViewModel,
-            LoginUserDataAccessInterface userDataAccessObject) throws IOException {
+            LoginUserDataAccessInterface userDataAccessObject)  {
 
         LoginOutputBoundary loginOutputBoundary = new LoginPresenter(
                 viewManagerModel, loggedInViewModel, signupViewModel, loginViewModel);
