@@ -35,18 +35,17 @@ public class HistoryViewModel extends ViewModel {
         return state;
     }
 
-    public String[][] getData(){
-        // test
-        String data[][] = {{"a","b"},{"c","d"},{"e","f"},{"g","h"},{"i","j"},{"k","l"},{"m","n"},{"o","p"},{"q","r"},{"s","t"},{"u","v"},{"w","x"},{"y","z"},
-                {"a","b"},{"c","d"},{"e","f"},{"g","h"},{"i","j"},{"k","l"},{"m","n"},{"o","p"},{"q","r"},{"s","t"},{"u","v"},{"w","x"},{"y","z"}};
-        return data;
-    } //TODO: based on all output data from preferences and languages read csv and pick out data
+    public String[][] getData() {
+        HistoryViewReader historyViewReader = new HistoryViewReader();
+        String filePAth = getfilePath(); // TODO implement a method for this
+        return HistoryViewReader.readData(this, filePath);
+    }
 
-    public String[] getTitles(){
-        // test
-        String titles[] = {"1","2"};
-        return titles;
-    } //TODO: get just the titles (first row) of csv
+    public String[] getTitles() {
+        HistoryViewReader historyViewReader = new HistoryViewReader();
+        String filePAth = getfilePath(); // TODO implement a method for this
+        return HistoryViewReader.readTitles(this, filePath);
+    }
 
-    public void sort(){} //TODO: using sortType, sort data
+    public void sort() {} //TODO: using sortType, sort data
 }
