@@ -1,135 +1,197 @@
 package view;
 
+import interface_adapter.Audio.AudioController;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.signup.SignupState;
-import interface_adapter.ViewManagerModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Objects;
 
+/**
+ * Represents the login view of the application.
+ */
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
-
+    // Constants and view models
     public final String viewName = "log in";
     private final LoginViewModel loginViewModel;
-
-    final JTextField usernameInputField = new JTextField(15);
-    private final JLabel usernameErrorField = new JLabel();
-
-    final JPasswordField passwordInputField = new JPasswordField(15);
-    private final JLabel passwordErrorField = new JLabel();
-
-    final JButton logIn;
-    final JButton cancel;
     private final LoginController loginController;
-    private  ViewManagerModel viewManagerModel = new ViewManagerModel();
-    private final JLabel imageLabel;
-
-    public LoginView(LoginViewModel loginViewModel, LoginController controller) {
 
 
-        this.loginController = controller;
+    // UI components
+    final JTextField usernameInputField = new JTextField(15);
+    final JPasswordField passwordInputField = new JPasswordField(15);
+    private final JLabel usernameErrorField = new JLabel();
+    private final JLabel passwordErrorField = new JLabel();
+    private JButton muteButton; // Added the muteButton field
+    private final AudioController audioController;
+
+    // Timer for periodically updating mute button text
+    private Timer muteButtonUpdateTimer;
+
+    /**
+     * Constructs a LoginView instance.
+     *
+     * @param loginViewModel The view model for login.
+     * @param loginController The controller for login.
+     * @param audioController The audio manager for handling audio.
+     */
+    public LoginView(LoginViewModel loginViewModel, LoginController loginController, AudioController audioController) {
+        this.loginController = loginController;
         this.loginViewModel = loginViewModel;
+        this.audioController = audioController;
         this.loginViewModel.addPropertyChangeListener(this);
-        this.viewManagerModel = viewManagerModel;
 
-        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/AA.jpg"))); // Replace with your image path
-        imageLabel = new JLabel(imageIcon);
 
-        // Set the alignment of the image label to center
+        // Container panel setup
+        JPanel containerPanel = new JPanel();
+        containerPanel.setLayout(new BoxLayout(containerPanel, BoxLayout.Y_AXIS));
+        containerPanel.setBackground(Color.BLACK);
+
+        // Image setup
+        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/AA.jpg")));
+        JLabel imageLabel = new JLabel(imageIcon);
         imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        this.add(imageLabel);
-
+        // Title and form setup
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        LabelTextPanel usernameInfo = new LabelTextPanel(new JLabel("Username"), usernameInputField);
+        LabelTextPanel passwordInfo = new LabelTextPanel(new JLabel("Password"), passwordInputField);
 
-        LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel("Username"), usernameInputField);
-        LabelTextPanel passwordInfo = new LabelTextPanel(
-                new JLabel("Password"), passwordInputField);
+        // Button setup using RainbowButton
 
-        JPanel buttons = new JPanel();
-        logIn = new JButton(loginViewModel.LOGIN_BUTTON_LABEL);
-        buttons.add(logIn);
-        cancel = new JButton(loginViewModel.CANCEL_BUTTON_LABEL);
-        buttons.add(cancel);
+        JButton logIn = createRainbowButton(loginViewModel.LOGIN_BUTTON_LABEL);
+        JButton cancel = createRainbowButton(loginViewModel.CANCEL_BUTTON_LABEL);
+        logIn.addActionListener(e -> handleLogin());
+        cancel.addActionListener(e -> loginController.goToSignUp());
 
-        logIn.addActionListener(                // This creates an anonymous subclass of ActionListener and instantiates it.
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(logIn)) {
-                            LoginState currentState = loginViewModel.getState();
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
 
-                            loginController.execute(
-                                    currentState.getUsername(),
-                                    currentState.getPassword()
-                            );
-                        }
-                    }
-                }
-        );
+        // Add the buttons to the button panel
+        buttonPanel.add(logIn);
+        buttonPanel.add(cancel);
 
-        cancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                if (evt.getSource().equals(cancel)) {
-                    loginController.goToSignUp();
-                }
-            }
-        });
+        // Add mute button
+        muteButton = createMuteButton();
+        containerPanel.add(muteButton);
 
+        containerPanel.add(imageLabel);
+        containerPanel.add(title);
+        containerPanel.add(usernameInfo);
+        containerPanel.add(passwordInfo);
+        containerPanel.add(buttonPanel);
 
-        usernameInputField.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                LoginState currentState = loginViewModel.getState();
-                currentState.setUsername(usernameInputField.getText() + e.getKeyChar());
-                loginViewModel.setState(currentState);
-            }
+        // Add container panel to a JScrollPane
+        JScrollPane scrollPane = new JScrollPane(containerPanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
+        // Set the layout of the main panel and add the JScrollPane
+        this.setLayout(new BorderLayout());
+        this.add(scrollPane, BorderLayout.CENTER);
 
+        // Set colors for each component
+        setComponentColors(containerPanel);
+        // Start playing background music
+        audioController.play();
+
+        usernameInputField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
+                LoginState currentState = loginViewModel.getState();
+                currentState.setUsername(usernameInputField.getText());
+                loginViewModel.setState(currentState);
             }
         });
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        passwordInputField.addKeyListener(
-                new KeyListener() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-                        LoginState currentState = loginViewModel.getState();
-                        currentState.setPassword(passwordInputField.getText() + e.getKeyChar());
-                        loginViewModel.setState(currentState);
-                    }
+        passwordInputField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                LoginState currentState = loginViewModel.getState();
+                currentState.setPassword(new String(passwordInputField.getPassword()));
+                loginViewModel.setState(currentState);
+            }
+        });
 
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-                    }
 
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-                    }
-                });
 
-        this.add(title);
-        this.add(usernameInfo);
-        this.add(usernameErrorField);
-        this.add(passwordInfo);
-        this.add(passwordErrorField);
-        this.add(buttons);
+        // Initialize and start the timer to periodically update mute button text
+        int delay = 1000; // Delay in milliseconds (1 second)
+        muteButtonUpdateTimer = new Timer(delay, e -> updateMuteButtonText());
+        muteButtonUpdateTimer.start();
+    }
+
+
+    /**
+     * Updates the text of the mute button based on the current mute status.
+     */
+    private void updateMuteButtonText() {
+        if (audioController != null) {
+            muteButton.setText(audioController.isMuted() ? "Unmute" : "Mute");
+        }
+
+    }
+
+
+
+    /**
+     * Handles the login action.
+     */
+    private void handleLogin() {
+        LoginState currentState = loginViewModel.getState();
+        loginController.execute(
+                currentState.getUsername(),
+                currentState.getPassword()
+        );
+    }
+
+    /**
+     * Creates a RainbowButton with the specified text.
+     *
+     * @param text The text for the button.
+     * @return The created RainbowButton.
+     */
+    private JButton createRainbowButton(String text) {
+        // Method similar to SignupView for creating rainbow buttons
+        return new RainbowButton(text);
+    }
+
+    /**
+     * Creates a mute button for audio control.
+     *
+     * @return The created mute button.
+     */
+    private JButton createMuteButton() {
+        JButton muteButton = new RainbowButton(audioController.isMuted() ? "Unmute" : "Mute");
+        muteButton.addActionListener(e -> {
+            audioController.mute();
+            muteButton.setText(audioController.isMuted() ? "Unmute" : "Mute");
+        });
+        return muteButton;
+    }
+
+    /**
+     * Sets colors for components within the given container.
+     *
+     * @param container The container containing components to set colors for.
+     */
+    private void setComponentColors(Container container) {
+        for (Component comp : container.getComponents()) {
+            comp.setForeground(Color.WHITE);
+            comp.setBackground(Color.BLACK);
+            if (comp instanceof JComponent) {
+                ((JComponent) comp).setOpaque(true);
+            }
+            if (comp instanceof Container) {
+                setComponentColors((Container) comp);
+            }
+        }
     }
 
     /**
@@ -139,20 +201,13 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         System.out.println("Click " + evt.getActionCommand());
     }
 
-
-
-
-    private void setFields(LoginState state) {
-        usernameInputField.setText(state.getUsername());
-    }
-
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        // Logic for handling property change events
         if ("state".equals(evt.getPropertyName())) {
             LoginState state = loginViewModel.getState();
             if (state.getUsernameError() != null && !state.getUsernameError().isEmpty()) {
                 JOptionPane.showMessageDialog(this, state.getUsernameError());
-                // Reset error message and username/password fields
                 state.setUsernameError(null);
                 state.setUsername("");
                 state.setPassword("");

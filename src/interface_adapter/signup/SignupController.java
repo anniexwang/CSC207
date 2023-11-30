@@ -13,6 +13,10 @@ public class SignupController {
         this.userSignupUseCaseInteractor = userSignupUseCaseInteractor;
         this.signupPresenter = signupPresenter;
     }
+    public void handleCancel() {
+        // Clear any state or perform any action needed on cancel
+        signupPresenter.prepareCancelView();
+    }
 
     public void goToLogin() {
         signupPresenter.goToLogin();

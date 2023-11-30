@@ -1,129 +1,188 @@
 package view;
 
+import interface_adapter.Audio.AudioController;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.*;
 import java.util.Objects;
 
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "sign up";
+    // Constants
+    public final String viewName = "sign up"; // Name of the view
 
-    private final SignupViewModel signupViewModel;
-    private final JTextField usernameInputField = new JTextField(15);
-    private final JPasswordField passwordInputField = new JPasswordField(15);
-    private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
-    private final SignupController signupController;
+    // Controllers and view models
+    private final SignupController signupController; // Controller for the signup process
 
-    private final JButton signUp;
+    // UI components
+    private final JTextField usernameInputField = new JTextField(15); // Input field for username
+    private final JPasswordField passwordInputField = new JPasswordField(15); // Input field for password
+    private final JPasswordField repeatPasswordInputField = new JPasswordField(15); // Input field for repeating the password
     private final JButton cancel;
-    private final JButton skipToLogin;
-    private final JLabel imageLabel;
+    private JButton muteButton;
+    private Timer muteButtonUpdateTimer;
 
 
-    public SignupView(SignupController controller, SignupViewModel signupViewModel) {
-        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/AA.jpg"))); // Replace with your image path
-        imageLabel = new JLabel(imageIcon);
+    private  AudioController audioController;
 
-        // Set the alignment of the image label to center
-        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        this.add(imageLabel);
+    // Constructor
+    public SignupView(SignupController controller, SignupViewModel signupViewModel, AudioController audioController) {
         this.signupController = controller;
-        this.signupViewModel = signupViewModel;
+        this.audioController = audioController;
+
+        // View model for signup
         signupViewModel.addPropertyChangeListener(this);
 
+        // Container panel for all components
+        JPanel containerPanel = new JPanel();
+        containerPanel.setLayout(new BoxLayout(containerPanel, BoxLayout.Y_AXIS));
+
+        // Set background color of the panel
+        containerPanel.setBackground(Color.BLACK);
+
+        // Image setup
+        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/AA.jpg")));
+        JLabel imageLabel = new JLabel(imageIcon);
+        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Title setup
         JLabel title = new JLabel(SignupViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.USERNAME_LABEL), usernameInputField);
-        LabelTextPanel passwordInfo = new LabelTextPanel(
-                new JLabel(signupViewModel.PASSWORD_LABEL), passwordInputField);
-        LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
-                new JLabel(signupViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
+        // Setup for username, password, and repeat password fields
+        LabelTextPanel usernameInfo = new LabelTextPanel(new JLabel(SignupViewModel.USERNAME_LABEL), usernameInputField);
+        LabelTextPanel passwordInfo = new LabelTextPanel(new JLabel(SignupViewModel.PASSWORD_LABEL), passwordInputField);
+        LabelTextPanel repeatPasswordInfo = new LabelTextPanel(new JLabel(SignupViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
 
+        // Buttons setup
+        JButton signUp = createRainbowButton(SignupViewModel.SIGNUP_BUTTON_LABEL);
+        cancel = createRainbowButton(SignupViewModel.CANCEL_BUTTON_LABEL);
+        cancel.addActionListener(this);
+        JButton skipToLogin = createRainbowButton(SignupViewModel.SKIP_BUTTON_LABEL);
+
+        // Panel for buttons
         JPanel buttons = new JPanel();
-        signUp = new JButton(signupViewModel.SIGNUP_BUTTON_LABEL);
         buttons.add(signUp);
-        cancel = new JButton(signupViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
-        skipToLogin = new JButton("Skip to Login");
         buttons.add(skipToLogin);
 
-        signUp.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(signUp)) {
-                            signupController.execute(usernameInputField.getText(),
-                                    String.valueOf(passwordInputField.getPassword()),
-                                    String.valueOf(repeatPasswordInputField.getPassword()));
-                        }
-                    }
-                }
-        );
-        cancel.addActionListener(this);
-        skipToLogin.addActionListener(new ActionListener() {
+        // Add action listeners to buttons
+        signUp.addActionListener(e -> signupController.execute(usernameInputField.getText(), new String(passwordInputField.getPassword()), new String(repeatPasswordInputField.getPassword())));
+        cancel.addActionListener(e -> signupController.handleCancel());
+        skipToLogin.addActionListener(e -> signupController.goToLogin());
+
+
+        // Add components to the container panel
+        muteButton = createMuteButton();
+        containerPanel.add(muteButton);
+        containerPanel.add(imageLabel);
+        containerPanel.add(title);
+        containerPanel.add(usernameInfo);
+        containerPanel.add(passwordInfo);
+        containerPanel.add(repeatPasswordInfo);
+        containerPanel.add(buttons);
+
+        // Add container panel to a JScrollPane
+        JScrollPane scrollPane = new JScrollPane(containerPanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        // Set the layout of the main panel and add the JScrollPane
+        this.setLayout(new BorderLayout());
+        this.add(scrollPane, BorderLayout.CENTER);
+
+        // Set background and foreground for each component
+        setComponentColors(containerPanel);
+
+        // Start playing background music
+
+
+        // Timer to update the mute button text
+        muteButtonUpdateTimer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Call method in SignupPresenter to handle view change
-                signupController.goToLogin();
+                // Check and update the mute button text based on audioManager.isMuted()
+                if (audioController != null) {
+                    muteButton.setText(audioController.isMuted() ? "Unmute" : "Mute");
+                }
             }
         });
-        usernameInputField.addKeyListener(
-                new KeyListener() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-                        SignupState currentState = signupViewModel.getState();
-                        currentState.setUsername(usernameInputField.getText() + e.getKeyChar());
-                        signupViewModel.setState(currentState);
-                    }
-
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-                    }
-
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-                    }
-                });
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
-        this.add(title);
-        this.add(usernameInfo);
-        this.add(passwordInfo);
-        this.add(repeatPasswordInfo);
-        this.add(buttons);
+        muteButtonUpdateTimer.start();
     }
 
-    /**
-     * React to a button click that results in evt.
-     */
-    public void actionPerformed(ActionEvent evt) {
-        if (evt.getSource() == cancel) {
-            // Clear all input fields
-            usernameInputField.setText("");
-            passwordInputField.setText("");
-            repeatPasswordInputField.setText("");
+    // Method to set colors for components in the container
+    private void setComponentColors(Container container) {
+        for (Component comp : container.getComponents()) {
+            comp.setForeground(Color.WHITE); // Set text color to white
+            comp.setBackground(Color.BLACK); // Set background to black
 
-            // Optionally, reset any error states or messages
-            SignupState currentState = signupViewModel.getState();
-            currentState.setUsernameError(null); // Assuming there's a method to set an error message
-            signupViewModel.setState(currentState);
+            // Set opaque to true for proper background painting
+            if (comp instanceof JComponent) {
+                ((JComponent) comp).setOpaque(true);
+            }
+
+            // Recursive call for container components
+            if (comp instanceof Container) {
+                setComponentColors((Container) comp);
+            }
+        }
+
+        // Special handling for top-level container
+        container.setBackground(Color.BLACK);
+        if (container instanceof JComponent) {
+            ((JComponent) container).setOpaque(true);
         }
     }
 
+
+    private JButton createMuteButton() {
+        JButton muteButton = new RainbowButton(audioController.isMuted() ? "Unmute" : "Mute");
+        muteButton.setName("MuteButton"); // Set a unique name to identify the button later
+        muteButton.addActionListener(e -> {
+            // Toggle mute using AudioManager
+            audioController.mute();
+            // Update the mute button text
+            muteButton.setText(audioController.isMuted() ? "Unmute" : "Mute");
+        });
+        return muteButton;
+    }
+
+    // Method to update the mute button's text based on the mute state
+
+
+    private JButton createRainbowButton(String text) {
+        return new RainbowButton(text);
+    }
+
+    // Action performed method for handling button clicks
+    @Override
+    public void actionPerformed(ActionEvent evt) {
+        if (evt.getSource() == cancel) {
+            clearFormFields();
+            signupController.handleCancel();
+        }
+    }
+
+    /**
+     * Clears all text fields in the form.
+     */
+    private void clearFormFields() {
+        usernameInputField.setText("");
+        passwordInputField.setText("");
+        repeatPasswordInputField.setText("");
+    }
+
+    // Property change listener to respond to changes in the view model
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        // Handle state changes, like showing error messages
         SignupState state = (SignupState) evt.getNewValue();
         if (state.getUsernameError() != null) {
             JOptionPane.showMessageDialog(this, state.getUsernameError());

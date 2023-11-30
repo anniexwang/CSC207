@@ -56,6 +56,15 @@ public class SignupState {
         this.password = password;
     }
 
+    public void clearState() {
+        this.username = "";
+        this.usernameError = null;
+        this.password = "";
+        this.passwordError = null;
+        this.repeatPassword = "";
+        this.repeatPasswordError = null;
+    }
+
     public void setPasswordError(String passwordError) {
         this.passwordError = passwordError;
     }
