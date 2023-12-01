@@ -18,4 +18,8 @@ public class ClearController {
         ClearInputData clearInputData = new ClearInputData(username);
         clearUseCaseInteractor.execute(clearInputData);
     }
+
+    public void goToSignUp() {
+        clearPresenter.goToSignUp();
+    }
 }
