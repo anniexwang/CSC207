@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efd620ad-6790-4226-8342-77c72a40a02e" name="Changes" comment="added libs">
-      <change afterPath="$PROJECT_DIR$/src/data_access/UserRetrieveTranslationDataAccessInterface.java" afterDir="false" />
+    <list default="true" id="efd620ad-6790-4226-8342-77c72a40a02e" name="Changes" comment="added .idea files">
+      <change afterPath="$PROJECT_DIR$/CSC207M.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_30_2023_9_55_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_30_2023_9_55_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/retrieve_translation/RetrieveTranslationInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/retrieve_translation/RetrieveTranslationInputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/retrieve_translation/RetrieveTranslationInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/retrieve_translation/RetrieveTranslationInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/retrieve_translation/RetrieveTranslationInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/retrieve_translation/RetrieveTranslationInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/retrieve_translation/RetrieveTranslationOutputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/retrieve_translation/RetrieveTranslationOutputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/retrieve_translation/RetrieveTranslationOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/retrieve_translation/RetrieveTranslationOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/retrieve_translation/RetrieveTranslationUserDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/retrieve_translation/RetrieveTranslationUserDataAccessInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +30,13 @@
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "Allen",
+    "jdk.selected.JAVA_MODULE": "openjdk-21",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "onboarding.tips.debug.path": "C:/Users/Winter/IdeaProjects/CSC207M/src/Main.java",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.7252874"
@@ -57,26 +56,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="DjangoTestsConfigurationType">
-      <module name="CSC207M" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="AudioTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CSC207M" />
       <option name="PACKAGE_NAME" value="" />
@@ -85,98 +64,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="CSC207M" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="CSC207M" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
-      <module name="CSC207M" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="ADDITIONAL_ARGS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="CSC207M" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Python.FlaskServer">
-      <module name="CSC207M" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <module name="CSC207M" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Doctests">
-      <module name="CSC207M" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
@@ -201,7 +88,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added libs" />
-    <option name="LAST_COMMIT_MESSAGE" value="added libs" />
+    <MESSAGE value="added .idea files" />
+    <option name="LAST_COMMIT_MESSAGE" value="added .idea files" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CSC207M$Main.ic" NAME="Main Coverage Results" MODIFIED="1701305953979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -210,7 +98,7 @@
     <SUITE FILE_PATH="coverage/CSC207M$SignupUseCaseFactoryTest.ic" NAME="SignupUseCaseFactoryTest Coverage Results" MODIFIED="1701311976997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207M$SignupUseCaseFactoryDiffblueTest.ic" NAME="SignupUseCaseFactoryDiffblueTest Coverage Results" MODIFIED="1701311608600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/CSC207M$SignupUseCaseFactoryDiffblueTest.ic" NAME="SignupUseCaseFactoryDiffblueTest Coverage Results" MODIFIED="1701483328207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/CSC207M$AudioControllerFactoryTest.ic" NAME="AudioControllerFactoryTest Coverage Results" MODIFIED="1701307538118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -226,7 +114,7 @@
     <SUITE FILE_PATH="coverage/CSC207M$MainTest__1_.ic" NAME="MainTest (1) Coverage Results" MODIFIED="1701307141754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207M$LoginUseCaseFactoryTest.ic" NAME="LoginUseCaseFactoryTest Coverage Results" MODIFIED="1701313274376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/CSC207M$LoginUseCaseFactoryTest.ic" NAME="LoginUseCaseFactoryTest Coverage Results" MODIFIED="1701483246829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
     </SUITE>
   </component>
