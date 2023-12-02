@@ -23,9 +23,12 @@ public class ClearPresenter implements ClearOutputBoundary {
         this.signupViewModel = signupViewModel;
     }
     @Override
-    public void prepareSuccessView(ClearOutputData response) {
+    public void prepareSuccessView(ClearOutputData clearData) {
         // takes user back to signup (given account cleared)
-        ClearState loggedInState = clearViewModel.getState();
+        SignupState signupState = signupViewModel.getState();
+        this.signupViewModel.setState(signupState);
+        this.signupViewModel.firePropertyChanged();
+        // set back to signup state
         this.viewManagerModel.setActiveView(signupViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
