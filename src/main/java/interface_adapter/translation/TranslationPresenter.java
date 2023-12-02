@@ -24,8 +24,8 @@ public class TranslationPresenter implements TranslateOutputBoundary{
         this.signupViewModel = signupViewModel;
     }
 
-
-    public void prepareSuccessView(ClearOutputData response) {
+    @Override
+    public void prepareSuccessView(TranslateOutputData response) {
         TranslationState translationInState = translationViewModel.getState();
         this.viewManagerModel.setActiveView(translationViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
