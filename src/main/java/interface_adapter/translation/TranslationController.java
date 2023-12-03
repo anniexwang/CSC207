@@ -12,6 +12,14 @@ public class TranslationController {
         this.translationPresenter = translationPresenter;
     }
 
+    public void backToSignup() {
+        translationPresenter.backToSignup();
+    }
+
+    public void handleCancel() {
+        // Clear any state or perform any action needed on cancel
+        translationPresenter.prepareCancelView();
+    }
     public void execute(String phrase) {
         TranslateInputData translateInputData = new TranslateInputData(phrase);
         translateUseCaseInteractor.execute(translateInputData);

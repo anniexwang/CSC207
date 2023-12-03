@@ -2,6 +2,7 @@ package interface_adapter.translation;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.clear.ClearState;
 import interface_adapter.clear.ClearViewModel;
+import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.translation.TranslationState;
 import interface_adapter.translation.TranslationViewModel;
@@ -32,9 +33,17 @@ public class TranslationPresenter implements TranslateOutputBoundary{
     }
 
     // need to enable option to return to signup
-    public void goToSignUp() {
+    public void backToSignup() {
         this.viewManagerModel.setActiveView(signupViewModel.getViewName()); // Use the correct view name for SignupView
         this.viewManagerModel.firePropertyChanged();
+    }
+
+    public void prepareCancelView() {
+        // Logic to clear the state
+        TranslationState translationState = translationViewModel.getState();
+        translationState.clearState();
+        translationViewModel.setState(translationState);
+        translationViewModel.firePropertyChanged();
     }
 
     public void prepareFailView(String error) {

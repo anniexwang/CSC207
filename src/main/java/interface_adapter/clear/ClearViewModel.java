@@ -6,7 +6,8 @@ import java.beans.PropertyChangeSupport;
 public class ClearViewModel extends ViewModel {
     // defining labels
     public final String TITLE_LABEL = "Clear View";
-    public static final String CLEAR_BUTTON_LABEL = "Clear your account";
+    public static final String CLEAR_BUTTON_LABEL = "Delete your account";
+    public static final String GET_HISTORY = "Get Translation History";
 
     // initialize state
     private ClearState state = new ClearState();
