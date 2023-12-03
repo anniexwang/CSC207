@@ -11,7 +11,6 @@ import interface_adapter.login.LoginViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.number_languages.NumberLanguagesViewModel;
 import interface_adapter.select_languages.SelectLanguagesViewModel;
 import interface_adapter.table_preferences.TableViewModel;
 import interface_adapter.history.HistoryViewModel;
@@ -56,7 +55,6 @@ public class Main {
             LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
             SignupViewModel signupViewModel = new SignupViewModel();
             TableViewModel tableViewModel = new TableViewModel();
-            NumberLanguagesViewModel numberLanguagesViewModel = new NumberLanguagesViewModel();
             SelectLanguagesViewModel selectLanguagesViewModel = new SelectLanguagesViewModel();
             HistoryViewModel historyViewModel = new HistoryViewModel();
 
@@ -97,11 +95,8 @@ public class Main {
             applyFontToComponent(loggedInView, goblinFont);
             views.add(loggedInView, loggedInView.viewName);
     
-            TablePreferenceView tablePreferenceView = TableUseCaseFactory.create(viewManagerModel, tableViewModel, numberLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
+            TablePreferenceView tablePreferenceView = TableUseCaseFactory.create(viewManagerModel, tableViewModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
             views.add(tablePreferenceView, tablePreferenceView.viewName);
-
-            NumberLanguagesView numberLanguagesView = NumberLanguagesUseCaseFactory.create(viewManagerModel, numberLanguagesViewModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
-            views.add(numberLanguagesView, numberLanguagesView.viewName);
 
             SelectLanguagesView selectLanguagesView = SelectLanguagesUseCaseFactory.create(viewManagerModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
             views.add(selectLanguagesView, selectLanguagesView.viewName);

@@ -3,7 +3,7 @@ package interface_adapter.select_languages;
 import interface_adapter.history.HistoryState;
 
 public class SelectLanguagesState extends HistoryState {
-    private String[] languages = {};
+    private String[] languages;
     private String languagesError = null;
 
     public SelectLanguagesState(SelectLanguagesState copy) {
@@ -11,7 +11,6 @@ public class SelectLanguagesState extends HistoryState {
         languagesError = copy.languagesError;
     }
 
-    // Because of the previous copy constructor, the default constructor must be explicit.
     public SelectLanguagesState() {}
 
     public String[] getLanguages() {

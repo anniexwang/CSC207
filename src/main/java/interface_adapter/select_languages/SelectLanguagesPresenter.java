@@ -22,16 +22,8 @@ public class SelectLanguagesPresenter implements SelectLanguagesOutputBoundary {
 
     @Override
     public void prepareSuccessView(SelectLanguagesOutputData response) {
-        // On success, switch to the login view.
-//        LocalDateTime responseTime = LocalDateTime.parse(response.getCreationTime());
-//        response.setCreationTime(responseTime.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
-
-        SelectLanguagesState selectLanguagesState = selectLanguagesViewModel.getState();
         HistoryState historyState = historyViewModel.getState();
-        historyState.setLanguages(response.getLanguages());
-//        tableState.setUsername(response.getUsername());
         this.historyViewModel.setState(historyState);
-//        this.historyViewModel.getData();
         this.historyViewModel.firePropertyChanged();
         this.viewManagerModel.setActiveView(historyViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
@@ -40,7 +32,7 @@ public class SelectLanguagesPresenter implements SelectLanguagesOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         SelectLanguagesState selectLanguagesState = selectLanguagesViewModel.getState();
-//        tableState.setUsernameError(error);
+        selectLanguagesState.setLanguagesError(error);
         selectLanguagesViewModel.firePropertyChanged();
     }
 }

@@ -1,7 +1,5 @@
 package use_case.table_preferences;
 
-import data_access.UserTableDataAccessInterface;
-
 public class TableInteractor implements TableInputBoundary {
     final TableUserDataAccessInterface userDataAccessObject;
     final TableOutputBoundary tablePresenter;
@@ -21,7 +19,6 @@ public class TableInteractor implements TableInputBoundary {
         }
         else {
             TableOutputData tableOutputData = new TableOutputData(tableInputData.getTableType(), tableInputData.getSortType(), false);
-//            System.out.println("TableInteractor tableOutputData: " + tableOutputData);
             tablePresenter.prepareSuccessView(tableOutputData);
         }
     }
