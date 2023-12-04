@@ -17,7 +17,7 @@ public class TranslationUseCaseFactory {
 
     private TranslationUseCaseFactory(){};
 
-    public TranslationView create( ViewManagerModel viewManagerModel,
+    public static TranslationView create( ViewManagerModel viewManagerModel,
                                          TranslationViewModel translationViewModel,
                                          SignupViewModel signupViewModel,
                                          TranslateUserDataAccessInterface userDataAccessObject) {
@@ -37,7 +37,7 @@ public class TranslationUseCaseFactory {
         return null;
     }
 
-    public TranslationController createUserTranslationUseCase(ViewManagerModel viewManagerModel,
+    private static TranslationController createUserTranslationUseCase(ViewManagerModel viewManagerModel,
                                                                       TranslationViewModel translationViewModel,
                                                                       SignupViewModel signupViewModel,
                                                                       TranslateUserDataAccessInterface userDataAccessObject)

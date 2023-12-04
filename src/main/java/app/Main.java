@@ -6,6 +6,7 @@ import app.SignupUseCaseFactory;
 import app.TableUseCaseFactory;
 import data_access.AudioDataAccessObject;
 import interface_adapter.Audio.AudioController;
+import interface_adapter.translation.TranslationViewModel;
 import use_case.Audio.AudioInputData;
 import view.AudioManager; // Import the AudioManager class
 import data_access.FileUserDataAccessObject;
@@ -61,6 +62,7 @@ public class Main {
             TableViewModel tableViewModel = new TableViewModel();
             SelectLanguagesViewModel selectLanguagesViewModel = new SelectLanguagesViewModel();
             HistoryViewModel historyViewModel = new HistoryViewModel();
+            TranslationViewModel translationViewModel = new TranslationViewModel();
 
             // Data access object
             FileUserDataAccessObject userDataAccessObject;
@@ -98,6 +100,10 @@ public class Main {
             LoggedInView loggedInView = new LoggedInView(loggedInViewModel, viewManagerModel);
             applyFontToComponent(loggedInView, goblinFont);
             views.add(loggedInView, loggedInView.viewName);
+
+            TranslationView translationView = TranslationUseCaseFactory.create(viewManagerModel, translationViewModel, signupViewModel, userDataAccessObject);
+            applyFontToComponent(translationView, goblinFont);
+            views.add(translationView, translationView.viewName);
 
             TablePreferenceView tablePreferenceView = TableUseCaseFactory.create(viewManagerModel, tableViewModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
             views.add(tablePreferenceView, tablePreferenceView.viewName);
