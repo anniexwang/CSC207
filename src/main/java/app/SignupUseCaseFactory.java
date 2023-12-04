@@ -25,22 +25,17 @@ public class SignupUseCaseFactory {
             ViewManagerModel viewManagerModel, LoginViewModel loginViewModel,
             SignupViewModel signupViewModel, SignupUserDataAccessInterface userDataAccessObject, AudioController audioController) {
 
-        try {
-            SignupController signupController = createUserSignupUseCase(
-                    viewManagerModel, signupViewModel, loginViewModel, userDataAccessObject);
 
-            return new SignupView(signupController, signupViewModel, audioController);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not open user data file.");
-        }
+        SignupController signupController = createUserSignupUseCase(
+                viewManagerModel, signupViewModel, loginViewModel, userDataAccessObject);
 
-        return null;
+        return new SignupView(signupController, signupViewModel, audioController);
     }
 
     private static SignupController createUserSignupUseCase(
             ViewManagerModel viewManagerModel, SignupViewModel signupViewModel,
             LoginViewModel loginViewModel, SignupUserDataAccessInterface userDataAccessObject)
-            throws IOException {
+ {
 
         SignupOutputBoundary signupOutputBoundary = new SignupPresenter(
                 viewManagerModel, signupViewModel, loginViewModel);

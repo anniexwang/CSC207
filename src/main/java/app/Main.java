@@ -1,33 +1,23 @@
 package app;
 
-import app.LoginUseCaseFactory;
-import app.SelectLanguagesUseCaseFactory;
-import app.SignupUseCaseFactory;
-import app.TableUseCaseFactory;
-import data_access.AudioDataAccessObject;
-import interface_adapter.Audio.AudioController;
-import interface_adapter.translation.TranslationViewModel;
-import use_case.Audio.AudioInputData;
-import view.AudioManager; // Import the AudioManager class
-import data_access.FileUserDataAccessObject;
 import data_access.FileTranslationHistoryDataAccessObject;
+import data_access.FileUserDataAccessObject;
 import entity.CommonUserFactory;
-import interface_adapter.login.LoginViewModel;
-import interface_adapter.logged_in.LoggedInViewModel;
-import interface_adapter.signup.SignupViewModel;
+import interface_adapter.Audio.AudioController;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.select_languages.SelectLanguagesViewModel;
-import interface_adapter.table_preferences.TableViewModel;
 import interface_adapter.history.HistoryViewModel;
+import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.login.LoginViewModel;
+import interface_adapter.select_languages.SelectLanguagesViewModel;
+import interface_adapter.signup.SignupViewModel;
+import interface_adapter.table_preferences.TableViewModel;
+import interface_adapter.translation.TranslationViewModel;
 import view.*;
-import use_case.Audio.AudioInteractor;
-import java.io.File;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 
 public class Main {
