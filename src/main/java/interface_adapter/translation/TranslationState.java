@@ -8,12 +8,16 @@ public class TranslationState {
     private String originalError = null;
     private String translated = "";
     private String translatedError = null;
+    private String username = "";
+    private String usernameError = null;
 
     public TranslationState(TranslationState copy) {
         original = copy.original;
         originalError = copy.originalError;
         translated = copy.translated;
         translatedError = copy.translatedError;
+        username = copy.username;
+        usernameError = copy.usernameError;
     }
 
     public TranslationState() {}
@@ -21,6 +25,9 @@ public class TranslationState {
     public String getOriginal() {
         return original;
     }
+    public String getUsername() {return username;}
+    public String getUsernameError(){return usernameError;}
+    public void setUsernameError(){this.username = username;}
     public String getOriginalError() {
         return originalError;
     }
