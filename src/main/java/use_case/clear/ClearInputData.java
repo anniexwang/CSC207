@@ -1,11 +1,13 @@
 package use_case.clear;
 
-public class ClearInputData{
-    private String username;
-    private String password;
+import java.util.ArrayList;
 
-    public ClearInputData(String username, String password) {
+public class ClearInputData{
+    private final String username;
+
+    public ClearInputData(String username) {
         this.username = username;
-        this.password = password;
     }
+
+    public String getUser(){ return username;}
 }

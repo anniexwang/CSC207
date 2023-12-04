@@ -2,7 +2,12 @@ package app;
 
 import data_access.AudioDataAccessObject;
 import interface_adapter.Audio.AudioController;
+import interface_adapter.clear.ClearController;
+import interface_adapter.clear.ClearViewModel;
+import interface_adapter.translation.TranslationController;
+import interface_adapter.translation.TranslationViewModel;
 import use_case.Audio.AudioInputData;
+import use_case.clear.ClearUserDataAccessInterface;
 import view.AudioManager; // Import the AudioManager class
 import data_access.FileUserDataAccessObject;
 import data_access.FileTranslationHistoryDataAccessObject;
@@ -59,15 +64,20 @@ public class Main {
             NumberLanguagesViewModel numberLanguagesViewModel = new NumberLanguagesViewModel();
             SelectLanguagesViewModel selectLanguagesViewModel = new SelectLanguagesViewModel();
             HistoryViewModel historyViewModel = new HistoryViewModel();
+            TranslationViewModel translationViewModel = new TranslationViewModel();
+            ClearViewModel clearViewModel = new ClearViewModel();
 
-            // Data access object
+
+
+            // Data Access Object
             FileUserDataAccessObject userDataAccessObject;
             try {
                 userDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-          
+
+
             //Translation History Data Access Object
             FileTranslationHistoryDataAccessObject translationHistoryDataAccessObject;
             try {
@@ -78,8 +88,8 @@ public class Main {
 
 
             // Create new AudioController using factory method
+            // Controllers
             AudioController audioController = AudioControllerFactory.createAudioController("src/power.wav");
-
 
 //            // Create an instance of AudioManager
 //            AudioManager audioManager = new AudioManager("/power.wav");
@@ -96,6 +106,9 @@ public class Main {
             LoggedInView loggedInView = new LoggedInView(loggedInViewModel, viewManagerModel);
             applyFontToComponent(loggedInView, goblinFont);
             views.add(loggedInView, loggedInView.viewName);
+
+            TranslationView translationView = new TranslationUseCaseFactory.create(viewManagerModel,translationViewModel,signupViewModel, userDataAccessObject);
+
     
             TablePreferenceView tablePreferenceView = TableUseCaseFactory.create(viewManagerModel, tableViewModel, numberLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
             views.add(tablePreferenceView, tablePreferenceView.viewName);

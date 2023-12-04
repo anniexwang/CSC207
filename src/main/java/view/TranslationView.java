@@ -17,7 +17,7 @@ public class TranslationView extends JPanel implements ActionListener, PropertyC
 
     // Controllers and View Models
     private final TranslationController translationController;
-    private final ClearController clearController;
+
 
     // UI
     JTextField translationField = new JTextField("Enter Your Text Here");
@@ -30,13 +30,11 @@ public class TranslationView extends JPanel implements ActionListener, PropertyC
     private final JButton cancel;
 
     public TranslationView(TranslationController translationController,
-                           TranslationViewModel translationViewModel,
-                           ClearController clearController, ClearViewModel clearViewModel){
+                           TranslationViewModel translationViewModel
+                           ){
 
         // controller & view model
         this.translationController = translationController;
-        this.clearController = clearController;
-        clearViewModel.addPropertyChangeListener(this);
         translationViewModel.addPropertyChangeListener(this);
 
         // panels
@@ -54,7 +52,6 @@ public class TranslationView extends JPanel implements ActionListener, PropertyC
         // buttons
         cancel = createRainbowButton(SignupViewModel.CANCEL_BUTTON_LABEL);
         translate = createRainbowButton(TranslationViewModel.TRANSLATE_BUTTON_LABEL);
-        clearAccount = createRainbowButton(ClearViewModel.CLEAR_BUTTON_LABEL);
         backToSignup = createRainbowButton(TranslationViewModel.BACK_TO_SIGNUP);
         getHistory = createRainbowButton(TranslationViewModel.GET_HISTORY);
 
@@ -67,14 +64,12 @@ public class TranslationView extends JPanel implements ActionListener, PropertyC
         // Panel for buttons
         JPanel buttons = new JPanel();
         buttons.add(translate);
-        buttons.add(clearAccount);
         buttons.add(backToSignup);
         buttons.add(getHistory);
         buttons.add(cancel);
 
         // Add action listeners to buttons
         translate.addActionListener(e -> translationController.execute(translationField.getText()));
-        // clearAccount.addActionListener(e -> ClearController.execute());
         backToSignup.addActionListener(e -> translationController.backToSignup());
         // placeholder for history
         getHistory.addActionListener(e -> translationController.backToSignup());
