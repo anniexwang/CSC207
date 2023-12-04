@@ -46,7 +46,7 @@ public class TranslationView extends JPanel implements ActionListener, PropertyC
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //text field
-        LabelTextPanel translationInput = new LabelTextPanel(new JLabel(TranslationViewModel.TRANSLATE_BUTTON_LABEL), translatePhrase);
+        LabelTextPanel translationInput = new LabelTextPanel(new JLabel(TranslationViewModel.TRANSLATE_BUTTON_LABEL), translationField);
 
         // buttons
         cancel = createRainbowButton(SignupViewModel.CANCEL_BUTTON_LABEL);
