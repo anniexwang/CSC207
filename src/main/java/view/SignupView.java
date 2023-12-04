@@ -5,14 +5,13 @@ import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
 
-import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.*;
-import java.util.Objects;
+import java.io.File;
 
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     // Constants
@@ -26,11 +25,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final JPasswordField passwordInputField = new JPasswordField(15); // Input field for password
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15); // Input field for repeating the password
     private final JButton cancel;
-    private JButton muteButton;
-    private Timer muteButtonUpdateTimer;
+    private final JButton muteButton;
+    private final Timer muteButtonUpdateTimer;
 
 
-    private  AudioController audioController;
+    private final AudioController audioController;
 
     // Constructor
     public SignupView(SignupController controller, SignupViewModel signupViewModel, AudioController audioController) {
