@@ -27,7 +27,7 @@ public class Main {
 
         try {
             // Load the custom Goblin font directly from a file
-            File fontFile = new File("resources\\cc.ttf"); // Absolute path to the font file
+            File fontFile = new File("resources//cc.ttf"); // Absolute path to the font file
             Font goblinFont = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(30f); // Adjust the font size as needed
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(goblinFont);
