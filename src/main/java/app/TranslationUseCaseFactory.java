@@ -1,18 +1,10 @@
 package app;
 
 import interface_adapter.*;
-import interface_adapter.clear.ClearController;
-import interface_adapter.clear.ClearPresenter;
-import interface_adapter.clear.ClearViewModel;
-import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.translation.TranslationController;
 import interface_adapter.translation.TranslationPresenter;
 import interface_adapter.translation.TranslationViewModel;
-import use_case.clear.ClearInputBoundary;
-import use_case.clear.ClearInteractor;
-import use_case.clear.ClearOutputBoundary;
-import use_case.clear.ClearUserDataAccessInterface;
 import use_case.translate.TranslateOutputBoundary;
 import use_case.translate.TranslateInputBoundary;
 import use_case.translate.TranslateInteractor;
@@ -25,7 +17,7 @@ public class TranslationUseCaseFactory {
 
     private TranslationUseCaseFactory(){};
 
-    public static TranslationView create( ViewManagerModel viewManagerModel,
+    public TranslationView create( ViewManagerModel viewManagerModel,
                                          TranslationViewModel translationViewModel,
                                          SignupViewModel signupViewModel,
                                          TranslateUserDataAccessInterface userDataAccessObject) {

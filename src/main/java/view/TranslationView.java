@@ -25,7 +25,6 @@ public class TranslationView extends JPanel implements ActionListener, PropertyC
 
     private final JButton backToSignup;
     private final JButton translate;
-    private final JButton clearAccount;
     private final JButton getHistory;
     private final JButton cancel;
 
@@ -57,7 +56,6 @@ public class TranslationView extends JPanel implements ActionListener, PropertyC
 
         cancel.addActionListener(this);
         translate.addActionListener(this);
-        clearAccount.addActionListener(this);
         backToSignup.addActionListener(this);
         getHistory.addActionListener(this);
 

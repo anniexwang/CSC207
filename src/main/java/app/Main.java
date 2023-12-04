@@ -108,7 +108,7 @@ public class Main {
             views.add(loggedInView, loggedInView.viewName);
 
             TranslationView translationView = new TranslationUseCaseFactory.create(viewManagerModel,translationViewModel,signupViewModel, userDataAccessObject);
-
+            views.add(translationView, translationView.viewName);
     
             TablePreferenceView tablePreferenceView = TableUseCaseFactory.create(viewManagerModel, tableViewModel, numberLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
             views.add(tablePreferenceView, tablePreferenceView.viewName);
