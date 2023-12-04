@@ -12,8 +12,7 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
-//public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, ClearUserDataAccessInterface{
-public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, UserTableDataAccessInterface, UserNumberLanguagesDataAccessInterface, UserSelectLanguagesDataAccessInterface {
+public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface{
     private final File csvFile;
 
     private final Map<String, Integer> headers = new LinkedHashMap<>();
@@ -77,8 +76,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         this.save();
     }
 
-
-
     @Override
     public User get(String username) {
         return accounts.get(username);
@@ -105,8 +102,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         }
     }
 
-
-
     /**
      * Return whether a user exists with username identifier.
      * @param identifier the username to check.
@@ -116,13 +111,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     public boolean existsByName(String identifier) {
         return accounts.containsKey(identifier);
     }
-//    @Override
-//    public List<String> deleteAllUsers() {
-//        List<String> deletedUsers = new ArrayList<>(accounts.keySet());
-//        accounts.clear();
-//        save();
-//        return deletedUsers;
-//    }
 }
 
 

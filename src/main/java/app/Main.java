@@ -1,13 +1,12 @@
 package app;
 
+import app.LoginUseCaseFactory;
+import app.SelectLanguagesUseCaseFactory;
+import app.SignupUseCaseFactory;
+import app.TableUseCaseFactory;
 import data_access.AudioDataAccessObject;
 import interface_adapter.Audio.AudioController;
-import interface_adapter.clear.ClearController;
-import interface_adapter.clear.ClearViewModel;
-import interface_adapter.translation.TranslationController;
-import interface_adapter.translation.TranslationViewModel;
 import use_case.Audio.AudioInputData;
-import use_case.clear.ClearUserDataAccessInterface;
 import view.AudioManager; // Import the AudioManager class
 import data_access.FileUserDataAccessObject;
 import data_access.FileTranslationHistoryDataAccessObject;
@@ -16,7 +15,6 @@ import interface_adapter.login.LoginViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.number_languages.NumberLanguagesViewModel;
 import interface_adapter.select_languages.SelectLanguagesViewModel;
 import interface_adapter.table_preferences.TableViewModel;
 import interface_adapter.history.HistoryViewModel;
@@ -42,7 +40,7 @@ public class Main {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(goblinFont);
 
-    // Main application window setup
+            // Main application window setup
             JFrame application = new JFrame("Translayte");
             application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,15 +59,10 @@ public class Main {
             LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
             SignupViewModel signupViewModel = new SignupViewModel();
             TableViewModel tableViewModel = new TableViewModel();
-            NumberLanguagesViewModel numberLanguagesViewModel = new NumberLanguagesViewModel();
             SelectLanguagesViewModel selectLanguagesViewModel = new SelectLanguagesViewModel();
             HistoryViewModel historyViewModel = new HistoryViewModel();
-            TranslationViewModel translationViewModel = new TranslationViewModel();
-            ClearViewModel clearViewModel = new ClearViewModel();
 
-
-
-            // Data Access Object
+            // Data access object
             FileUserDataAccessObject userDataAccessObject;
             try {
                 userDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
@@ -77,19 +70,18 @@ public class Main {
                 throw new RuntimeException(e);
             }
 
-
             //Translation History Data Access Object
             FileTranslationHistoryDataAccessObject translationHistoryDataAccessObject;
             try {
-              translationHistoryDataAccessObject = new FileTranslationHistoryDataAccessObject("./src/translations.csv");
+                translationHistoryDataAccessObject = new FileTranslationHistoryDataAccessObject("src/main/java/translations.csv");
             } catch (IOException e) {
-              throw new RuntimeException(e);
+                throw new RuntimeException(e);
             }
 
 
             // Create new AudioController using factory method
-            // Controllers
-            AudioController audioController = AudioControllerFactory.createAudioController("src/power.wav");
+            AudioController audioController = app.AudioControllerFactory.createAudioController("src/main/java/power.wav");
+
 
 //            // Create an instance of AudioManager
 //            AudioManager audioManager = new AudioManager("/power.wav");
@@ -107,14 +99,8 @@ public class Main {
             applyFontToComponent(loggedInView, goblinFont);
             views.add(loggedInView, loggedInView.viewName);
 
-            TranslationView translationView = new TranslationUseCaseFactory.create(viewManagerModel,translationViewModel,signupViewModel, userDataAccessObject);
-            views.add(translationView, translationView.viewName);
-    
-            TablePreferenceView tablePreferenceView = TableUseCaseFactory.create(viewManagerModel, tableViewModel, numberLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
+            TablePreferenceView tablePreferenceView = TableUseCaseFactory.create(viewManagerModel, tableViewModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
             views.add(tablePreferenceView, tablePreferenceView.viewName);
-
-            NumberLanguagesView numberLanguagesView = NumberLanguagesUseCaseFactory.create(viewManagerModel, numberLanguagesViewModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
-            views.add(numberLanguagesView, numberLanguagesView.viewName);
 
             SelectLanguagesView selectLanguagesView = SelectLanguagesUseCaseFactory.create(viewManagerModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
             views.add(selectLanguagesView, selectLanguagesView.viewName);

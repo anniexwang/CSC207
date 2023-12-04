@@ -1,7 +1,5 @@
 package interface_adapter.table_preferences;
 
-import interface_adapter.history.HistoryState;
-
 public class TableState {
     private String tableType = "";
     private String tableTypeError = null;
@@ -14,8 +12,6 @@ public class TableState {
         sortType = copy.sortType;
         sortTypeError = copy.sortTypeError;
     }
-
-    // Because of the previous copy constructor, the default constructor must be explicit.
     public TableState() {}
 
     public String getTableType() {
@@ -35,8 +31,6 @@ public class TableState {
     }
 
     public void setTableType(String tableType) {
-
-        System.out.println("TableState: setTableType successful");
         this.tableType = tableType;
     }
 

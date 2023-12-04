@@ -7,7 +7,11 @@ import java.beans.PropertyChangeSupport;
 
 public class SelectLanguagesViewModel extends ViewModel {
     public final String TITLE_LABEL = "Select Languages View";
-    public final String LANGUAGE_LABEL = "Language"; //TODO: concatenate with i ( Language 1, Language 2, etc.)
+
+    public final String INSTRUCTION_LABEL1 = "Enter all the languages that you would like in the table.";
+
+    public final String INSTRUCTION_LABEL2 = "Separate each language with a comma, no spaces";
+    public final String LANGUAGE_LABEL = "Languages"; 
     public final String GO_BUTTON_LABEL = "Go";
 
     private SelectLanguagesState state = new SelectLanguagesState();
@@ -22,8 +26,6 @@ public class SelectLanguagesViewModel extends ViewModel {
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    // This is what the Signup Presenter will call to let the ViewModel know
-    // to alert the View
     public void firePropertyChanged() {
         support.firePropertyChange("state", null, this.state);
     }
@@ -35,6 +37,4 @@ public class SelectLanguagesViewModel extends ViewModel {
     public SelectLanguagesState getState() {
         return state;
     }
-
-    public void getLanguages(){}; //TODO: get languages from csv file for drop down menu in View
 }

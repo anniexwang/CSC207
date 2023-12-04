@@ -11,7 +11,6 @@ public class SelectLanguagesController {
 
     public void execute(String[] languages) {
         SelectLanguagesInputData selectLanguagesInputData = new SelectLanguagesInputData(languages);
-
         userSelectLanguagesUseCaseInteractor.execute(selectLanguagesInputData);
     }
 }
