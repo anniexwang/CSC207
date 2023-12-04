@@ -70,7 +70,7 @@ public class TranslationView extends JPanel implements ActionListener, PropertyC
         translate.addActionListener(e -> translationController.execute(translationField.getText()));
         backToSignup.addActionListener(e -> translationController.backToSignup());
         // placeholder for history
-        getHistory.addActionListener(e -> translationController.backToSignup());
+        getHistory.addActionListener(e -> translationController.goToHistory());
         cancel.addActionListener(e -> translationController.handleCancel());
 
         // add elements to panel

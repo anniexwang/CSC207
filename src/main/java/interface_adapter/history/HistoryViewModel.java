@@ -13,6 +13,7 @@ import java.util.*;
 
 public class HistoryViewModel extends ViewModel {
     public final String TITLE_LABEL = "History View";
+
     private HistoryState state = new HistoryState();
     private ArrayList<List<String>> data = new ArrayList<>();
     private final ArrayList<List<String>> fileData = FileTranslationHistoryDataAccessObject.getData();

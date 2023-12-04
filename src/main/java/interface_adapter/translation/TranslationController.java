@@ -15,6 +15,7 @@ public class TranslationController {
     public void backToSignup() {
         translationPresenter.backToSignup();
     }
+    public void goToHistory() {translationPresenter.goToHistory();}
 
     public void handleCancel() {
         // Clear any state or perform any action needed on cancel

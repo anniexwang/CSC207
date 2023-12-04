@@ -5,6 +5,7 @@ import interface_adapter.signup.SignupViewModel;
 import interface_adapter.translation.TranslationController;
 import interface_adapter.translation.TranslationPresenter;
 import interface_adapter.translation.TranslationViewModel;
+import interface_adapter.history.HistoryViewModel;
 import use_case.translate.TranslateOutputBoundary;
 import use_case.translate.TranslateInputBoundary;
 import use_case.translate.TranslateInteractor;
@@ -19,12 +20,13 @@ public class TranslationUseCaseFactory {
 
     public static TranslationView create( ViewManagerModel viewManagerModel,
                                          TranslationViewModel translationViewModel,
-                                         SignupViewModel signupViewModel
+                                         SignupViewModel signupViewModel,
+                                          HistoryViewModel historyViewModel
                                          ) {
 
         try {
             TranslationController translationController = createUserTranslationUseCase(viewManagerModel,
-                    translationViewModel,signupViewModel);
+                    translationViewModel,signupViewModel,historyViewModel);
             return new TranslationView(translationController,
                     translationViewModel);
         }
@@ -38,12 +40,13 @@ public class TranslationUseCaseFactory {
 
     private static TranslationController createUserTranslationUseCase(ViewManagerModel viewManagerModel,
                                                                       TranslationViewModel translationViewModel,
-                                                                      SignupViewModel signupViewModel
+                                                                      SignupViewModel signupViewModel,
+                                                                      HistoryViewModel historyViewModel
                                                                       )
     throws IOException {
 
         TranslateOutputBoundary translateOutputBoundary = new TranslationPresenter(
-                viewManagerModel, translationViewModel, signupViewModel);
+                viewManagerModel, translationViewModel, signupViewModel, historyViewModel);
         TranslateInputBoundary translationInteractor = new TranslateInteractor(
                  translateOutputBoundary);
 

@@ -101,7 +101,7 @@ public class Main {
             applyFontToComponent(loggedInView, goblinFont);
             views.add(loggedInView, loggedInView.viewName);
 
-            TranslationView translationView = TranslationUseCaseFactory.create(viewManagerModel, translationViewModel, signupViewModel);
+            TranslationView translationView = TranslationUseCaseFactory.create(viewManagerModel, translationViewModel, signupViewModel, historyViewModel);
             applyFontToComponent(translationView, goblinFont);
             views.add(translationView, translationView.viewName);
 

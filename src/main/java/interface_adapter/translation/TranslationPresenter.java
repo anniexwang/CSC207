@@ -4,6 +4,7 @@ import interface_adapter.clear.ClearState;
 import interface_adapter.clear.ClearViewModel;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.history.HistoryViewModel;
 import interface_adapter.translation.TranslationState;
 import interface_adapter.translation.TranslationViewModel;
 import interface_adapter.translation.TranslationState;
@@ -15,14 +16,17 @@ import use_case.translate.TranslateOutputData;
 public class TranslationPresenter implements TranslateOutputBoundary{
     private final TranslationViewModel translationViewModel;
     private final SignupViewModel signupViewModel;
+    private final HistoryViewModel historyViewModel;
     private ViewManagerModel viewManagerModel;
 
     public TranslationPresenter(ViewManagerModel viewManagerModel,
                           TranslationViewModel translationViewModel,
-                                SignupViewModel signupViewModel) {
+                                SignupViewModel signupViewModel,
+                                HistoryViewModel historyViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.translationViewModel = translationViewModel;
         this.signupViewModel = signupViewModel;
+        this.historyViewModel = historyViewModel;
     }
 
     @Override
@@ -35,6 +39,11 @@ public class TranslationPresenter implements TranslateOutputBoundary{
     // need to enable option to return to signup
     public void backToSignup() {
         this.viewManagerModel.setActiveView(signupViewModel.getViewName()); // Use the correct view name for SignupView
+        this.viewManagerModel.firePropertyChanged();
+    }
+
+    public void goToHistory(){
+        this.viewManagerModel.setActiveView((historyViewModel.getViewName()));
         this.viewManagerModel.firePropertyChanged();
     }
 
