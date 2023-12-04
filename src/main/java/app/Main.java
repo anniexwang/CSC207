@@ -1,5 +1,9 @@
 package app;
 
+import app.LoginUseCaseFactory;
+import app.SelectLanguagesUseCaseFactory;
+import app.SignupUseCaseFactory;
+import app.TableUseCaseFactory;
 import data_access.AudioDataAccessObject;
 import interface_adapter.Audio.AudioController;
 import use_case.Audio.AudioInputData;
@@ -69,14 +73,14 @@ public class Main {
             //Translation History Data Access Object
             FileTranslationHistoryDataAccessObject translationHistoryDataAccessObject;
             try {
-              translationHistoryDataAccessObject = new FileTranslationHistoryDataAccessObject("./src/translations.csv");
+              translationHistoryDataAccessObject = new FileTranslationHistoryDataAccessObject("src/main/java/translations.csv");
             } catch (IOException e) {
               throw new RuntimeException(e);
             }
 
 
             // Create new AudioController using factory method
-            AudioController audioController = AudioControllerFactory.createAudioController("src/power.wav");
+            AudioController audioController = app.AudioControllerFactory.createAudioController("src/main/java/power.wav");
 
 
 //            // Create an instance of AudioManager
