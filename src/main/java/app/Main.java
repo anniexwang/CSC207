@@ -6,6 +6,7 @@ import entity.CommonUserFactory;
 import interface_adapter.Audio.AudioController;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.history.HistoryViewModel;
+import interface_adapter.table_preferences.TableViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.select_languages.SelectLanguagesViewModel;
@@ -50,8 +51,8 @@ public class Main {
             LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
             SignupViewModel signupViewModel = new SignupViewModel();
             TableViewModel tableViewModel = new TableViewModel();
-            SelectLanguagesViewModel selectLanguagesViewModel = new SelectLanguagesViewModel();
             HistoryViewModel historyViewModel = new HistoryViewModel();
+            SelectLanguagesViewModel selectLanguagesViewModel = new SelectLanguagesViewModel();
             TranslationViewModel translationViewModel = new TranslationViewModel();
 
             // Data access object
@@ -91,7 +92,7 @@ public class Main {
             applyFontToComponent(loggedInView, goblinFont);
             views.add(loggedInView, loggedInView.viewName);
 
-            TranslationView translationView = TranslationUseCaseFactory.create(viewManagerModel, translationViewModel, signupViewModel, historyViewModel);
+            TranslationView translationView = TranslationUseCaseFactory.create(viewManagerModel, translationViewModel, signupViewModel, tableViewModel);
             applyFontToComponent(translationView, goblinFont);
             views.add(translationView, translationView.viewName);
 

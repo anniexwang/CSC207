@@ -8,6 +8,7 @@ import java.beans.PropertyChangeSupport;
 public class TranslationViewModel extends ViewModel{
 
     public static final String TRANSLATE_BUTTON_LABEL= "Translate";
+    public static final String TRANSLATE_OUTPUT = "";
     public static final String BACK_TO_SIGNUP = "Back to Signup";
     public static final String GET_HISTORY = "Get Translation History";
 
@@ -15,6 +16,7 @@ public class TranslationViewModel extends ViewModel{
     public void setState(TranslationState state) {
         this.state = state;
     }
+
     public TranslationViewModel() {super("translate");}
 
     // extend ViewModel (rewrite fireProperty changes)

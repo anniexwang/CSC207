@@ -1,4 +1,5 @@
 package use_case.translate;
+import use_case.retrieve_translation.RetrieveTranslationInteractor;
 
 import entity.UserFactory;
 import use_case.login.LoginInputData;
@@ -23,6 +24,7 @@ public class TranslateInteractor implements TranslateInputBoundary {
     public void execute(TranslateInputData translateInputData) {
         // Extract original phrase to be translated
         String original = translateInputData.getOriginal();
+
 
         // error - no phrase to be translated
         if (translateInputData.getOriginal().isEmpty()) {

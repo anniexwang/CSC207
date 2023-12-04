@@ -5,7 +5,7 @@ import interface_adapter.signup.SignupViewModel;
 import interface_adapter.translation.TranslationController;
 import interface_adapter.translation.TranslationPresenter;
 import interface_adapter.translation.TranslationViewModel;
-import interface_adapter.history.HistoryViewModel;
+import interface_adapter.table_preferences.TableViewModel;
 import use_case.translate.TranslateOutputBoundary;
 import use_case.translate.TranslateInputBoundary;
 import use_case.translate.TranslateInteractor;
@@ -21,12 +21,12 @@ public class TranslationUseCaseFactory {
     public static TranslationView create( ViewManagerModel viewManagerModel,
                                          TranslationViewModel translationViewModel,
                                          SignupViewModel signupViewModel,
-                                          HistoryViewModel historyViewModel
+                                          TableViewModel tableViewModel
                                          ) {
 
         try {
             TranslationController translationController = createUserTranslationUseCase(viewManagerModel,
-                    translationViewModel,signupViewModel,historyViewModel);
+                    translationViewModel,signupViewModel,tableViewModel);
             return new TranslationView(translationController,
                     translationViewModel);
         }
@@ -41,12 +41,12 @@ public class TranslationUseCaseFactory {
     private static TranslationController createUserTranslationUseCase(ViewManagerModel viewManagerModel,
                                                                       TranslationViewModel translationViewModel,
                                                                       SignupViewModel signupViewModel,
-                                                                      HistoryViewModel historyViewModel
+                                                                      TableViewModel tableViewModel
                                                                       )
     throws IOException {
 
         TranslateOutputBoundary translateOutputBoundary = new TranslationPresenter(
-                viewManagerModel, translationViewModel, signupViewModel, historyViewModel);
+                viewManagerModel, translationViewModel, signupViewModel, tableViewModel);
         TranslateInputBoundary translationInteractor = new TranslateInteractor(
                  translateOutputBoundary);
 

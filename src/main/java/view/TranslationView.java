@@ -5,6 +5,10 @@ import interface_adapter.translation.*;
 import interface_adapter.clear.*;
 
 import javax.swing.*;
+import javax.swing.text.*;
+import javax.swing.text.Document;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -21,7 +25,8 @@ public class TranslationView extends JPanel implements ActionListener, PropertyC
 
     // UI
     JTextField translationField = new JTextField("Enter Your Text Here");
-    JTextField outputField = new JTextField("Translated Text");
+    JTextArea outputField = new JTextArea("Translated Text");
+
 
     private final JButton backToSignup;
     private final JButton translate;
@@ -47,7 +52,7 @@ public class TranslationView extends JPanel implements ActionListener, PropertyC
 
         // input field for user
         LabelTextPanel translationInput = new LabelTextPanel(new JLabel(TranslationViewModel.TRANSLATE_BUTTON_LABEL), translationField);
-
+        TextAreaPanel translationOutput = new TextAreaPanel(new JLabel(TranslationViewModel.TRANSLATE_OUTPUT), outputField);
         // buttons
         cancel = createRainbowButton(SignupViewModel.CANCEL_BUTTON_LABEL);
         translate = createRainbowButton(TranslationViewModel.TRANSLATE_BUTTON_LABEL);
@@ -76,6 +81,7 @@ public class TranslationView extends JPanel implements ActionListener, PropertyC
         // add elements to panel
         containerPanel.add(title);
         containerPanel.add(translationField);
+        containerPanel.add(outputField);
         containerPanel.add(buttons);
 
         // Add container panel to a JScrollPane
