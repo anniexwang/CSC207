@@ -4,6 +4,7 @@ import entity.CommonUserFactory;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.translation.TranslationViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
@@ -25,14 +26,14 @@ public class LoginUseCaseFactory {
     public static LoginView create(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
-            LoggedInViewModel loggedInViewModel,
+            TranslationViewModel translationViewModel,
             SignupViewModel signupViewModel,
             LoginUserDataAccessInterface userDataAccessObject,
             AudioController audioController) { // Add AudioManager as a parameter
 
         try {
             LoginController loginController = createLoginUseCase(
-                    viewManagerModel, loginViewModel, loggedInViewModel, signupViewModel, userDataAccessObject);
+                    viewManagerModel, loginViewModel, translationViewModel, signupViewModel, userDataAccessObject);
             return new LoginView(loginViewModel, loginController, audioController); // Pass AudioManager to LoginView
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
@@ -43,12 +44,12 @@ public class LoginUseCaseFactory {
     private static LoginController createLoginUseCase(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
-            LoggedInViewModel loggedInViewModel,
+            TranslationViewModel translationViewModel,
             SignupViewModel signupViewModel,
             LoginUserDataAccessInterface userDataAccessObject) throws IOException {
 
         LoginOutputBoundary loginOutputBoundary = new LoginPresenter(
-                viewManagerModel, loggedInViewModel, signupViewModel, loginViewModel);
+                viewManagerModel, translationViewModel, signupViewModel, loginViewModel);
 
         UserFactory userFactory = new CommonUserFactory();
 

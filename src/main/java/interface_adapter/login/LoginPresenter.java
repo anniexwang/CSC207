@@ -1,6 +1,8 @@
 package interface_adapter.login;
 
 import app.SignupUseCaseFactory;
+import interface_adapter.translation.TranslationState;
+import interface_adapter.translation.TranslationViewModel;
 import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.ViewManagerModel;
@@ -18,15 +20,15 @@ public class LoginPresenter implements LoginOutputBoundary {
 
     private final SignupViewModel signupViewModel;
     private final LoginViewModel loginViewModel;
-    private final LoggedInViewModel loggedInViewModel;
+    private final TranslationViewModel translationViewModel;
     private ViewManagerModel viewManagerModel;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
-                          LoggedInViewModel loggedInViewModel,
+                          TranslationViewModel translationViewModel,
                           SignupViewModel signupViewModel,
                           LoginViewModel loginViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.loggedInViewModel = loggedInViewModel;
+        this.translationViewModel = translationViewModel;
         this.loginViewModel = loginViewModel;
         this.signupViewModel = signupViewModel;
     }
@@ -35,12 +37,12 @@ public class LoginPresenter implements LoginOutputBoundary {
     public void prepareSuccessView(LoginOutputData response) {
         // On success, switch to the logged in view.
 
-        LoggedInState loggedInState = loggedInViewModel.getState();
-        loggedInState.setUsername(response.getUsername());
-        this.loggedInViewModel.setState(loggedInState);
-        this.loggedInViewModel.firePropertyChanged();
+        TranslationState translationState = translationViewModel.getState();
+        translationState.setUsername(response.getUsername());
+        this.translationViewModel.setState(translationState);
+        this.translationViewModel.firePropertyChanged();
 
-        this.viewManagerModel.setActiveView(loggedInViewModel.getViewName());
+        this.viewManagerModel.setActiveView(translationViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 

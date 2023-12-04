@@ -93,7 +93,7 @@ public class Main {
             applyFontToComponent(signupView, goblinFont);
             views.add(signupView, signupView.viewName);
 
-            LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, signupViewModel, userDataAccessObject, audioController); // Pass audioController
+            LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, translationViewModel, signupViewModel, userDataAccessObject, audioController); // Pass audioController
             applyFontToComponent(loginView, goblinFont);
             views.add(loginView, loginView.viewName);
 

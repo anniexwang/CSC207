@@ -46,6 +46,7 @@ public class TranslationState {
     public void setTranslated(String translated) {
         this.translated = translated;
     }
+    public void setUsername(String username){this.username = username;}
     public void setTranslatedError(String translatedError) {
         this.translatedError = translatedError;
     }
