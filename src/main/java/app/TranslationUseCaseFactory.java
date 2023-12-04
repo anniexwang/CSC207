@@ -19,13 +19,12 @@ public class TranslationUseCaseFactory {
 
     public static TranslationView create( ViewManagerModel viewManagerModel,
                                          TranslationViewModel translationViewModel,
-                                         SignupViewModel signupViewModel,
-                                         TranslateUserDataAccessInterface userDataAccessObject) {
-        // need to add ViewModel for selection input/output translation languages
+                                         SignupViewModel signupViewModel
+                                         ) {
 
         try {
             TranslationController translationController = createUserTranslationUseCase(viewManagerModel,
-                    translationViewModel,signupViewModel,userDataAccessObject);
+                    translationViewModel,signupViewModel);
             return new TranslationView(translationController,
                     translationViewModel);
         }
@@ -39,14 +38,14 @@ public class TranslationUseCaseFactory {
 
     private static TranslationController createUserTranslationUseCase(ViewManagerModel viewManagerModel,
                                                                       TranslationViewModel translationViewModel,
-                                                                      SignupViewModel signupViewModel,
-                                                                      TranslateUserDataAccessInterface userDataAccessObject)
+                                                                      SignupViewModel signupViewModel
+                                                                      )
     throws IOException {
 
         TranslateOutputBoundary translateOutputBoundary = new TranslationPresenter(
                 viewManagerModel, translationViewModel, signupViewModel);
         TranslateInputBoundary translationInteractor = new TranslateInteractor(
-                userDataAccessObject, translateOutputBoundary);
+                 translateOutputBoundary);
 
 
 

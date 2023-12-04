@@ -9,12 +9,12 @@ import use_case.translate.TranslateOutputBoundary;
 import use_case.translate.TranslateUserDataAccessInterface;
 
 public class TranslateInteractor implements TranslateInputBoundary {
-    final TranslateUserDataAccessInterface userDataAccessObject;
+
     final TranslateOutputBoundary translationPresenter;
 
-    public TranslateInteractor(TranslateUserDataAccessInterface userDataAccessInterface,
+    public TranslateInteractor(
                            TranslateOutputBoundary translateOutputBoundary) {
-        this.userDataAccessObject = userDataAccessInterface;
+
         this.translationPresenter = translateOutputBoundary;
     }
 

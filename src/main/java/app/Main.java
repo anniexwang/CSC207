@@ -101,7 +101,7 @@ public class Main {
             applyFontToComponent(loggedInView, goblinFont);
             views.add(loggedInView, loggedInView.viewName);
 
-            TranslationView translationView = TranslationUseCaseFactory.create(viewManagerModel, translationViewModel, signupViewModel, userDataAccessObject);
+            TranslationView translationView = TranslationUseCaseFactory.create(viewManagerModel, translationViewModel, signupViewModel);
             applyFontToComponent(translationView, goblinFont);
             views.add(translationView, translationView.viewName);
 
@@ -113,6 +113,7 @@ public class Main {
 
             HistoryView historyView = new HistoryView(historyViewModel);
             views.add(historyView, historyView.viewName);
+
 
             // Activate the initial view
             viewManagerModel.setActiveView(signupView.viewName);
