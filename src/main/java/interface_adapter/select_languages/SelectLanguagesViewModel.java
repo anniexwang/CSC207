@@ -11,7 +11,7 @@ public class SelectLanguagesViewModel extends ViewModel {
     public final String INSTRUCTION_LABEL1 = "Enter all the languages that you would like in the table.";
 
     public final String INSTRUCTION_LABEL2 = "Separate each language with a comma, no spaces";
-    public final String LANGUAGE_LABEL = "Languages"; 
+    public final String LANGUAGE_LABEL = "Languages";
     public final String GO_BUTTON_LABEL = "Go";
 
     private SelectLanguagesState state = new SelectLanguagesState();

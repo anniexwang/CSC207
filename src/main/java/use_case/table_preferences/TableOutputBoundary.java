@@ -1,7 +1,7 @@
 package use_case.table_preferences;
 
 public interface TableOutputBoundary {
-    void prepareSuccessView(TableOutputData user); //TODO: change names for all outputboundary
+    void prepareSuccessView(TableOutputData response);
 
     void prepareFailView(String error);
 }
