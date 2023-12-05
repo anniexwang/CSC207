@@ -1,8 +1,5 @@
 package use_case.login;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-
 import data_access.FileUserDataAccessObject;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
@@ -10,13 +7,14 @@ import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.translation.TranslationViewModel;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
-class LoginInteractorDiffblueTest {
+class LoginInteractorsTest {
     /**
      * Method under test:
      * {@link LoginInteractor#LoginInteractor(LoginUserDataAccessInterface, LoginOutputBoundary)}
