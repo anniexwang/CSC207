@@ -1,24 +1,22 @@
 package app;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-
 import data_access.FileUserDataAccessObject;
 import entity.UserFactory;
 import interface_adapter.Audio.AudioController;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupViewModel;
-
-import java.io.IOException;
-
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import use_case.Audio.AudioInputData;
 import use_case.Audio.AudioInteractor;
 import use_case.signup.SignupUserDataAccessInterface;
 
-class SignupUseCaseFactoryDiffblueTest {
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+
+class SignupUseCaseFactoryTest {
     /**
      * Method under test:
      * {@link SignupUseCaseFactory#create(ViewManagerModel, LoginViewModel, SignupViewModel, SignupUserDataAccessInterface, AudioController)}

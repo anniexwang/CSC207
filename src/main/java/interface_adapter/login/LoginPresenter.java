@@ -18,10 +18,10 @@ import view.SignupView;
 
 public class LoginPresenter implements LoginOutputBoundary {
 
-    private final SignupViewModel signupViewModel;
-    private final LoginViewModel loginViewModel;
-    private final TranslationViewModel translationViewModel;
-    private ViewManagerModel viewManagerModel;
+    final SignupViewModel signupViewModel;
+    final LoginViewModel loginViewModel;
+    final TranslationViewModel translationViewModel;
+    ViewManagerModel viewManagerModel;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
                           TranslationViewModel translationViewModel,
