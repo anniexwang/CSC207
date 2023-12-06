@@ -4,15 +4,15 @@ import entity.User;
 import entity.UserFactory;
 //import use_case.clear_users.ClearUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
-import use_case.select_languages.SelectLanguagesUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 //import use_case.table_preferences.TableUserDataAccessInterface;
+import use_case.translate.TranslateUserDataAccessInterface;
 
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface{
+public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, TranslateUserDataAccessInterface{
     private final File csvFile;
 
     private final Map<String, Integer> headers = new LinkedHashMap<>();
@@ -70,6 +70,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         }
     }
 
+
     @Override
     public void save(User user) {
         accounts.put(user.getName(), user);
@@ -101,7 +102,83 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public void addTranslation(String username, List<Object> translation) {
+        User user = get(username);
+        if (user != null) {
+            // Retrieve the user's current translation history
+            ArrayList<String> translationHistory = user.getTranslationHistory();
 
+            // Append the new translation to the list
+            translationHistory.add(translation.toString());
+
+            // Update the user's translation history
+            user.setTranslationHistory(translationHistory);
+
+            // Save the user
+            save(user);
+        }
+    }
+    private ArrayList<String> parseTranslationHistory(String field) {
+        if (field == null || field.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        // Remove leading and trailing brackets if they exist
+        String trimmedField = field.replaceAll("^\\[|\\]$", "");
+
+        // Split the string by '], [' into an array to separate the inner lists
+        String[] innerLists = trimmedField.split("\\], \\[");
+
+        ArrayList<String> translationHistory = new ArrayList<>();
+
+        for (String innerList : innerLists) {
+            // Remove leading and trailing brackets if they exist
+            String trimmedInnerList = innerList.replaceAll("^\\[|\\]$", "");
+
+            // Split the string by ', ' into an array to separate the elements of the inner list
+            String[] elements = trimmedInnerList.split(", ");
+
+            // The first element is the original text
+            String originalText = elements[0];
+
+            // The second element is the map of translations
+            // Remove leading and trailing braces if they exist
+            String trimmedMap = elements[1].replaceAll("^\\{|\\}$", "");
+
+            // Split the string by '=' into an array to separate the key and value of the map
+            String[] mapElements = trimmedMap.split("=");
+
+            // If the mapElements array has less than 2 elements, skip the current iteration of the loop
+            if (mapElements.length < 2) {
+                continue;
+            }
+
+            // The first element is the language code
+            String languageCode = mapElements[0];
+
+            // The second element is the translated text
+            String translatedText = mapElements[1];
+
+            // The third element is the timestamp
+            LocalDateTime timestamp = LocalDateTime.parse(elements[2]);
+
+            // Create a map for the translation
+            Map<String, String> translation = new HashMap<>();
+            translation.put(languageCode, translatedText);
+
+            // Create a list for the inner list
+            List<Object> innerListElements = new ArrayList<>();
+            innerListElements.add(originalText);
+            innerListElements.add(translation);
+            innerListElements.add(timestamp);
+
+            // Convert the inner list to a string and add it to the translation history
+            translationHistory.add(innerListElements.toString());
+        }
+
+        return translationHistory;
+    }
     /**
      * Return whether a user exists with username identifier.
      * @param identifier the username to check.
@@ -111,6 +188,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     public boolean existsByName(String identifier) {
         return accounts.containsKey(identifier);
     }
+
 }
 
 

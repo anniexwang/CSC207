@@ -48,11 +48,9 @@ public class TranslationUseCaseFactory {
         TranslateOutputBoundary translateOutputBoundary = new TranslationPresenter(
                 viewManagerModel, translationViewModel, signupViewModel, tableViewModel);
         TranslateInputBoundary translationInteractor = new TranslateInteractor(
-                 translateOutputBoundary);
+                translateOutputBoundary);
 
-
-
-        return new TranslationController(translationInteractor, (TranslationPresenter) translateOutputBoundary);
+        return new TranslationController(translationInteractor, (TranslationPresenter) translateOutputBoundary, translationViewModel);
     }
 
 

@@ -1,11 +1,7 @@
 package use_case.translate;
 
-import entity.User;
+import java.util.List;
 
 public interface TranslateUserDataAccessInterface {
-    boolean existsByName(String identifier);
-
-    void save(User user);
-
-    User get(String username);
+    void addTranslation(String username, List<Object> translation);
 }
