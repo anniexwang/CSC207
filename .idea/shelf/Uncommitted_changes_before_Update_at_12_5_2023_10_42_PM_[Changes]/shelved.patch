@@ -1,0 +1,181 @@
+Index: src/main/java/app/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package app;\r\n\r\nimport data_access.FileTranslationHistoryDataAccessObject;\r\nimport data_access.FileUserDataAccessObject;\r\nimport entity.CommonUserFactory;\r\nimport interface_adapter.Audio.AudioController;\r\nimport interface_adapter.ViewManagerModel;\r\nimport interface_adapter.history.HistoryViewModel;\r\nimport interface_adapter.table_preferences.TableViewModel;\r\nimport interface_adapter.logged_in.LoggedInViewModel;\r\nimport interface_adapter.login.LoginViewModel;\r\nimport interface_adapter.select_languages.SelectLanguagesViewModel;\r\nimport interface_adapter.signup.SignupViewModel;\r\nimport interface_adapter.table_preferences.TableViewModel;\r\nimport interface_adapter.translation.TranslationViewModel;\r\nimport view.*;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.io.File;\r\nimport java.io.IOException;\r\n\r\n\r\npublic class Main {\r\n    public static void main(String[] args) {\r\n\r\n\r\n        try {\r\n            // Load the custom Goblin font directly from a file\r\n            File fontFile = new File(\"resources//cc.ttf\"); // Absolute path to the font file\r\n            Font goblinFont = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(30f); // Adjust the font size as needed\r\n            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();\r\n            ge.registerFont(goblinFont);\r\n\r\n            // Main application window setup\r\n            JFrame application = new JFrame(\"Translayte\");\r\n            application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);\r\n\r\n            // Card layout for switching between views\r\n            CardLayout cardLayout = new CardLayout();\r\n            JPanel views = new JPanel(cardLayout);\r\n            application.add(views);\r\n\r\n\r\n            // View manager model\r\n            ViewManagerModel viewManagerModel = new ViewManagerModel();\r\n            new ViewManager(views, cardLayout, viewManagerModel);\r\n\r\n            // ViewModels setup\r\n            LoginViewModel loginViewModel = new LoginViewModel();\r\n            LoggedInViewModel loggedInViewModel = new LoggedInViewModel();\r\n            SignupViewModel signupViewModel = new SignupViewModel();\r\n            TableViewModel tableViewModel = new TableViewModel();\r\n            HistoryViewModel historyViewModel = new HistoryViewModel();\r\n            SelectLanguagesViewModel selectLanguagesViewModel = new SelectLanguagesViewModel();\r\n            TranslationViewModel translationViewModel = new TranslationViewModel();\r\n\r\n            // Data access object\r\n            FileUserDataAccessObject userDataAccessObject;\r\n            try {\r\n                userDataAccessObject = new FileUserDataAccessObject(\"./users.csv\", new CommonUserFactory());\r\n            } catch (IOException e) {\r\n                throw new RuntimeException(e);\r\n            }\r\n\r\n            //Translation History Data Access Object\r\n            FileTranslationHistoryDataAccessObject translationHistoryDataAccessObject;\r\n            try {\r\n                translationHistoryDataAccessObject = new FileTranslationHistoryDataAccessObject(\"src/main/java/translations.csv\");\r\n            } catch (IOException e) {\r\n                throw new RuntimeException(e);\r\n            }\r\n\r\n\r\n            // Create new AudioController using factory method\r\n            AudioController audioController = app.AudioControllerFactory.createAudioController(\"src/main/java/power.wav\");\r\n\r\n\r\n//            // Create an instance of AudioManager\r\n//            AudioManager audioManager = new AudioManager(\"/power.wav\");\r\n\r\n            // Creating views\r\n            SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject, audioController); // Pass audioController\r\n            applyFontToComponent(signupView, goblinFont);\r\n            views.add(signupView, signupView.viewName);\r\n\r\n            LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, translationViewModel, signupViewModel, userDataAccessObject, audioController); // Pass audioController\r\n            applyFontToComponent(loginView, goblinFont);\r\n            views.add(loginView, loginView.viewName);\r\n\r\n            LoggedInView loggedInView = new LoggedInView(loggedInViewModel, viewManagerModel);\r\n            applyFontToComponent(loggedInView, goblinFont);\r\n            views.add(loggedInView, loggedInView.viewName);\r\n\r\n            TranslationView translationView = TranslationUseCaseFactory.create(viewManagerModel, translationViewModel, signupViewModel, tableViewModel);\r\n            applyFontToComponent(translationView, goblinFont);\r\n            views.add(translationView, translationView.viewName);\r\n\r\n            TablePreferenceView tablePreferenceView = TableUseCaseFactory.create(viewManagerModel, tableViewModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);\r\n            views.add(tablePreferenceView, tablePreferenceView.viewName);\r\n\r\n            SelectLanguagesView selectLanguagesView = SelectLanguagesUseCaseFactory.create(viewManagerModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);\r\n            views.add(selectLanguagesView, selectLanguagesView.viewName);\r\n\r\n            HistoryView historyView = new HistoryView(historyViewModel);\r\n            views.add(historyView, historyView.viewName);\r\n\r\n\r\n            // Activate the initial view\r\n            viewManagerModel.setActiveView(signupView.viewName);\r\n            viewManagerModel.firePropertyChanged();\r\n\r\n            application.pack();\r\n            application.setVisible(true);\r\n        } catch (FontFormatException | IOException e) {\r\n            e.printStackTrace();\r\n            // Handle font loading error\r\n        }\r\n    }\r\n\r\n    private static void applyFontToComponent(Component component, Font font) {\r\n        component.setFont(font);\r\n        if (component instanceof Container) {\r\n            for (Component child : ((Container) component).getComponents()) {\r\n                applyFontToComponent(child, font);\r\n            }\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/app/Main.java b/src/main/java/app/Main.java
+--- a/src/main/java/app/Main.java	(revision 8d54fdfd3f412f55baada1807da89bd45b718452)
++++ b/src/main/java/app/Main.java	(date 1701833137530)
+@@ -28,7 +28,7 @@
+         try {
+             // Load the custom Goblin font directly from a file
+             File fontFile = new File("resources//cc.ttf"); // Absolute path to the font file
+-            Font goblinFont = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(30f); // Adjust the font size as needed
++            Font goblinFont = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(20f); // Adjust the font size as needed
+             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+             ge.registerFont(goblinFont);
+ 
+Index: src/test/java/use_case/Audio/AudioInteractorTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package use_case.Audio;\r\n\r\nimport org.junit.jupiter.api.AfterEach;\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.Test;\r\nimport org.mockito.Mock;\r\n\r\nimport static org.mockito.MockitoAnnotations.openMocks;\r\n\r\nclass AudioInteractorTest {\r\n\r\n    @Mock\r\n    private AudioInputData mockAudioInputData;\r\n\r\n    private AudioInteractor audioInteractorUnderTest;\r\n\r\n    private AutoCloseable mockitoCloseable;\r\n\r\n    @BeforeEach\r\n    void setUp() {\r\n        mockitoCloseable = openMocks(this);\r\n        audioInteractorUnderTest = new AudioInteractor(mockAudioInputData);\r\n    }\r\n\r\n    @AfterEach\r\n    void tearDown() throws Exception {\r\n        mockitoCloseable.close();\r\n    }\r\n\r\n    @Test\r\n    void testPlay() {\r\n        // Setup\r\n        // Run the test\r\n        audioInteractorUnderTest.play();\r\n\r\n        // Verify the results\r\n    }\r\n\r\n    @Test\r\n    void testPause() {\r\n        // Setup\r\n        // Run the test\r\n        audioInteractorUnderTest.pause();\r\n\r\n        // Verify the results\r\n    }\r\n\r\n    @Test\r\n    void testMute() {\r\n        // Setup\r\n        // Run the test\r\n        audioInteractorUnderTest.mute();\r\n\r\n        // Verify the results\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/use_case/Audio/AudioInteractorTest.java b/src/test/java/use_case/Audio/AudioInteractorTest.java
+--- a/src/test/java/use_case/Audio/AudioInteractorTest.java	(revision 8d54fdfd3f412f55baada1807da89bd45b718452)
++++ b/src/test/java/use_case/Audio/AudioInteractorTest.java	(date 1701833637253)
+@@ -1,56 +1,56 @@
+-package use_case.Audio;
+-
+-import org.junit.jupiter.api.AfterEach;
+-import org.junit.jupiter.api.BeforeEach;
+-import org.junit.jupiter.api.Test;
+-import org.mockito.Mock;
+-
+-import static org.mockito.MockitoAnnotations.openMocks;
+-
+-class AudioInteractorTest {
+-
+-    @Mock
+-    private AudioInputData mockAudioInputData;
+-
+-    private AudioInteractor audioInteractorUnderTest;
+-
+-    private AutoCloseable mockitoCloseable;
+-
+-    @BeforeEach
+-    void setUp() {
+-        mockitoCloseable = openMocks(this);
+-        audioInteractorUnderTest = new AudioInteractor(mockAudioInputData);
+-    }
+-
+-    @AfterEach
+-    void tearDown() throws Exception {
+-        mockitoCloseable.close();
+-    }
+-
+-    @Test
+-    void testPlay() {
+-        // Setup
+-        // Run the test
+-        audioInteractorUnderTest.play();
+-
+-        // Verify the results
+-    }
+-
+-    @Test
+-    void testPause() {
+-        // Setup
+-        // Run the test
+-        audioInteractorUnderTest.pause();
+-
+-        // Verify the results
+-    }
+-
+-    @Test
+-    void testMute() {
+-        // Setup
+-        // Run the test
+-        audioInteractorUnderTest.mute();
+-
+-        // Verify the results
+-    }
+-}
++//package use_case.Audio;
++//
++//import org.junit.jupiter.api.AfterEach;
++//import org.junit.jupiter.api.BeforeEach;
++//import org.junit.jupiter.api.Test;
++//import org.mockito.Mock;
++//
++//import static org.mockito.MockitoAnnotations.openMocks;
++//
++//class AudioInteractorTest {
++//
++//    @Mock
++//    private AudioInputData mockAudioInputData;
++//
++//    private AudioInteractor audioInteractorUnderTest;
++//
++//    private AutoCloseable mockitoCloseable;
++//
++//    @BeforeEach
++//    void setUp() {
++//        mockitoCloseable = openMocks(this);
++//        audioInteractorUnderTest = new AudioInteractor(mockAudioInputData);
++//    }
++//
++//    @AfterEach
++//    void tearDown() throws Exception {
++//        mockitoCloseable.close();
++//    }
++//
++//    @Test
++//    void testPlay() {
++//        // Setup
++//        // Run the test
++//        audioInteractorUnderTest.play();
++//
++//        // Verify the results
++//    }
++//
++//    @Test
++//    void testPause() {
++//        // Setup
++//        // Run the test
++//        audioInteractorUnderTest.pause();
++//
++//        // Verify the results
++//    }
++//
++//    @Test
++//    void testMute() {
++//        // Setup
++//        // Run the test
++//        audioInteractorUnderTest.mute();
++//
++//        // Verify the results
++//    }
++//}
+Index: .idea/libraries/mockito_core.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/mockito_core.xml b/.idea/libraries/mockito_core.xml
+new file mode 100644
+--- /dev/null	(date 1701833375447)
++++ b/.idea/libraries/mockito_core.xml	(date 1701833375447)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="mockito.core" type="repository">
++    <properties maven-id="org.mockito:mockito-core:5.7.0" />
++    <CLASSES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/mockito/mockito-core/5.7.0/mockito-core-5.7.0.jar!/" />
++      <root url="jar://$MAVEN_REPOSITORY$/net/bytebuddy/byte-buddy/1.14.9/byte-buddy-1.14.9.jar!/" />
++      <root url="jar://$MAVEN_REPOSITORY$/net/bytebuddy/byte-buddy-agent/1.14.9/byte-buddy-agent-1.14.9.jar!/" />
++      <root url="jar://$MAVEN_REPOSITORY$/org/objenesis/objenesis/3.3/objenesis-3.3.jar!/" />
++    </CLASSES>
++    <JAVADOC />
++    <SOURCES />
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_21\" project-jdk-name=\"openjdk-21\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 8d54fdfd3f412f55baada1807da89bd45b718452)
++++ b/.idea/misc.xml	(date 1701832699751)
+@@ -1,4 +1,3 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+   <component name="MavenProjectsManager">

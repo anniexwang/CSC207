@@ -1,11 +1,10 @@
 package use_case.translate;
 
-import entity.User;
+import java.io.IOException;
+import java.util.List;
 
 public interface TranslateUserDataAccessInterface {
-    boolean existsByName(String identifier);
+    void addTranslation(String username, List<Object> translation);
 
-    void save(User user);
-
-    User get(String username);
+    void updateAccounts() throws IOException;
 }

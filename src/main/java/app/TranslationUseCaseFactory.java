@@ -1,5 +1,8 @@
 package app;
 
+import data_access.FileUserDataAccessObject;
+import entity.CommonUserFactory;
+import entity.UserFactory;
 import interface_adapter.*;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.translation.TranslationController;
@@ -14,6 +17,7 @@ import view.TranslationView;
 
 import javax.swing.*;
 import java.io.IOException;
+
 public class TranslationUseCaseFactory {
 
     private TranslationUseCaseFactory(){};
@@ -42,20 +46,17 @@ public class TranslationUseCaseFactory {
                                                                       TranslationViewModel translationViewModel,
                                                                       SignupViewModel signupViewModel,
                                                                       TableViewModel tableViewModel
-                                                                      )
-    throws IOException {
+    )
+            throws IOException {
 
         TranslateOutputBoundary translateOutputBoundary = new TranslationPresenter(
                 viewManagerModel, translationViewModel, signupViewModel, tableViewModel);
+        String filePath = "./users.csv";
+        UserFactory userFactory = new CommonUserFactory();
+        TranslateUserDataAccessInterface userDataAccess = new FileUserDataAccessObject(filePath, userFactory);
         TranslateInputBoundary translationInteractor = new TranslateInteractor(
-                 translateOutputBoundary);
+                translateOutputBoundary, userDataAccess);
 
-
-
-        return new TranslationController(translationInteractor, (TranslationPresenter) translateOutputBoundary);
-    }
-
-
-
-}
+        return new TranslationController(translationInteractor, (TranslationPresenter) translateOutputBoundary, translationViewModel);
+    }}
 

@@ -1,0 +1,289 @@
+Index: src/main/java/use_case/translate/TranslateInputData.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package use_case.translate;\r\n\r\npublic class TranslateInputData {\r\n    final private String original;\r\n    public TranslateInputData(String original) {\r\n        this.original = original;\r\n    }\r\n    String getOriginal() {\r\n        return original;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/use_case/translate/TranslateInputData.java b/src/main/java/use_case/translate/TranslateInputData.java
+--- a/src/main/java/use_case/translate/TranslateInputData.java	
++++ b/src/main/java/use_case/translate/TranslateInputData.java	
+@@ -1,11 +1,19 @@
+ package use_case.translate;
+ 
+ public class TranslateInputData {
+-    final private String original;
+-    public TranslateInputData(String original) {
++    private String original;
++    private String username;
++
++    public TranslateInputData(String original, String username) {
+         this.original = original;
++        this.username = username;
+     }
+-    String getOriginal() {
++
++    public String getOriginal() {
+         return original;
+     }
+-}
++
++    public String getUsername() {
++        return username;
++    }
++}
+\ No newline at end of file
+Index: src/main/java/use_case/translate/TranslateInteractor.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package use_case.translate;\r\nimport use_case.retrieve_translation.RetrieveTranslationInteractor;\r\nimport com.google.cloud.translate.*;\r\nimport entity.UserFactory;\r\nimport use_case.login.LoginInputData;\r\nimport use_case.login.LoginOutputBoundary;\r\nimport use_case.login.LoginUserDataAccessInterface;\r\nimport use_case.signup.SignupInputBoundary;\r\nimport use_case.translate.TranslateOutputBoundary;\r\nimport use_case.translate.TranslateUserDataAccessInterface;\r\nimport use_case.translate.TranslateOutputBoundary;\r\nimport use_case.translate.TranslateUserDataAccessInterface;\r\n\r\npublic class TranslateInteractor implements TranslateInputBoundary {\r\n\r\n    final TranslateOutputBoundary translationPresenter;\r\n\r\n    public TranslateInteractor(\r\n                           TranslateOutputBoundary translateOutputBoundary) {\r\n\r\n        this.translationPresenter = translateOutputBoundary;\r\n    }\r\n\r\n    // execute method will process translation request\r\n\r\n    @Override\r\n    public void execute(TranslateInputData translateInputData) {\r\n        String original = translateInputData.getOriginal();\r\n\r\n        if (original.isEmpty()) {\r\n            translationPresenter.prepareFailView(\"Translation Field Empty\");\r\n            return;\r\n        }\r\n\r\n        // Call the translation service or library here\r\n        String translated = translate(original);\r\n\r\n        // Prepare the success view with the translated text\r\n        translationPresenter.prepareSuccessView(translated);\r\n    }\r\n\r\n    private String translate(String original) {\r\n        try {\r\n            // Set the API Key\r\n            String apiKey = \"AIzaSyAORNlqu0L0NZBzt-ddgWsSYWYTwEOut-A\";\r\n            Translate translate = TranslateOptions.newBuilder().setApiKey(apiKey).build().getService();\r\n            // Input's autodetected language\r\n            String originalLang = translate.detect(original).getLanguage();\r\n            Translation translation = translate.translate(original,\r\n                    Translate.TranslateOption.targetLanguage(\"en\"));\r\n            return translation.getTranslatedText();\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n            return original;\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/use_case/translate/TranslateInteractor.java b/src/main/java/use_case/translate/TranslateInteractor.java
+--- a/src/main/java/use_case/translate/TranslateInteractor.java	
++++ b/src/main/java/use_case/translate/TranslateInteractor.java	
+@@ -11,14 +11,22 @@
+ import use_case.translate.TranslateOutputBoundary;
+ import use_case.translate.TranslateUserDataAccessInterface;
+ 
++import java.time.LocalDateTime;
++import java.util.Arrays;
++import java.util.HashMap;
++import java.util.List;
++import java.util.Map;
++
+ public class TranslateInteractor implements TranslateInputBoundary {
+ 
+     final TranslateOutputBoundary translationPresenter;
++    final TranslateUserDataAccessInterface userDataAccess;
+ 
+     public TranslateInteractor(
+-                           TranslateOutputBoundary translateOutputBoundary) {
++                           TranslateOutputBoundary translateOutputBoundary, TranslateUserDataAccessInterface userDataAccess) {
+ 
+         this.translationPresenter = translateOutputBoundary;
++        this.userDataAccess = userDataAccess;
+     }
+ 
+     // execute method will process translation request
+@@ -34,8 +42,15 @@
+ 
+         // Call the translation service or library here
+         String translated = translate(original);
++//todo: change the "en" to the language detected
++        // Create a translation object
++        Map<String, String> translationMap = new HashMap<>();
++        translationMap.put("en", translated);
++        List<Object> translationObject = Arrays.asList(original, translationMap, LocalDateTime.now());
+ 
+-        // Prepare the success view with the translated text
++        // Add the translation to the user's history
++        userDataAccess.addTranslation(translateInputData.getUsername(), translationObject);
++
+         translationPresenter.prepareSuccessView(translated);
+     }
+ 
+Index: src/main/java/app/TranslationUseCaseFactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package app;\r\n\r\nimport interface_adapter.*;\r\nimport interface_adapter.signup.SignupViewModel;\r\nimport interface_adapter.translation.TranslationController;\r\nimport interface_adapter.translation.TranslationPresenter;\r\nimport interface_adapter.translation.TranslationViewModel;\r\nimport interface_adapter.table_preferences.TableViewModel;\r\nimport use_case.translate.TranslateOutputBoundary;\r\nimport use_case.translate.TranslateInputBoundary;\r\nimport use_case.translate.TranslateInteractor;\r\nimport use_case.translate.TranslateUserDataAccessInterface;\r\nimport view.TranslationView;\r\n\r\nimport javax.swing.*;\r\nimport java.io.IOException;\r\npublic class TranslationUseCaseFactory {\r\n\r\n    private TranslationUseCaseFactory(){};\r\n\r\n    public static TranslationView create( ViewManagerModel viewManagerModel,\r\n                                         TranslationViewModel translationViewModel,\r\n                                         SignupViewModel signupViewModel,\r\n                                          TableViewModel tableViewModel\r\n                                         ) {\r\n\r\n        try {\r\n            TranslationController translationController = createUserTranslationUseCase(viewManagerModel,\r\n                    translationViewModel,signupViewModel,tableViewModel);\r\n            return new TranslationView(translationController,\r\n                    translationViewModel);\r\n        }\r\n\r\n        catch (IOException e) {\r\n            JOptionPane.showMessageDialog(null, \"Error: Could not translate\");\r\n        }\r\n\r\n        return null;\r\n    }\r\n\r\n    private static TranslationController createUserTranslationUseCase(ViewManagerModel viewManagerModel,\r\n                                                                      TranslationViewModel translationViewModel,\r\n                                                                      SignupViewModel signupViewModel,\r\n                                                                      TableViewModel tableViewModel\r\n                                                                      )\r\n    throws IOException {\r\n\r\n        TranslateOutputBoundary translateOutputBoundary = new TranslationPresenter(\r\n                viewManagerModel, translationViewModel, signupViewModel, tableViewModel);\r\n        TranslateInputBoundary translationInteractor = new TranslateInteractor(\r\n                 translateOutputBoundary);\r\n\r\n\r\n\r\n        return new TranslationController(translationInteractor, (TranslationPresenter) translateOutputBoundary);\r\n    }\r\n\r\n\r\n\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/app/TranslationUseCaseFactory.java b/src/main/java/app/TranslationUseCaseFactory.java
+--- a/src/main/java/app/TranslationUseCaseFactory.java	
++++ b/src/main/java/app/TranslationUseCaseFactory.java	
+@@ -1,5 +1,8 @@
+ package app;
+ 
++import data_access.FileUserDataAccessObject;
++import entity.CommonUserFactory;
++import entity.UserFactory;
+ import interface_adapter.*;
+ import interface_adapter.signup.SignupViewModel;
+ import interface_adapter.translation.TranslationController;
+@@ -14,6 +17,7 @@
+ 
+ import javax.swing.*;
+ import java.io.IOException;
++
+ public class TranslationUseCaseFactory {
+ 
+     private TranslationUseCaseFactory(){};
+@@ -42,20 +46,17 @@
+                                                                       TranslationViewModel translationViewModel,
+                                                                       SignupViewModel signupViewModel,
+                                                                       TableViewModel tableViewModel
+-                                                                      )
+-    throws IOException {
++    )
++            throws IOException {
+ 
+         TranslateOutputBoundary translateOutputBoundary = new TranslationPresenter(
+                 viewManagerModel, translationViewModel, signupViewModel, tableViewModel);
++        String filePath = "./users.csv";
++        UserFactory userFactory = new CommonUserFactory();
++        TranslateUserDataAccessInterface userDataAccess = new FileUserDataAccessObject(filePath, userFactory);
+         TranslateInputBoundary translationInteractor = new TranslateInteractor(
+-                 translateOutputBoundary);
+-
++                translateOutputBoundary, userDataAccess);
+ 
+-
+-        return new TranslationController(translationInteractor, (TranslationPresenter) translateOutputBoundary);
+-    }
+-
+-
+-
+-}
++        return new TranslationController(translationInteractor, (TranslationPresenter) translateOutputBoundary, translationViewModel);
++    }}
+ 
+Index: .idea/libraries/mockito_core.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/mockito_core.xml b/.idea/libraries/mockito_core.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/libraries/mockito_core.xml	
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="mockito.core" type="repository">
++    <properties maven-id="org.mockito:mockito-core:5.7.0" />
++    <CLASSES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/mockito/mockito-core/5.7.0/mockito-core-5.7.0.jar!/" />
++      <root url="jar://$MAVEN_REPOSITORY$/net/bytebuddy/byte-buddy/1.14.9/byte-buddy-1.14.9.jar!/" />
++      <root url="jar://$MAVEN_REPOSITORY$/net/bytebuddy/byte-buddy-agent/1.14.9/byte-buddy-agent-1.14.9.jar!/" />
++      <root url="jar://$MAVEN_REPOSITORY$/org/objenesis/objenesis/3.3/objenesis-3.3.jar!/" />
++    </CLASSES>
++    <JAVADOC />
++    <SOURCES />
++  </library>
++</component>
+\ No newline at end of file
+Index: src/test/java/use_case/Audio/AudioInteractorTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package use_case.Audio;\r\n\r\nimport org.junit.jupiter.api.AfterEach;\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.Test;\r\nimport org.mockito.Mock;\r\n\r\nimport static org.mockito.MockitoAnnotations.openMocks;\r\n\r\nclass AudioInteractorTest {\r\n\r\n    @Mock\r\n    private AudioInputData mockAudioInputData;\r\n\r\n    private AudioInteractor audioInteractorUnderTest;\r\n\r\n    private AutoCloseable mockitoCloseable;\r\n\r\n    @BeforeEach\r\n    void setUp() {\r\n        mockitoCloseable = openMocks(this);\r\n        audioInteractorUnderTest = new AudioInteractor(mockAudioInputData);\r\n    }\r\n\r\n    @AfterEach\r\n    void tearDown() throws Exception {\r\n        mockitoCloseable.close();\r\n    }\r\n\r\n    @Test\r\n    void testPlay() {\r\n        // Setup\r\n        // Run the test\r\n        audioInteractorUnderTest.play();\r\n\r\n        // Verify the results\r\n    }\r\n\r\n    @Test\r\n    void testPause() {\r\n        // Setup\r\n        // Run the test\r\n        audioInteractorUnderTest.pause();\r\n\r\n        // Verify the results\r\n    }\r\n\r\n    @Test\r\n    void testMute() {\r\n        // Setup\r\n        // Run the test\r\n        audioInteractorUnderTest.mute();\r\n\r\n        // Verify the results\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/use_case/Audio/AudioInteractorTest.java b/src/test/java/use_case/Audio/AudioInteractorTest.java
+--- a/src/test/java/use_case/Audio/AudioInteractorTest.java	
++++ b/src/test/java/use_case/Audio/AudioInteractorTest.java	
+@@ -1,56 +1,56 @@
+-package use_case.Audio;
+-
+-import org.junit.jupiter.api.AfterEach;
+-import org.junit.jupiter.api.BeforeEach;
+-import org.junit.jupiter.api.Test;
+-import org.mockito.Mock;
+-
+-import static org.mockito.MockitoAnnotations.openMocks;
+-
+-class AudioInteractorTest {
+-
+-    @Mock
+-    private AudioInputData mockAudioInputData;
+-
+-    private AudioInteractor audioInteractorUnderTest;
+-
+-    private AutoCloseable mockitoCloseable;
+-
+-    @BeforeEach
+-    void setUp() {
+-        mockitoCloseable = openMocks(this);
+-        audioInteractorUnderTest = new AudioInteractor(mockAudioInputData);
+-    }
+-
+-    @AfterEach
+-    void tearDown() throws Exception {
+-        mockitoCloseable.close();
+-    }
+-
+-    @Test
+-    void testPlay() {
+-        // Setup
+-        // Run the test
+-        audioInteractorUnderTest.play();
+-
+-        // Verify the results
+-    }
+-
+-    @Test
+-    void testPause() {
+-        // Setup
+-        // Run the test
+-        audioInteractorUnderTest.pause();
+-
+-        // Verify the results
+-    }
+-
+-    @Test
+-    void testMute() {
+-        // Setup
+-        // Run the test
+-        audioInteractorUnderTest.mute();
+-
+-        // Verify the results
+-    }
+-}
++//package use_case.Audio;
++//
++//import org.junit.jupiter.api.AfterEach;
++//import org.junit.jupiter.api.BeforeEach;
++//import org.junit.jupiter.api.Test;
++//import org.mockito.Mock;
++//
++//import static org.mockito.MockitoAnnotations.openMocks;
++//
++//class AudioInteractorTest {
++//
++//    @Mock
++//    private AudioInputData mockAudioInputData;
++//
++//    private AudioInteractor audioInteractorUnderTest;
++//
++//    private AutoCloseable mockitoCloseable;
++//
++//    @BeforeEach
++//    void setUp() {
++//        mockitoCloseable = openMocks(this);
++//        audioInteractorUnderTest = new AudioInteractor(mockAudioInputData);
++//    }
++//
++//    @AfterEach
++//    void tearDown() throws Exception {
++//        mockitoCloseable.close();
++//    }
++//
++//    @Test
++//    void testPlay() {
++//        // Setup
++//        // Run the test
++//        audioInteractorUnderTest.play();
++//
++//        // Verify the results
++//    }
++//
++//    @Test
++//    void testPause() {
++//        // Setup
++//        // Run the test
++//        audioInteractorUnderTest.pause();
++//
++//        // Verify the results
++//    }
++//
++//    @Test
++//    void testMute() {
++//        // Setup
++//        // Run the test
++//        audioInteractorUnderTest.mute();
++//
++//        // Verify the results
++//    }
++//}

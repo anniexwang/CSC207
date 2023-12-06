@@ -6,7 +6,7 @@ class CommonUser implements User {
 
     private final String name;
     private final String password;
-    private final ArrayList<String> translationHistory;
+    private  ArrayList<String> translationHistory;
     private final ArrayList<String> favorites;
 
     /**
@@ -35,7 +35,18 @@ class CommonUser implements User {
     }
 
     @Override
-    public ArrayList<String> getTranslationHistory() {return translationHistory;}
+    public ArrayList<String> getTranslationHistory() {
+        if (this.translationHistory.isEmpty()) {
+            return new ArrayList<>();
+        } else {
+            return this.translationHistory;
+        }
+    }
+
+    @Override
+    public void setTranslationHistory(ArrayList<String> translationHistory) {
+        this.translationHistory = translationHistory;
+    }
 
     @Override
     public ArrayList<String> getFavorites() {return favorites;}

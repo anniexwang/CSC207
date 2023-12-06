@@ -1,0 +1,407 @@
+Index: src/main/java/entity/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package entity;\r\n\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic interface User {\r\n\r\n    String getName();\r\n\r\n    String getPassword();\r\n\r\n    // Assuming that translation_history and favorites are stored as semicolon-separated strings in the CSV file\r\n    ArrayList<String> getTranslationHistory();\r\n\r\n    ArrayList<String> getFavorites();\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/entity/User.java b/src/main/java/entity/User.java
+--- a/src/main/java/entity/User.java	
++++ b/src/main/java/entity/User.java	
+@@ -2,6 +2,7 @@
+ 
+ 
+ import java.util.ArrayList;
++import java.util.List;
+ 
+ public interface User {
+ 
+@@ -11,6 +12,8 @@
+ 
+     // Assuming that translation_history and favorites are stored as semicolon-separated strings in the CSV file
+     ArrayList<String> getTranslationHistory();
++    void setTranslationHistory(ArrayList<String> translationHistory);
++
+ 
+     ArrayList<String> getFavorites();
+ }
+Index: src/main/java/entity/CommonUser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package entity;\r\n\r\nimport java.util.ArrayList;\r\n\r\nclass CommonUser implements User {\r\n\r\n    private final String name;\r\n    private final String password;\r\n    private final ArrayList<String> translationHistory;\r\n    private final ArrayList<String> favorites;\r\n\r\n    /**\r\n     * Requires: password is valid.\r\n     *\r\n     * @param name\r\n     * @param password\r\n     * @param translationHistory\r\n     * @param favorites\r\n     */\r\n    CommonUser(String name, String password, ArrayList<String> translationHistory, ArrayList<String> favorites) {\r\n        this.name = name;\r\n        this.password = password;\r\n        this.translationHistory = translationHistory;\r\n        this.favorites = favorites;\r\n    }\r\n\r\n    @Override\r\n    public String getName() {\r\n        return name;\r\n    }\r\n\r\n    @Override\r\n    public String getPassword() {\r\n        return password;\r\n    }\r\n\r\n    @Override\r\n    public ArrayList<String> getTranslationHistory() {return translationHistory;}\r\n\r\n    @Override\r\n    public ArrayList<String> getFavorites() {return favorites;}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/entity/CommonUser.java b/src/main/java/entity/CommonUser.java
+--- a/src/main/java/entity/CommonUser.java	
++++ b/src/main/java/entity/CommonUser.java	
+@@ -6,7 +6,7 @@
+ 
+     private final String name;
+     private final String password;
+-    private final ArrayList<String> translationHistory;
++    private  ArrayList<String> translationHistory;
+     private final ArrayList<String> favorites;
+ 
+     /**
+@@ -37,6 +37,11 @@
+     @Override
+     public ArrayList<String> getTranslationHistory() {return translationHistory;}
+ 
++    @Override
++    public void setTranslationHistory(ArrayList<String> translationHistory) {
++        this.translationHistory = translationHistory;
++    }
++
+     @Override
+     public ArrayList<String> getFavorites() {return favorites;}
+ }
+Index: src/main/java/data_access/FileUserDataAccessObject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package data_access;\r\n\r\nimport entity.User;\r\nimport entity.UserFactory;\r\n//import use_case.clear_users.ClearUserDataAccessInterface;\r\nimport use_case.login.LoginUserDataAccessInterface;\r\nimport use_case.select_languages.SelectLanguagesUserDataAccessInterface;\r\nimport use_case.signup.SignupUserDataAccessInterface;\r\n//import use_case.table_preferences.TableUserDataAccessInterface;\r\n\r\nimport java.io.*;\r\nimport java.time.LocalDateTime;\r\nimport java.util.*;\r\n\r\npublic class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface{\r\n    private final File csvFile;\r\n\r\n    private final Map<String, Integer> headers = new LinkedHashMap<>();\r\n\r\n    private final Map<String, User> accounts = new HashMap<>();\r\n\r\n    private UserFactory userFactory;\r\n\r\n    //private helper to get rid of the brackets when reading the csv file\r\n    private ArrayList<String> parseCsvField(String field) {\r\n        if (field == null || field.isEmpty()) {\r\n            return new ArrayList<>();\r\n        }\r\n\r\n        // Remove leading and trailing brackets if they exist\r\n        String trimmedField = field.replaceAll(\"^\\\\[|\\\\]$\", \"\");\r\n\r\n        // Split the string by semicolons into an array and create a list\r\n        return new ArrayList<>(Arrays.asList(trimmedField.split(\";\")));\r\n    }\r\n\r\n    public FileUserDataAccessObject(String csvPath, UserFactory userFactory) throws IOException {\r\n        this.userFactory = userFactory;\r\n\r\n        csvFile = new File(csvPath);\r\n        headers.put(\"username\", 0);\r\n        headers.put(\"password\", 1);\r\n        headers.put(\"translation_history\", 2);\r\n        headers.put(\"favorites\",3);\r\n\r\n        if (csvFile.length() == 0) {\r\n            save();\r\n        } else {\r\n\r\n            try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {\r\n                String header = reader.readLine();\r\n\r\n                // For later: clean this up by creating a new Exception subclass and handling it in the UI.\r\n                assert header.equals(\"username,password,translation_history,favorites\");\r\n\r\n                String row;\r\n                while ((row = reader.readLine()) != null) {\r\n                    String[] col = row.split(\",\");\r\n                    String username = String.valueOf(col[headers.get(\"username\")]);\r\n                    String password = String.valueOf(col[headers.get(\"password\")]);\r\n\r\n                    // Parse translation_history and favorites by splitting the string and removing brackets if present\r\n                    ArrayList<String> translationHistory = parseCsvField(col[headers.get(\"translation_history\")]);\r\n                    ArrayList<String> favorites = parseCsvField(col[headers.get(\"favorites\")]);\r\n\r\n                    User user = userFactory.create(username, password, translationHistory, favorites);\r\n                    accounts.put(username, user);\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void save(User user) {\r\n        accounts.put(user.getName(), user);\r\n        this.save();\r\n    }\r\n\r\n    @Override\r\n    public User get(String username) {\r\n        return accounts.get(username);\r\n    }\r\n\r\n    private void save() {\r\n        BufferedWriter writer;\r\n        try {\r\n            writer = new BufferedWriter(new FileWriter(csvFile));\r\n            writer.write(String.join(\",\", headers.keySet()));\r\n            writer.newLine();\r\n\r\n            for (User user : accounts.values()) {\r\n                String line = String.format(\"%s,%s,%s,%s\",\r\n                        user.getName(), user.getPassword(), user.getTranslationHistory(), user.getFavorites());\r\n                writer.write(line);\r\n                writer.newLine();\r\n            }\r\n\r\n            writer.close();\r\n\r\n        } catch (IOException e) {\r\n            throw new RuntimeException(e);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Return whether a user exists with username identifier.\r\n     * @param identifier the username to check.\r\n     * @return whether a user exists with username identifier\r\n     */\r\n    @Override\r\n    public boolean existsByName(String identifier) {\r\n        return accounts.containsKey(identifier);\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/data_access/FileUserDataAccessObject.java b/src/main/java/data_access/FileUserDataAccessObject.java
+--- a/src/main/java/data_access/FileUserDataAccessObject.java	
++++ b/src/main/java/data_access/FileUserDataAccessObject.java	
+@@ -4,15 +4,15 @@
+ import entity.UserFactory;
+ //import use_case.clear_users.ClearUserDataAccessInterface;
+ import use_case.login.LoginUserDataAccessInterface;
+-import use_case.select_languages.SelectLanguagesUserDataAccessInterface;
+ import use_case.signup.SignupUserDataAccessInterface;
+ //import use_case.table_preferences.TableUserDataAccessInterface;
++import use_case.translate.TranslateUserDataAccessInterface;
+ 
+ import java.io.*;
+ import java.time.LocalDateTime;
+ import java.util.*;
+ 
+-public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface{
++public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, TranslateUserDataAccessInterface{
+     private final File csvFile;
+ 
+     private final Map<String, Integer> headers = new LinkedHashMap<>();
+@@ -60,7 +60,7 @@
+                     String password = String.valueOf(col[headers.get("password")]);
+ 
+                     // Parse translation_history and favorites by splitting the string and removing brackets if present
+-                    ArrayList<String> translationHistory = parseCsvField(col[headers.get("translation_history")]);
++                    ArrayList<String> translationHistory = parseTranslationHistory(col[headers.get("translation_history")]);
+                     ArrayList<String> favorites = parseCsvField(col[headers.get("favorites")]);
+ 
+                     User user = userFactory.create(username, password, translationHistory, favorites);
+@@ -70,6 +70,7 @@
+         }
+     }
+ 
++
+     @Override
+     public void save(User user) {
+         accounts.put(user.getName(), user);
+@@ -101,7 +102,83 @@
+             throw new RuntimeException(e);
+         }
+     }
++    @Override
++    public void addTranslation(String username, List<Object> translation) {
++        User user = get(username);
++        if (user != null) {
++            // Retrieve the user's current translation history
++            ArrayList<String> translationHistory = user.getTranslationHistory();
++
++            // Append the new translation to the list
++            translationHistory.add(translation.toString());
++
++            // Update the user's translation history
++            user.setTranslationHistory(translationHistory);
++
++            // Save the user
++            save(user);
++        }
++    }
++    private ArrayList<String> parseTranslationHistory(String field) {
++        if (field == null || field.isEmpty()) {
++            return new ArrayList<>();
++        }
++
++        // Remove leading and trailing brackets if they exist
++        String trimmedField = field.replaceAll("^\\[|\\]$", "");
++
++        // Split the string by '], [' into an array to separate the inner lists
++        String[] innerLists = trimmedField.split("\\], \\[");
++
++        ArrayList<String> translationHistory = new ArrayList<>();
++
++        for (String innerList : innerLists) {
++            // Remove leading and trailing brackets if they exist
++            String trimmedInnerList = innerList.replaceAll("^\\[|\\]$", "");
++
++            // Split the string by ', ' into an array to separate the elements of the inner list
++            String[] elements = trimmedInnerList.split(", ");
++
++            // The first element is the original text
++            String originalText = elements[0];
++
++            // The second element is the map of translations
++            // Remove leading and trailing braces if they exist
++            String trimmedMap = elements[1].replaceAll("^\\{|\\}$", "");
+ 
++            // Split the string by '=' into an array to separate the key and value of the map
++            String[] mapElements = trimmedMap.split("=");
++
++            // If the mapElements array has less than 2 elements, skip the current iteration of the loop
++            if (mapElements.length < 2) {
++                continue;
++            }
++
++            // The first element is the language code
++            String languageCode = mapElements[0];
++
++            // The second element is the translated text
++            String translatedText = mapElements[1];
++
++            // The third element is the timestamp
++            LocalDateTime timestamp = LocalDateTime.parse(elements[2]);
++
++            // Create a map for the translation
++            Map<String, String> translation = new HashMap<>();
++            translation.put(languageCode, translatedText);
++
++            // Create a list for the inner list
++            List<Object> innerListElements = new ArrayList<>();
++            innerListElements.add(originalText);
++            innerListElements.add(translation);
++            innerListElements.add(timestamp);
++
++            // Convert the inner list to a string and add it to the translation history
++            translationHistory.add(innerListElements.toString());
++        }
++
++        return translationHistory;
++    }
+     /**
+      * Return whether a user exists with username identifier.
+      * @param identifier the username to check.
+@@ -111,6 +188,7 @@
+     public boolean existsByName(String identifier) {
+         return accounts.containsKey(identifier);
+     }
++
+ }
+ 
+ 
+Index: src/main/java/entity/CommonUserFactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package entity;\r\n\r\nimport java.time.LocalDateTime;\r\nimport java.util.ArrayList;\r\n\r\npublic class CommonUserFactory implements UserFactory {\r\n/**\r\n * Requires: password is valid.\r\n *\r\n * @param name\r\n * @param password\r\n * @param translationHistory\r\n * @param favorites\r\n * @return\r\n **/\r\n\r\n    @Override\r\n    public User create(String name, String password, ArrayList<String> translationHistory, ArrayList<String> favorites) {\r\n        return new CommonUser( name, password, translationHistory, favorites );\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/entity/CommonUserFactory.java b/src/main/java/entity/CommonUserFactory.java
+--- a/src/main/java/entity/CommonUserFactory.java	
++++ b/src/main/java/entity/CommonUserFactory.java	
+@@ -1,6 +1,5 @@
+ package entity;
+ 
+-import java.time.LocalDateTime;
+ import java.util.ArrayList;
+ 
+ public class CommonUserFactory implements UserFactory {
+Index: users.csv
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>username,password,translation_history,favorites\r\naaa,aaa,[s],[s]\r\n44,44,[],[]\r\na55,a,[],[]\r\nA,A,[],[]\r\naa1,aa,[],[]\r\namelia,amelia,[],[]\r\nAA,AA,[],[]\r\naa,aa,[],[]\r\na,a,[],[]\r\nab,a,[],[]\r\nad,d,[],[]\r\naa56,a,[],[]\r\naaaa,aaa,[],[]\r\na55dd,aa,[],[]\r\nfffffff,44,[],[]\r\nfffffffd,44,[],[]\r\nas,a,[],[]\r\na4,a4,[],[]\r\na5,a4,[],[]\r\n444,444,[],[]\r\nsdas,asd,[],[]\r\n4455,44,[],[]\r\naaa2,aaa,[safdsafasd],[asdfsadfasdf]\r\naaa1,aaa,[sadfsadfsad],[]\r\naaa4,aaa,[],[asdfsadfsad]\r\na53,a,[],[]\r\nzx,zx,[],[]\r\naaa3,aaa,[],[]\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/users.csv b/users.csv
+--- a/users.csv	
++++ b/users.csv	
+@@ -1,29 +1,2 @@
+ username,password,translation_history,favorites
+-aaa,aaa,[s],[s]
+-44,44,[],[]
+-a55,a,[],[]
+-A,A,[],[]
+-aa1,aa,[],[]
+-amelia,amelia,[],[]
+-AA,AA,[],[]
+-aa,aa,[],[]
+-a,a,[],[]
+-ab,a,[],[]
+-ad,d,[],[]
+-aa56,a,[],[]
+-aaaa,aaa,[],[]
+-a55dd,aa,[],[]
+-fffffff,44,[],[]
+-fffffffd,44,[],[]
+-as,a,[],[]
+-a4,a4,[],[]
+-a5,a4,[],[]
+-444,444,[],[]
+-sdas,asd,[],[]
+-4455,44,[],[]
+-aaa2,aaa,[safdsafasd],[asdfsadfasdf]
+-aaa1,aaa,[sadfsadfsad],[]
+-aaa4,aaa,[],[asdfsadfsad]
+-a53,a,[],[]
+-zx,zx,[],[]
+-aaa3,aaa,[],[]
++a,a,[, [Bonjour, {en=Good morning}, 2023-12-06T01:32:41.840135400], [Wala, {en=nothing}, 2023-12-06T01:32:52.056155600], [OSA, {en=PART}, 2023-12-06T01:33:02.895923]],[]
+\ No newline at end of file
+Index: translayte.iml
+===================================================================
+diff --git a/translayte.iml b/translayte.iml
+deleted file mode 100644
+--- a/translayte.iml	
++++ /dev/null	
+@@ -1,39 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<module external.linked.project.id="$MODULE_DIR$/pom.xml" external.system.module.type="SINGLE_MODULE" external.system.module.version="223-2" org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+-  <component name="AdditionalModuleElements">
+-    <content url="file://$MODULE_DIR$" dumb="true">
+-      <sourceFolder url="file://$MODULE_DIR$/src/main/test" type="java-test-resource" />
+-      <sourceFolder url="file://$MODULE_DIR$/src/test" type="java-test-resource" />
+-    </content>
+-  </component>
+-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_21">
+-    <output url="file://$MODULE_DIR$/target/classes" />
+-    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+-    <content url="file://$MODULE_DIR$">
+-      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+-      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+-      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
+-      <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/annotations" isTestSource="false" generated="true" />
+-      <sourceFolder url="file://$MODULE_DIR$/target/generated-test-sources/test-annotations" isTestSource="true" generated="true" />
+-      <sourceFolder url="file://$MODULE_DIR$/src/main/test" type="java-test-resource" />
+-      <sourceFolder url="file://$MODULE_DIR$/src/test" type="java-test-resource" />
+-      <excludeFolder url="file://$MODULE_DIR$/target" />
+-    </content>
+-    <orderEntry type="inheritedJdk" />
+-    <orderEntry type="sourceFolder" forTests="false" />
+-    <orderEntry type="library" name="Maven: junit:junit:4.13.1" level="project" />
+-    <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
+-    <orderEntry type="library" name="Maven: org.junit.jupiter:junit-jupiter:5.10.1" level="project" />
+-    <orderEntry type="library" name="Maven: org.junit.jupiter:junit-jupiter-api:5.10.1" level="project" />
+-    <orderEntry type="library" name="Maven: org.opentest4j:opentest4j:1.3.0" level="project" />
+-    <orderEntry type="library" name="Maven: org.junit.platform:junit-platform-commons:1.10.1" level="project" />
+-    <orderEntry type="library" name="Maven: org.apiguardian:apiguardian-api:1.1.2" level="project" />
+-    <orderEntry type="library" name="Maven: org.junit.jupiter:junit-jupiter-params:5.10.1" level="project" />
+-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.10.1" level="project" />
+-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.junit.platform:junit-platform-engine:1.10.1" level="project" />
+-    <orderEntry type="library" name="google.cloud.translate1" level="project" />
+-    <orderEntry type="library" name="mockito.core2" level="project" />
+-    <orderEntry type="library" name="google.cloud.translate" level="project" />
+-  </component>
+-</module>
+\ No newline at end of file
+Index: src/main/java/interface_adapter/translation/TranslationController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package interface_adapter.translation;\r\nimport interface_adapter.translation.TranslationPresenter;\r\nimport use_case.clear.ClearInputBoundary;\r\nimport use_case.translate.TranslateInputBoundary;\r\nimport use_case.translate.TranslateInputData;\r\npublic class TranslationController {\r\n    private final TranslateInputBoundary translateUseCaseInteractor;\r\n    private final TranslationPresenter translationPresenter;\r\n\r\n    public TranslationController(TranslateInputBoundary translateUseCaseInteractor, TranslationPresenter translationPresenter) {\r\n        this.translateUseCaseInteractor = translateUseCaseInteractor;\r\n        this.translationPresenter = translationPresenter;\r\n    }\r\n\r\n    public void backToSignup() {\r\n        translationPresenter.backToSignup();\r\n    }\r\n    public void goToHistory() {translationPresenter.goToHistory();}\r\n\r\n    public void handleCancel() {\r\n        // Clear any state or perform any action needed on cancel\r\n        translationPresenter.prepareCancelView();\r\n    }\r\n    public void execute(String phrase) {\r\n        TranslateInputData translateInputData = new TranslateInputData(phrase);\r\n        translateUseCaseInteractor.execute(translateInputData);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/interface_adapter/translation/TranslationController.java b/src/main/java/interface_adapter/translation/TranslationController.java
+--- a/src/main/java/interface_adapter/translation/TranslationController.java	
++++ b/src/main/java/interface_adapter/translation/TranslationController.java	
+@@ -1,15 +1,21 @@
+ package interface_adapter.translation;
++
+ import interface_adapter.translation.TranslationPresenter;
+-import use_case.clear.ClearInputBoundary;
++import interface_adapter.translation.TranslationViewModel;
+ import use_case.translate.TranslateInputBoundary;
+ import use_case.translate.TranslateInputData;
++
+ public class TranslationController {
+     private final TranslateInputBoundary translateUseCaseInteractor;
+     private final TranslationPresenter translationPresenter;
++    private final TranslationViewModel translationViewModel;
+ 
+-    public TranslationController(TranslateInputBoundary translateUseCaseInteractor, TranslationPresenter translationPresenter) {
++    public TranslationController(TranslateInputBoundary translateUseCaseInteractor,
++                                 TranslationPresenter translationPresenter,
++                                 TranslationViewModel translationViewModel) {
+         this.translateUseCaseInteractor = translateUseCaseInteractor;
+         this.translationPresenter = translationPresenter;
++        this.translationViewModel = translationViewModel;
+     }
+ 
+     public void backToSignup() {
+@@ -22,7 +28,9 @@
+         translationPresenter.prepareCancelView();
+     }
+     public void execute(String phrase) {
+-        TranslateInputData translateInputData = new TranslateInputData(phrase);
++        TranslationState translationState = translationViewModel.getState();
++        String username = translationState.getUsername();
++        TranslateInputData translateInputData = new TranslateInputData(phrase, username);
+         translateUseCaseInteractor.execute(translateInputData);
+     }
+-}
++}
+\ No newline at end of file
+Index: src/main/java/use_case/translate/TranslateUserDataAccessInterface.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package use_case.translate;\r\n\r\npublic interface TranslateUserDataAccessInterface {\r\n    // not sure what to add\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/use_case/translate/TranslateUserDataAccessInterface.java b/src/main/java/use_case/translate/TranslateUserDataAccessInterface.java
+--- a/src/main/java/use_case/translate/TranslateUserDataAccessInterface.java	
++++ b/src/main/java/use_case/translate/TranslateUserDataAccessInterface.java	
+@@ -1,5 +1,7 @@
+ package use_case.translate;
+ 
++import java.util.List;
++
+ public interface TranslateUserDataAccessInterface {
+-    // not sure what to add
+-}
++    void addTranslation(String username, List<Object> translation);
++}
+\ No newline at end of file
+Index: src/main/java/translations.csv
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>word, {language: translation}, time created\r\nb, {d:s}, 15-Nov-2021,01:12:09\r\naaa, {d:x, e:y, f:z}, 01-May-2013,12:31:34\r\ncc, {d:j, f:k}, 29-Apr-2010,13:00:14
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/translations.csv b/src/main/java/translations.csv
+--- a/src/main/java/translations.csv	
++++ b/src/main/java/translations.csv	
+@@ -1,4 +1,4 @@
+ word, {language: translation}, time created
+ b, {d:s}, 15-Nov-2021,01:12:09
+-aaa, {d:x, e:y, f:z}, 01-May-2013,12:31:34
+-cc, {d:j, f:k}, 29-Apr-2010,13:00:14
+\ No newline at end of file
++aaa, {d:x}, 01-May-2013,12:31:34
++cc, {d:j}, 29-Apr-2010,13:00:14
+\ No newline at end of file
+Index: src/main/java/app/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package app;\r\n\r\nimport data_access.FileTranslationHistoryDataAccessObject;\r\nimport data_access.FileUserDataAccessObject;\r\nimport entity.CommonUserFactory;\r\nimport interface_adapter.Audio.AudioController;\r\nimport interface_adapter.ViewManagerModel;\r\nimport interface_adapter.history.HistoryViewModel;\r\nimport interface_adapter.table_preferences.TableViewModel;\r\nimport interface_adapter.logged_in.LoggedInViewModel;\r\nimport interface_adapter.login.LoginViewModel;\r\nimport interface_adapter.select_languages.SelectLanguagesViewModel;\r\nimport interface_adapter.signup.SignupViewModel;\r\nimport interface_adapter.table_preferences.TableViewModel;\r\nimport interface_adapter.translation.TranslationViewModel;\r\nimport view.*;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.io.File;\r\nimport java.io.IOException;\r\n\r\n\r\npublic class Main {\r\n    public static void main(String[] args) {\r\n\r\n\r\n        try {\r\n            // Load the custom Goblin font directly from a file\r\n            File fontFile = new File(\"resources//cc.ttf\"); // Absolute path to the font file\r\n            Font goblinFont = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(30f); // Adjust the font size as needed\r\n            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();\r\n            ge.registerFont(goblinFont);\r\n\r\n            // Main application window setup\r\n            JFrame application = new JFrame(\"Translayte\");\r\n            application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);\r\n\r\n            // Card layout for switching between views\r\n            CardLayout cardLayout = new CardLayout();\r\n            JPanel views = new JPanel(cardLayout);\r\n            application.add(views);\r\n\r\n\r\n            // View manager model\r\n            ViewManagerModel viewManagerModel = new ViewManagerModel();\r\n            new ViewManager(views, cardLayout, viewManagerModel);\r\n\r\n            // ViewModels setup\r\n            LoginViewModel loginViewModel = new LoginViewModel();\r\n            LoggedInViewModel loggedInViewModel = new LoggedInViewModel();\r\n            SignupViewModel signupViewModel = new SignupViewModel();\r\n            TableViewModel tableViewModel = new TableViewModel();\r\n            HistoryViewModel historyViewModel = new HistoryViewModel();\r\n            SelectLanguagesViewModel selectLanguagesViewModel = new SelectLanguagesViewModel();\r\n            TranslationViewModel translationViewModel = new TranslationViewModel();\r\n\r\n            // Data access object\r\n            FileUserDataAccessObject userDataAccessObject;\r\n            try {\r\n                userDataAccessObject = new FileUserDataAccessObject(\"./users.csv\", new CommonUserFactory());\r\n            } catch (IOException e) {\r\n                throw new RuntimeException(e);\r\n            }\r\n\r\n            //Translation History Data Access Object\r\n            FileTranslationHistoryDataAccessObject translationHistoryDataAccessObject;\r\n            try {\r\n                translationHistoryDataAccessObject = new FileTranslationHistoryDataAccessObject(\"src/main/java/translations.csv\");\r\n            } catch (IOException e) {\r\n                throw new RuntimeException(e);\r\n            }\r\n\r\n\r\n            // Create new AudioController using factory method\r\n            AudioController audioController = app.AudioControllerFactory.createAudioController(\"src/main/java/power.wav\");\r\n\r\n\r\n//            // Create an instance of AudioManager\r\n//            AudioManager audioManager = new AudioManager(\"/power.wav\");\r\n\r\n            // Creating views\r\n            SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel, userDataAccessObject, audioController); // Pass audioController\r\n            applyFontToComponent(signupView, goblinFont);\r\n            views.add(signupView, signupView.viewName);\r\n\r\n            LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, translationViewModel, signupViewModel, userDataAccessObject, audioController); // Pass audioController\r\n            applyFontToComponent(loginView, goblinFont);\r\n            views.add(loginView, loginView.viewName);\r\n\r\n            LoggedInView loggedInView = new LoggedInView(loggedInViewModel, viewManagerModel);\r\n            applyFontToComponent(loggedInView, goblinFont);\r\n            views.add(loggedInView, loggedInView.viewName);\r\n\r\n            TranslationView translationView = TranslationUseCaseFactory.create(viewManagerModel, translationViewModel, signupViewModel, tableViewModel);\r\n            applyFontToComponent(translationView, goblinFont);\r\n            views.add(translationView, translationView.viewName);\r\n\r\n            TablePreferenceView tablePreferenceView = TableUseCaseFactory.create(viewManagerModel, tableViewModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);\r\n            views.add(tablePreferenceView, tablePreferenceView.viewName);\r\n\r\n            SelectLanguagesView selectLanguagesView = SelectLanguagesUseCaseFactory.create(viewManagerModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);\r\n            views.add(selectLanguagesView, selectLanguagesView.viewName);\r\n\r\n            HistoryView historyView = new HistoryView(historyViewModel);\r\n            views.add(historyView, historyView.viewName);\r\n\r\n\r\n            // Activate the initial view\r\n            viewManagerModel.setActiveView(signupView.viewName);\r\n            viewManagerModel.firePropertyChanged();\r\n\r\n            application.pack();\r\n            application.setVisible(true);\r\n        } catch (FontFormatException | IOException e) {\r\n            e.printStackTrace();\r\n            // Handle font loading error\r\n        }\r\n    }\r\n\r\n    private static void applyFontToComponent(Component component, Font font) {\r\n        component.setFont(font);\r\n        if (component instanceof Container) {\r\n            for (Component child : ((Container) component).getComponents()) {\r\n                applyFontToComponent(child, font);\r\n            }\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/app/Main.java b/src/main/java/app/Main.java
+--- a/src/main/java/app/Main.java	
++++ b/src/main/java/app/Main.java	
+@@ -28,7 +28,7 @@
+         try {
+             // Load the custom Goblin font directly from a file
+             File fontFile = new File("resources//cc.ttf"); // Absolute path to the font file
+-            Font goblinFont = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(30f); // Adjust the font size as needed
++            Font goblinFont = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(20f); // Adjust the font size as needed
+             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+             ge.registerFont(goblinFont);
+ 
