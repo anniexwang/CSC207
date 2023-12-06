@@ -132,13 +132,17 @@ public class TranslationView extends JPanel implements ActionListener, PropertyC
         outputField.setText("");
     }
 
+
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         // Handle state changes, like showing error messages
         TranslationState state = (TranslationState) evt.getNewValue();
         if (state.getTranslatedError() != null) {
             JOptionPane.showMessageDialog(this, state.getTranslatedError());
+        } else if (state.getTranslated() != null) {
+            outputField.setText(state.getTranslated());
         }
-    }
-}
+
+    }}
 

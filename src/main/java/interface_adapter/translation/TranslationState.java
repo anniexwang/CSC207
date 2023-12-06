@@ -37,6 +37,7 @@ public class TranslationState {
     public String getTranslatedError() {
         return translatedError;
     }
+
     public void setOriginal(String original) {
         this.original = original;
     }

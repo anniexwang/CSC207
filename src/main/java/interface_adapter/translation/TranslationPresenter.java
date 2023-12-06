@@ -1,17 +1,8 @@
 package interface_adapter.translation;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.clear.ClearState;
-import interface_adapter.clear.ClearViewModel;
-import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.table_preferences.TableViewModel;
-import interface_adapter.translation.TranslationState;
-import interface_adapter.translation.TranslationViewModel;
-import interface_adapter.translation.TranslationState;
-import interface_adapter.translation.TranslationViewModel;
-import use_case.clear.ClearOutputData;
 import use_case.translate.TranslateOutputBoundary;
-import use_case.translate.TranslateOutputData;
 
 public class TranslationPresenter implements TranslateOutputBoundary{
     private final TranslationViewModel translationViewModel;
@@ -30,12 +21,14 @@ public class TranslationPresenter implements TranslateOutputBoundary{
     }
 
     @Override
-    public void prepareSuccessView(TranslateOutputData response) {
-        TranslationState translationInState = translationViewModel.getState();
+    public void prepareSuccessView(String response) {
+        TranslationState translationState = translationViewModel.getState();
+        translationState.setTranslated(response); // Set the translated text
+        translationViewModel.setState(translationState); // Update the state in the view model
+        translationViewModel.firePropertyChanged(); // Notify the view to update itself
         this.viewManagerModel.setActiveView(translationViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
-
     public void backToSignup() {
         this.viewManagerModel.setActiveView(signupViewModel.getViewName()); // Use the correct view name for SignupView
         this.viewManagerModel.firePropertyChanged();
