@@ -4,46 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28ac504b-8228-4d44-a4a6-f2dba750c4ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mockito_core.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+    <list default="true" id="28ac504b-8228-4d44-a4a6-f2dba750c4ee" name="Changes" comment="file writer">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mockito_core.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mockito_core.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/TranslationUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/TranslationUseCaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/FileUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/FileUserDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/CommonUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/CommonUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/CommonUserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/CommonUserFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/translation/TranslationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/translation/TranslationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/translations.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/translations.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateUserDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateUserDataAccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/Audio/AudioInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/Audio/AudioInteractorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/app/TranslationUseCaseFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/TranslationUseCaseFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/AudioDataAccessObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/ClearDataAccessObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/FileTranslationHistoryDataAccessObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/FileUserDataAccessObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/InMemoryUserDataAccessObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/UserRetrieveTranslationDataAccessInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/CommonUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/CommonUserFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/translation/TranslationController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/retrieve_translation/RetrieveTranslationInputBoundary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/retrieve_translation/RetrieveTranslationInputData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/retrieve_translation/RetrieveTranslationInteractor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/retrieve_translation/RetrieveTranslationOutputBoundary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/retrieve_translation/RetrieveTranslationOutputData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/retrieve_translation/RetrieveTranslationUserDataAccessInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/ITranslationHistory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInputBoundary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInputData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInteractor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateOutputBoundary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateOutputData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateUserDataAccessInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslationEntry.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslationHistory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/Writer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInputData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInteractor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/users.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +71,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Diffblue Cover.Write tests for prefix unknown">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="translayte" />
@@ -140,21 +109,6 @@
       <module name="translayte" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AudioInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="translayte" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="use_case.Audio.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="use_case.Audio" />
-      <option name="MAIN_CLASS_NAME" value="use_case.Audio.AudioInteractorTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -259,13 +213,21 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <method v="2" />
     </configuration>
+    <configuration name="Write tests for prefix unknown" type="com.diffblue.cover.write-tests-run-configuration" factoryName="com.diffblue.cover.write-tests-run-configuration" activateToolWindowBeforeRun="false" temporary="true">
+      <module name="translayte" />
+      <settings run-config-name="Write tests for prefix unknown" include-system-env-vars="true" skeleton-tests-only="false">
+        <jvm-args />
+        <selection-scope>prefix</selection-scope>
+      </settings>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Diffblue Cover.Write tests for prefix unknown" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Shell Script.parse_logs.sh" />
         <item itemvalue="JUnit.LoginInteractorsTest" />
         <item itemvalue="JUnit.All in translayte" />
-        <item itemvalue="JUnit.AudioInteractorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -278,8 +240,25 @@
       <option name="presentableId" value="Default" />
       <updated>1701832699966</updated>
       <workItem from="1701832701018" duration="6147000" />
-      <workItem from="1701839543888" duration="7862000" />
+      <workItem from="1701839543888" duration="8183000" />
     </task>
+    <task id="LOCAL-00001" summary="file writer">
+      <option name="closed" value="true" />
+      <created>1701847533871</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701847533871</updated>
+    </task>
+    <task id="LOCAL-00002" summary="file writer">
+      <option name="closed" value="true" />
+      <created>1701847587879</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701847587879</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,12 +275,16 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="file writer" />
+    <option name="LAST_COMMIT_MESSAGE" value="file writer" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInteractor.java</url>
-          <line>42</line>
+          <line>57</line>
           <properties class="use_case.translate.TranslateInteractor" method="translate">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

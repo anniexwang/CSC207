@@ -12,14 +12,22 @@ import use_case.translate.TranslateUserDataAccessInterface;
 import use_case.translate.TranslateOutputBoundary;
 import use_case.translate.TranslateUserDataAccessInterface;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class TranslateInteractor implements TranslateInputBoundary {
 
     final TranslateOutputBoundary translationPresenter;
+    final TranslateUserDataAccessInterface userDataAccess;
 
     public TranslateInteractor(
-                           TranslateOutputBoundary translateOutputBoundary) {
+                           TranslateOutputBoundary translateOutputBoundary, TranslateUserDataAccessInterface userDataAccess) {
 
         this.translationPresenter = translateOutputBoundary;
+        this.userDataAccess = userDataAccess;
     }
 
     // execute method will process translation request
@@ -35,8 +43,15 @@ public class TranslateInteractor implements TranslateInputBoundary {
 
         // Call the translation service or library here
         String translated = translate(original);
+//todo: change the "en" to the language detected
+        // Create a translation object
+        Map<String, String> translationMap = new HashMap<>();
+        translationMap.put("en", translated);
+        List<Object> translationObject = Arrays.asList(original, translationMap, LocalDateTime.now());
 
-        // Prepare the success view with the translated text
+        // Add the translation to the user's history
+        userDataAccess.addTranslation(translateInputData.getUsername(), translationObject);
+
         translationPresenter.prepareSuccessView(translated);
     }
 
