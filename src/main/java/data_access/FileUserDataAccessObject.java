@@ -7,12 +7,15 @@ import use_case.login.LoginUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 //import use_case.table_preferences.TableUserDataAccessInterface;
 import use_case.translate.TranslateUserDataAccessInterface;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, TranslateUserDataAccessInterface{
+public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, TranslateUserDataAccessInterface {
     private final File csvFile;
 
     private final Map<String, Integer> headers = new LinkedHashMap<>();
@@ -37,31 +40,38 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     public FileUserDataAccessObject(String csvPath, UserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
 
+        this.userFactory = userFactory;
+
         csvFile = new File(csvPath);
         headers.put("username", 0);
         headers.put("password", 1);
         headers.put("translation_history", 2);
-        headers.put("favorites",3);
+        headers.put("favorites", 3);
 
-        if (csvFile.length() == 0) {
+        if (!csvFile.exists() || csvFile.length() == 0) {
             save();
         } else {
-
             try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
                 String header = reader.readLine();
-
-                // For later: clean this up by creating a new Exception subclass and handling it in the UI.
-                assert header.equals("username,password,translation_history,favorites");
-
                 String row;
                 while ((row = reader.readLine()) != null) {
-                    String[] col = row.split(",");
-                    String username = String.valueOf(col[headers.get("username")]);
-                    String password = String.valueOf(col[headers.get("password")]);
+                    String[] parts = row.split(",", 3); // Split into 3 parts: username, password, and the rest
+                    if (parts.length < 3) {
+                        continue; // Invalid row format
+                    }
 
-                    // Parse translation_history and favorites by splitting the string and removing brackets if present
-                    ArrayList<String> translationHistory = parseCsvField(col[headers.get("translation_history")]);
-                    ArrayList<String> favorites = parseCsvField(col[headers.get("favorites")]);
+                    String username = parts[0].trim();
+                    String password = parts[1].trim();
+                    String restOfRow = parts[2].trim();
+
+                    // Custom logic to extract translation_history and favorites
+                    // Assuming translation_history always starts with [[ and ends with ]]
+                    int endIndex = restOfRow.indexOf("]],") + 2;
+                    String translationHistoryRaw = restOfRow.substring(0, endIndex);
+                    String favoritesRaw = restOfRow.substring(endIndex + 1).trim();
+
+                    ArrayList<String> translationHistory = parseTranslationHistory(translationHistoryRaw);
+                    ArrayList<String> favorites = new ArrayList<>();
 
                     User user = userFactory.create(username, password, translationHistory, favorites);
                     accounts.put(username, user);
@@ -69,7 +79,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
             }
         }
     }
-
 
     @Override
     public void save(User user) {
@@ -90,8 +99,12 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
             writer.newLine();
 
             for (User user : accounts.values()) {
+                // Formatting translation history and favorites correctly
+                String translationHistoryStr = formatListForCsv(user.getTranslationHistory());
+                String favoritesStr = formatListForCsv(user.getFavorites());
+
                 String line = String.format("%s,%s,%s,%s",
-                        user.getName(), user.getPassword(), user.getTranslationHistory(), user.getFavorites());
+                        user.getName(), user.getPassword(), translationHistoryStr, favoritesStr);
                 writer.write(line);
                 writer.newLine();
             }
@@ -101,6 +114,14 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    // Helper method to format an ArrayList into a CSV-compatible string
+    private String formatListForCsv(ArrayList<String> list) {
+        if (list.isEmpty()) {
+            return "[]"; // Return empty brackets for an empty list
+        }
+        return "[" + String.join(",", list) + "]";
     }
     @Override
     public void addTranslation(String username, List<Object> translation) {
@@ -118,67 +139,74 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
             // Save the user
             save(user);
         }
-    }
+}
+
     private ArrayList<String> parseTranslationHistory(String field) {
+        ArrayList<String> translationHistory = new ArrayList<>();
         if (field == null || field.isEmpty()) {
-            return new ArrayList<>();
+            return translationHistory;
         }
 
         // Remove leading and trailing brackets if they exist
-        String trimmedField = field.replaceAll("^\\[|\\]$", "");
+        String trimmedField = field.replaceAll("^\\[\\[|\\]\\]$", "");
 
-        // Split the string by '], [' into an array to separate the inner lists
-        String[] innerLists = trimmedField.split("\\], \\[");
-
-        ArrayList<String> translationHistory = new ArrayList<>();
+        // Split the string by '],[' into an array to separate the inner lists
+        String[] innerLists = trimmedField.split("\\],\\[");
 
         for (String innerList : innerLists) {
-            // Remove leading and trailing brackets if they exist
-            String trimmedInnerList = innerList.replaceAll("^\\[|\\]$", "");
-
-            // Split the string by ', ' into an array to separate the elements of the inner list
-            String[] elements = trimmedInnerList.split(", ");
+            // Split the inner list by ', ' into an array to separate the elements
+            String[] elements = innerList.split(", ", -1);
+            if (elements.length < 3) {
+                continue;
+            }
 
             // The first element is the original text
             String originalText = elements[0];
 
             // The second element is the map of translations
-            // Remove leading and trailing braces if they exist
-            String trimmedMap = elements[1].replaceAll("^\\{|\\}$", "");
-
-            // Split the string by '=' into an array to separate the key and value of the map
-            String[] mapElements = trimmedMap.split("=");
-
-            // If the mapElements array has less than 2 elements, skip the current iteration of the loop
-            if (mapElements.length < 2) {
-                continue;
-            }
-
-            // The first element is the language code
-            String languageCode = mapElements[0];
-
-            // The second element is the translated text
-            String translatedText = mapElements[1];
+            String translationMap = elements[1];
 
             // The third element is the timestamp
-            LocalDateTime timestamp = LocalDateTime.parse(elements[2]);
+            String timestamp = elements[2];
 
-            // Create a map for the translation
-            Map<String, String> translation = new HashMap<>();
-            translation.put(languageCode, translatedText);
-
-            // Create a list for the inner list
-            List<Object> innerListElements = new ArrayList<>();
-            innerListElements.add(originalText);
-            innerListElements.add(translation);
-            innerListElements.add(timestamp);
-
-            // Convert the inner list to a string and add it to the translation history
-            translationHistory.add(innerListElements.toString());
+            // Create a string representation of the inner list and add it to the translation history
+            String translationEntry = "[" + originalText + ", " + translationMap + ", " + timestamp + "]";
+            translationHistory.add(translationEntry);
         }
 
         return translationHistory;
     }
+    public void updateAccounts() throws IOException {
+        accounts.clear();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
+            String header = reader.readLine();
+            String row;
+            while ((row = reader.readLine()) != null) {
+                String[] parts = row.split(",", 3); // Split into 3 parts: username, password, and the rest
+                if (parts.length < 3) {
+                    continue; // Invalid row format
+                }
+
+                String username = parts[0].trim();
+                String password = parts[1].trim();
+                String restOfRow = parts[2].trim();
+
+                // Custom logic to extract translation_history and favorites
+                // Assuming translation_history always starts with [[ and ends with ]]
+                int endIndex = restOfRow.indexOf("]],") + 2;
+                String translationHistoryRaw = restOfRow.substring(0, endIndex);
+                String favoritesRaw = restOfRow.substring(endIndex + 1).trim();
+
+                ArrayList<String> translationHistory = parseTranslationHistory(translationHistoryRaw);
+                ArrayList<String> favorites = new ArrayList<>();
+
+                User user = userFactory.create(username, password, translationHistory, favorites);
+                accounts.put(username, user);
+            }
+        }
+    }
+
     /**
      * Return whether a user exists with username identifier.
      * @param identifier the username to check.

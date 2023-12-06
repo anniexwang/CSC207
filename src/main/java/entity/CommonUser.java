@@ -35,7 +35,13 @@ class CommonUser implements User {
     }
 
     @Override
-    public ArrayList<String> getTranslationHistory() {return translationHistory;}
+    public ArrayList<String> getTranslationHistory() {
+        if (this.translationHistory.isEmpty()) {
+            return new ArrayList<>();
+        } else {
+            return this.translationHistory;
+        }
+    }
 
     @Override
     public void setTranslationHistory(ArrayList<String> translationHistory) {

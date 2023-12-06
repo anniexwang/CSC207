@@ -12,6 +12,7 @@ import use_case.translate.TranslateUserDataAccessInterface;
 import use_case.translate.TranslateOutputBoundary;
 import use_case.translate.TranslateUserDataAccessInterface;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -50,8 +51,17 @@ public class TranslateInteractor implements TranslateInputBoundary {
         List<Object> translationObject = Arrays.asList(original, translationMap, LocalDateTime.now());
 
         // Add the translation to the user's history
+        try {
+            userDataAccess.updateAccounts();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         userDataAccess.addTranslation(translateInputData.getUsername(), translationObject);
-
+        try {
+            userDataAccess.updateAccounts();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         translationPresenter.prepareSuccessView(translated);
     }
 

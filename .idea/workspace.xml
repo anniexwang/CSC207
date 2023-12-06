@@ -5,14 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28ac504b-8228-4d44-a4a6-f2dba750c4ee" name="Changes" comment="file writer">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mockito_core.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mockito_core.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/TranslationUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/TranslationUseCaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInputData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/easybatch_apache_commons_csv.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_10_42_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_10_42_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_11_27_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_11_27_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_11_27_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_11_27_PM__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_03_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_03_AM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_03_AM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_03_AM__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/FileUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/FileUserDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/CommonUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/CommonUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/Audio/AudioInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/Audio/AudioInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/TranslationUseCaseFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/TranslationUseCaseFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInputData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateUserDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateUserDataAccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data_access/FileUserDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data_access/FileUserDataAccessObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entity/CommonUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/CommonUser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInteractor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateUserDataAccessInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateUserDataAccessInterface.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/users.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,13 +59,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "true",
+    "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "true",
     "Repository.Attach.Sources": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231206_0001",
+    "com.google.cloudcode.ide_session_index": "20231206_0002",
     "git-widget-placeholder": "Allen5",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
@@ -71,7 +81,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Diffblue Cover.Write tests for prefix unknown">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="translayte" />
@@ -223,8 +233,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Diffblue Cover.Write tests for prefix unknown" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Diffblue Cover.Write tests for prefix unknown" />
         <item itemvalue="Shell Script.parse_logs.sh" />
         <item itemvalue="JUnit.LoginInteractorsTest" />
         <item itemvalue="JUnit.All in translayte" />
@@ -241,6 +251,7 @@
       <updated>1701832699966</updated>
       <workItem from="1701832701018" duration="6147000" />
       <workItem from="1701839543888" duration="8183000" />
+      <workItem from="1701851816838" duration="8440000" />
     </task>
     <task id="LOCAL-00001" summary="file writer">
       <option name="closed" value="true" />
@@ -284,28 +295,58 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInteractor.java</url>
-          <line>57</line>
+          <line>67</line>
           <properties class="use_case.translate.TranslateInteractor" method="translate">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/data_access/FileUserDataAccessObject.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="7" />
+          <line>83</line>
+          <properties class="data_access.FileUserDataAccessObject" method="save">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/data_access/FileUserDataAccessObject.java</url>
+          <line>93</line>
+          <properties class="data_access.FileUserDataAccessObject" method="save">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/data_access/FileUserDataAccessObject.java</url>
+          <line>119</line>
+          <properties class="data_access.FileUserDataAccessObject" method="formatListForCsv">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInteractor.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="java.util.HashMap$Node" memberName="value" />
+        <PinnedItemInfo parentTag="java.util.LinkedHashMap$Entry" memberName="key" />
       </pinned-members>
     </pin-to-top-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="((TranslateInteractor)((TranslationController)this).translateUseCaseInteractor).translationPresenter" custom="interface_adapter.translation.TranslationController,use_case.translate.TranslateInteractor" />
+        <watch expression="header" />
+        <watch expression="((LinkedHashMap.Entry)((LinkedHashMap)headers).entrySet().toArray()[2]).getValue()" custom="java.util.LinkedHashMap,java.util.LinkedHashMap.Entry" />
       </configuration>
     </watches-manager>
   </component>
