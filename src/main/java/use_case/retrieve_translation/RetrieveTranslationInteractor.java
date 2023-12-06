@@ -21,7 +21,6 @@ public class RetrieveTranslationInteractor implements RetrieveTranslationInputBo
     @Override
     public void execute(RetrieveTranslationInputData retrieveTranslationInputData) {
         String text = retrieveTranslationInputData.gettext();
-        String originalLang = translate.detect(text).getLanguage();
         Translate translate = TranslateOptions.newBuilder().setApiKey(api).build().getService();
         Translation translation = translate.translate(text,
                 Translate.TranslateOption.targetLanguage("en"));

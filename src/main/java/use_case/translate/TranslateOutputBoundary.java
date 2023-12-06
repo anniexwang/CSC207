@@ -1,6 +1,6 @@
 package use_case.translate;
 
 public interface TranslateOutputBoundary {
-    void prepareSuccessView(String translated);
+    void prepareSuccessView(String translateOutputData);
     void prepareFailView(String error);
 }

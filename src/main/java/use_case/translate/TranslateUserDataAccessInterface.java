@@ -1,5 +1,11 @@
 package use_case.translate;
 
+import entity.User;
+
 public interface TranslateUserDataAccessInterface {
-    // not sure what to add
+    boolean existsByName(String identifier);
+
+    void save(User user);
+
+    User get(String username);
 }

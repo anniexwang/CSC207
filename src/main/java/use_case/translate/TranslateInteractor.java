@@ -5,6 +5,7 @@ import entity.UserFactory;
 import use_case.login.LoginInputData;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginUserDataAccessInterface;
+import use_case.retrieve_translation.RetrieveTranslationOutputData;
 import use_case.signup.SignupInputBoundary;
 import use_case.translate.TranslateOutputBoundary;
 import use_case.translate.TranslateUserDataAccessInterface;
@@ -48,7 +49,9 @@ public class TranslateInteractor implements TranslateInputBoundary {
             String originalLang = translate.detect(original).getLanguage();
             Translation translation = translate.translate(original,
                     Translate.TranslateOption.targetLanguage("en"));
-            return translation.getTranslatedText();
+            String translationOutputData = translation.getTranslatedText();
+            translationPresenter.prepareSuccessView(translationOutputData);
+            return translationOutputData;
         } catch (Exception e) {
             e.printStackTrace();
             return original;
