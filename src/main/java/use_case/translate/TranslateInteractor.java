@@ -57,6 +57,7 @@ public class TranslateInteractor implements TranslateInputBoundary {
             throw new RuntimeException(e);
         }
         userDataAccess.addTranslation(translateInputData.getUsername(), translationObject);
+
         try {
             userDataAccess.updateAccounts();
         } catch (IOException e) {

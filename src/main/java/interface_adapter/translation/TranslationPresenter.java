@@ -38,7 +38,7 @@ public class TranslationPresenter implements TranslateOutputBoundary{
         this.viewManagerModel.setActiveView((tableViewModel.getViewName()));
         this.viewManagerModel.firePropertyChanged();
     }
-
+    //todo cant clear state here or it will delete user name
     public void prepareCancelView() {
         // Logic to clear the state
         TranslationState translationState = translationViewModel.getState();
@@ -46,7 +46,7 @@ public class TranslationPresenter implements TranslateOutputBoundary{
         translationViewModel.setState(translationState);
         translationViewModel.firePropertyChanged();
     }
-
+    //todo after setTranslatedError the state becomes unuseable
     public void prepareFailView(String error) {
         TranslationState translationState = translationViewModel.getState();
         translationState.setTranslatedError(error);
