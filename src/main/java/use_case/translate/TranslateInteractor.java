@@ -45,7 +45,7 @@ public class TranslateInteractor implements TranslateInputBoundary {
             String apiKey = "AIzaSyAORNlqu0L0NZBzt-ddgWsSYWYTwEOut-A";
             Translate translate = TranslateOptions.newBuilder().setApiKey(apiKey).build().getService();
             // Input's autodetected language
-            String targetLang = translate.detect(original).getLanguage();
+            String originalLang = translate.detect(original).getLanguage();
             Translation translation = translate.translate(original,
                     Translate.TranslateOption.targetLanguage("en"));
             return translation.getTranslatedText();
