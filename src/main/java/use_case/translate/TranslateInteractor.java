@@ -44,8 +44,9 @@ public class TranslateInteractor implements TranslateInputBoundary {
             // Set the API Key
             String apiKey = "AIzaSyAORNlqu0L0NZBzt-ddgWsSYWYTwEOut-A";
             Translate translate = TranslateOptions.newBuilder().setApiKey(apiKey).build().getService();
-
-            Translation translation = translate.translate(original, Translate.TranslateOption.targetLanguage("en"));
+            String targetLang = translate.detect(original).getLanguage();
+            Translation translation = translate.translate(original,
+                    Translate.TranslateOption.targetLanguage(targetLang));
             return translation.getTranslatedText();
         } catch (Exception e) {
             e.printStackTrace();
