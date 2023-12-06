@@ -47,7 +47,7 @@ public class TranslationView extends JPanel implements ActionListener, PropertyC
 
         containerPanel.setBackground(Color.BLACK);
 
-        JLabel title = new JLabel(SignupViewModel.TITLE_LABEL);
+        JLabel title = new JLabel("Translate");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // input field for user
@@ -92,6 +92,8 @@ public class TranslationView extends JPanel implements ActionListener, PropertyC
         // Set the layout of the main panel and add the JScrollPane
         this.setLayout(new BorderLayout());
         this.add(scrollPane, BorderLayout.CENTER);
+
+        setComponentColors(containerPanel);
     }
     private JButton createRainbowButton(String text) {
         return new RainbowButton(text);
