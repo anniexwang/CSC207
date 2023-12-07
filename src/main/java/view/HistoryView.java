@@ -54,8 +54,6 @@ public class HistoryView extends JPanel implements PropertyChangeListener {
 
         for (int i=0; i<info.length; i++) {
             int columnLength = columnInfo.length;
-
-
             if (columnLength == 1) {
                 String[] row = new String[maxColumnLength];
                 row[0] = info[i][0];

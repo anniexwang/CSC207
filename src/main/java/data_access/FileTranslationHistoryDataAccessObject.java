@@ -20,6 +20,8 @@ public class FileTranslationHistoryDataAccessObject implements TableUserDataAcce
                 if (parts.length < 3) {
                     continue;
                 }
+
+                String username = parts[0].trim();
                 String restOfRow = parts[2].trim();
 
                 int endIndex = restOfRow.indexOf("]],") + 2;
@@ -28,6 +30,7 @@ public class FileTranslationHistoryDataAccessObject implements TableUserDataAcce
                 String[] translationHistoryRawSplit = translationHistoryRaw.split(",");
                 for (int i = 0; i < translationHistoryRawSplit.length - 2; i += 3) {
                     List<String> translationHistoryList = new ArrayList<>();
+                    translationHistoryList.add(username);
                     if (!translationHistoryRawSplit[i].replaceAll("^\\[\\[|\\]\\]$", "").equals("[Enter Your Text Here")) {
                         String translationRow = translationHistoryRawSplit[i].replaceAll("^\\[\\[|\\]\\]$", "") + "," + translationHistoryRawSplit[i + 1] + "," + translationHistoryRawSplit[i + 2].replaceAll("^\\[\\[|\\]\\]$", "");
                         translationHistoryList.add(translationRow);

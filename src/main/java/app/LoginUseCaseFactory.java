@@ -3,6 +3,7 @@ package app;
 import entity.CommonUserFactory;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.history.HistoryViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.translation.TranslationViewModel;
 import interface_adapter.login.LoginController;
@@ -13,6 +14,7 @@ import use_case.login.LoginInputBoundary;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginInteractor;
 import use_case.login.LoginUserDataAccessInterface;
+import view.HistoryView;
 import view.LoginView;
 import interface_adapter.Audio.AudioController;
 
@@ -29,12 +31,13 @@ public class LoginUseCaseFactory {
             TranslationViewModel translationViewModel,
             SignupViewModel signupViewModel,
             LoginUserDataAccessInterface userDataAccessObject,
-            AudioController audioController) { // Add AudioManager as a parameter
+            AudioController audioController,
+            HistoryViewModel historyViewModel) { // Add AudioManager as a parameter
 
 
             LoginController loginController = createLoginUseCase(
                     viewManagerModel, loginViewModel, translationViewModel, signupViewModel, userDataAccessObject);
-            return new LoginView(loginViewModel, loginController, audioController); // Pass AudioManager to LoginView
+            return new LoginView(loginViewModel, loginController, audioController, historyViewModel); // Pass AudioManager to LoginView
 
     }
 

@@ -1,5 +1,6 @@
 package interface_adapter.history;
 
+import com.beust.ah.A;
 import data_access.FileTranslationHistoryDataAccessObject;
 import data_access.FileUserDataAccessObject;
 import interface_adapter.ViewModel;
@@ -17,6 +18,7 @@ public class HistoryViewModel extends ViewModel {
 
     private HistoryState state = new HistoryState();
     private ArrayList<List<String>> data = new ArrayList<>();
+    private final ArrayList<List<String>> userData = new ArrayList<>();
     private final ArrayList<List<String>> fileData = FileTranslationHistoryDataAccessObject.getData();
 
 
@@ -42,29 +44,51 @@ public class HistoryViewModel extends ViewModel {
         return state;
     }
 
+    public void checkUser(){
+        String currentUsername = this.state.getCurrentUsername();
+        for (List<String> i : this.fileData){
+            String name = i.get(0);
+            boolean checkEqual = currentUsername.equals(i.get(0));
+            if (checkEqual){
+                List<String> translationHistory = new ArrayList<>();
+                translationHistory.add(i.get(1));
+                this.userData.add(translationHistory);
+            }
+        }
+    }
     public ArrayList<List<String>> getData() {
+//        checkUser();
+        String currentUsername = this.state.getCurrentUsername();
+        for (List<String> i : this.fileData){
+            String name = i.get(0);
+            boolean checkEqual = currentUsername.equals(i.get(0));
+            if (checkEqual){
+                List<String> translationHistory = new ArrayList<>();
+                translationHistory.add(i.get(1));
+                this.userData.add(translationHistory);
+            }
+        }
         String tableType = this.state.getTableType();
-
         if (tableType.equals("All")) {
-            for (List<String> i : this.fileData) {
+            for (List<String> i : this.userData) {
                 this.data.add(i);
             }
         } else if (tableType.equals("Only Words")) {
-            for (int i = 0; i < this.fileData.size(); i++) {
+            for (int i = 0; i < this.userData.size(); i++) {
                 List<String> words = new ArrayList<>();
-                words.add(this.fileData.get(i).get(0));
+                words.add(this.userData.get(i).get(0));
                 this.data.add(words);
             }
         }else if (tableType.equals("By Language")) {
             String[] listLanguages = this.state.getLanguages();
             String[] lowerListLanguages = new String[listLanguages.length];
-            String[][] newData = convertToStringArray(fileData);
+            String[][] newData = convertToStringArray(userData);
 
             for (int i = 0; i < listLanguages.length; i++) {
                 lowerListLanguages[i] = listLanguages[i].toLowerCase();
             }
 
-            for (int i = 0; i < this.fileData.size(); i++) {
+            for (int i = 0; i < this.userData.size(); i++) {
                 List<String> row = new ArrayList<>();
                 String stringDict = "";
                 stringDict = stringDict.concat(newData[i][0]);
@@ -97,7 +121,15 @@ public class HistoryViewModel extends ViewModel {
     }
 
     public String[] separateToColumns(String[] stringList) {
-        String toString = stringList[0];
+        int index;
+        if (stringList.length > 1){
+            index = 1;
+        }
+        else{
+            index = 0;
+        }
+
+        String toString = stringList[index];
         toString = toString.replace("{", "");
         toString = toString.replace("}", "");
         String[] splitComma = toString.split(", ");
@@ -133,10 +165,12 @@ public class HistoryViewModel extends ViewModel {
 
     public String[] getTitles(){
         String tableType = this.state.getTableType();
-        String[][] fileDataArray = convertToStringArray(fileData);
+        String[][] fileDataArray = convertToStringArray(this.fileData);
+
         if (fileDataArray.length == 0) {
             return new String[0]; // return an empty array
         }
+
         int numberOfTitles = maxColumnLength(fileDataArray);
         if (tableType.equals("Only Words")) {
             String[] fileHeaders = FileTranslationHistoryDataAccessObject.getHeader();
