@@ -123,7 +123,9 @@ public class HistoryViewModel extends ViewModel {
         List<Integer> allDataLength = new ArrayList<>();
         for (int i = 0; i < data.length; i++) {
             allDataLength.add(data[i].length);
-            int y = data[i].length;
+        }
+        if (allDataLength.isEmpty()) {
+            return 0; // return default value
         }
         int numberOfTitles = Collections.max(allDataLength);
         return numberOfTitles;
@@ -131,7 +133,11 @@ public class HistoryViewModel extends ViewModel {
 
     public String[] getTitles(){
         String tableType = this.state.getTableType();
-        int numberOfTitles = maxColumnLength(convertToStringArray(fileData));
+        String[][] fileDataArray = convertToStringArray(fileData);
+        if (fileDataArray.length == 0) {
+            return new String[0]; // return an empty array
+        }
+        int numberOfTitles = maxColumnLength(fileDataArray);
         if (tableType.equals("Only Words")) {
             String[] fileHeaders = FileTranslationHistoryDataAccessObject.getHeader();
             String[] titles = new String[1];
