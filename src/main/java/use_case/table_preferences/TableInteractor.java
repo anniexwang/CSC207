@@ -1,5 +1,7 @@
 package use_case.table_preferences;
 
+import java.io.IOException;
+
 public class TableInteractor implements TableInputBoundary {
     final TableUserDataAccessInterface userDataAccessObject;
     final TableOutputBoundary tablePresenter;
@@ -12,6 +14,11 @@ public class TableInteractor implements TableInputBoundary {
 
     @Override
     public void execute(TableInputData tableInputData) {
+        try {
+            userDataAccessObject.updateData();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         // errors for when table type dropdown or sort type drop down are not selected
         if (tableInputData.getTableType().equals("Select")) {
             tablePresenter.prepareFailView("Table Type not selected");

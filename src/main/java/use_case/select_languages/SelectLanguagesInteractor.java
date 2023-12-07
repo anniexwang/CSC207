@@ -5,6 +5,7 @@ import data_access.FileTranslationHistoryDataAccessObject;
 import data_access.FileUserDataAccessObject;
 import interface_adapter.history.HistoryViewModel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +28,13 @@ public class SelectLanguagesInteractor implements SelectLanguagesInputBoundary {
 
     @Override
     public void execute(SelectLanguagesInputData selectLanguagesInputData) {
+        try {
+            userDataAccessObject.updateData();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
         if (checkInputLanguages(selectLanguagesInputData.getLanguages())){
             SelectLanguagesOutputData selectLanguagesOutputData = new SelectLanguagesOutputData(selectLanguagesInputData.getLanguages());
             languagesPresenter.prepareSuccessView(selectLanguagesOutputData);
