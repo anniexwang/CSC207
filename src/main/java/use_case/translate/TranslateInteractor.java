@@ -43,11 +43,14 @@ public class TranslateInteractor implements TranslateInputBoundary {
         }
 
         // Call the translation service or library here
+        String apiKey = "AIzaSyAORNlqu0L0NZBzt-ddgWsSYWYTwEOut-A";
+        Translate translate = TranslateOptions.newBuilder().setApiKey(apiKey).build().getService();
         String translated = translate(original);
+        String lang = translate.detect(original).getLanguage();
 //todo: change the "en" to the language detected
         // Create a translation object
         Map<String, String> translationMap = new HashMap<>();
-        translationMap.put("en", translated);
+        translationMap.put(lang, translated);
         List<Object> translationObject = Arrays.asList(original, translationMap, LocalDateTime.now());
 
         // Add the translation to the user's history

@@ -8,10 +8,12 @@ public class TranslateInputData {
     final private String original;
     final private String originalLang;
     private final String api = "AIzaSyAORNlqu0L0NZBzt-ddgWsSYWYTwEOut-A";
-    Translate translate = TranslateOptions.getDefaultInstance().getService();
-    public TranslateInputData(String original) {
+    private String username;
+    Translate translate = TranslateOptions.newBuilder().setApiKey(api).build().getService();
+    public TranslateInputData(String original, String username) {
 
         this.original = original;
+        this.username = username;
         this.originalLang = translate.detect(original).getLanguage();
     }
     String getOriginal() {
@@ -20,5 +22,8 @@ public class TranslateInputData {
 
     String getOriginalLang(){
         return originalLang;
+    }
+    public String getUsername() {
+        return username;
     }
 }
