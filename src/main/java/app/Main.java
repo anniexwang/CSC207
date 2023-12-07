@@ -11,7 +11,6 @@ import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.select_languages.SelectLanguagesViewModel;
 import interface_adapter.signup.SignupViewModel;
-import interface_adapter.table_preferences.TableViewModel;
 import interface_adapter.translation.TranslationViewModel;
 import view.*;
 
@@ -66,7 +65,7 @@ public class Main {
             //Translation History Data Access Object
             FileTranslationHistoryDataAccessObject translationHistoryDataAccessObject;
             try {
-                translationHistoryDataAccessObject = new FileTranslationHistoryDataAccessObject("src/main/java/translations.csv");
+                translationHistoryDataAccessObject = new FileTranslationHistoryDataAccessObject("./users.csv");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

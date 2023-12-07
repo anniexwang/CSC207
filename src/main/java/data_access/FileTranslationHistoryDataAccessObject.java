@@ -1,4 +1,5 @@
 package data_access;
+import entity.User;
 import use_case.select_languages.SelectLanguagesUserDataAccessInterface;
 import use_case.table_preferences.TableUserDataAccessInterface;
 import java.io.*;
@@ -12,13 +13,27 @@ public class FileTranslationHistoryDataAccessObject implements TableUserDataAcce
         csvFile = new File(csvPath);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
-            String header = reader.readLine();
-            headers = header.split(",");
+            headers = new String[]{"word", "language", "translation", "time created"};
             String row;
             while ((row = reader.readLine()) != null) {
-                List<String> cols = new ArrayList<>();
-                cols.add(row);
-                data.add(cols);
+                String[] parts = row.split(",", 3);
+                if (parts.length < 3) {
+                    continue;
+                }
+                String restOfRow = parts[2].trim();
+
+                int endIndex = restOfRow.indexOf("]],") + 2;
+                String translationHistoryRaw = restOfRow.substring(0, endIndex);
+
+                String[] translationHistoryRawSplit = translationHistoryRaw.split(",");
+                for (int i = 0; i < translationHistoryRawSplit.length - 2; i += 3) {
+                    List<String> translationHistoryList = new ArrayList<>();
+                    if (!translationHistoryRawSplit[i].replaceAll("^\\[\\[|\\]\\]$", "").equals("[Enter Your Text Here")) {
+                        String translationRow = translationHistoryRawSplit[i].replaceAll("^\\[\\[|\\]\\]$", "") + "," + translationHistoryRawSplit[i + 1] + "," + translationHistoryRawSplit[i + 2].replaceAll("^\\[\\[|\\]\\]$", "");
+                        translationHistoryList.add(translationRow);
+                        data.add(translationHistoryList);
+                    }
+                }
             }
         }
     }

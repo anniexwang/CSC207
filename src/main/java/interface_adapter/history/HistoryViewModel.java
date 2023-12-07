@@ -1,6 +1,7 @@
 package interface_adapter.history;
 
 import data_access.FileTranslationHistoryDataAccessObject;
+import data_access.FileUserDataAccessObject;
 import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
@@ -74,7 +75,7 @@ public class HistoryViewModel extends ViewModel {
 
                     if (Arrays.asList(lowerListLanguages).contains(newData[i][j])){
                         stringDict = stringDict.concat(newData[i][j]);
-                        stringDict = stringDict.concat(":");
+                        stringDict = stringDict.concat("=");
                         stringDict = stringDict.concat(newData[i][j+1]);
                         stringDict = stringDict.concat(", ");
                     }
@@ -103,15 +104,15 @@ public class HistoryViewModel extends ViewModel {
         int lengthOfList = splitComma.length;
         if (lengthOfList > 1) {
             String[] columns = new String[2 * lengthOfList - 2];
-            columns[0] = splitComma[0];
+            columns[0] = splitComma[0].replace("[", "");
             int i = 0;
             for (int j = 1; j < splitComma.length - 1; j++) {
-                String[] splitToHashmap = splitComma[j].split(":");
+                String[] splitToHashmap = splitComma[j].split("=");
                 columns[2 * i + 1] = splitToHashmap[0];
                 columns[2 * i + 2] = splitToHashmap[1];
                 i++;
             }
-            columns[2 * lengthOfList - 3] = splitComma[lengthOfList - 1];
+            columns[2 * lengthOfList - 3] = splitComma[lengthOfList - 1].replace("]", "");
             return columns;
         } else {
             return stringList;
@@ -122,6 +123,7 @@ public class HistoryViewModel extends ViewModel {
         List<Integer> allDataLength = new ArrayList<>();
         for (int i = 0; i < data.length; i++) {
             allDataLength.add(data[i].length);
+            int y = data[i].length;
         }
         int numberOfTitles = Collections.max(allDataLength);
         return numberOfTitles;
@@ -193,8 +195,8 @@ public class HistoryViewModel extends ViewModel {
             HashMap<String, Integer> hashmap = new HashMap<>();
 
             for (int i = 0; i <= data.length - 1; i++) {
-                templist[i] = data[i][0];
-                hashmap.put(data[i][0], i);
+                templist[i] = data[i][0].toLowerCase();
+                hashmap.put(data[i][0].toLowerCase(), i);
             }
             Arrays.sort(templist);
 
@@ -209,7 +211,7 @@ public class HistoryViewModel extends ViewModel {
             HashMap<String, Integer> hashmap = new HashMap<>();
 
             for (int i = 0; i <= data.length - 1; i++) {
-                DateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy,HH:mm:ss");
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date dateFormat = formatter.parse(data[i][data[i].length - 1]);
                 templist[i] = dateFormat;
                 hashmap.put(data[i][data[i].length - 1], i);
@@ -218,7 +220,7 @@ public class HistoryViewModel extends ViewModel {
             Arrays.sort(templist);
             String[][] finallist = new String[data.length][1];
             for (int i = 0; i <= data.length - 1; i++){
-                Format formatter = new SimpleDateFormat("dd-MMM-yyyy,HH:mm:ss");
+                Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String stringFormat = formatter.format(templist[i]);
                 finallist[i] = data[hashmap.get(stringFormat)];
             }

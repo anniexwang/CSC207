@@ -14,6 +14,7 @@ import use_case.translate.TranslateUserDataAccessInterface;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +49,10 @@ public class TranslateInteractor implements TranslateInputBoundary {
         // Create a translation object
         Map<String, String> translationMap = new HashMap<>();
         translationMap.put("en", translated);
-        List<Object> translationObject = Arrays.asList(original, translationMap, LocalDateTime.now());
+        LocalDateTime timeCreated = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedTimeCreated = timeCreated.format(formatter);
+        List<Object> translationObject = Arrays.asList(original, translationMap, formattedTimeCreated);
 
         // Add the translation to the user's history
         try {

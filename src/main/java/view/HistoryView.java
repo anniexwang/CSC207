@@ -50,46 +50,19 @@ public class HistoryView extends JPanel implements PropertyChangeListener {
         }
 
         String[] columnInfo = historyViewModel.getTitles();
-        String[] maxRow = new String[1];
         int maxColumnLength = historyViewModel.maxColumnLength(info);
-        for (int i=0; i<info.length; i++){
-            int rowLength = info[i].length;
-            if (rowLength == maxColumnLength) {
-                maxRow = info[i];
-            }
-        }
 
-        for(int i=0; i<info.length; i++) {
-            int rowLength = info[i].length;
+        for (int i=0; i<info.length; i++) {
             int columnLength = columnInfo.length;
+
+
             if (columnLength == 1) {
                 String[] row = new String[maxColumnLength];
                 row[0] = info[i][0];
                 data[i] = row;
             }
             else {
-                String[] row = new String[columnLength];
-                row[0] = info[i][0];
-                for (int j = 1; j < columnLength - 1; j += 2) {
-                    if (j < rowLength - 1) {
-                        if (!info[i][j].toString().equals(maxRow[j].toString())) {
-                            row[j + 2] = info[i][j];
-                            row[j + 3] = info[i][j + 1];
-                            row[j] = "";
-                            row[j + 1] = "";
-                        } else {
-                            row[j] = info[i][j];
-                            row[j + 1] = info[i][j + 1];
-                        }
-                    } else {
-                        if (Objects.equals(row[j], null)) {
-                            row[j] = "";
-                            row[j + 1] = "";
-                        }
-                    }
-                }
-                row[columnLength - 1] = info[i][rowLength - 1];
-                data[i] = row;
+                data[i] = info[i];
             }
         }
     }

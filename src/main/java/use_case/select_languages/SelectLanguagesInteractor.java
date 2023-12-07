@@ -2,6 +2,7 @@ package use_case.select_languages;
 
 import data_access.FileTranslationHistoryDataAccessObject;
 
+import data_access.FileUserDataAccessObject;
 import interface_adapter.history.HistoryViewModel;
 
 import java.util.ArrayList;
