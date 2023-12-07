@@ -10,8 +10,7 @@ public class TableController {
     }
 
     public void execute(String tableType, String sortType) {
-        TableInputData tableInputData = new TableInputData(
-                tableType, sortType);
+        TableInputData tableInputData = new TableInputData(tableType, sortType);
 
         tableUseCaseInteractor.execute(tableInputData);
     }

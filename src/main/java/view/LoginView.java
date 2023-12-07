@@ -113,6 +113,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
             public void keyReleased(KeyEvent e) {
                 LoginState currentState = loginViewModel.getState();
                 currentState.setUsername(usernameInputField.getText());
+                // set username in current state, used for checking translation history for each user
                 HistoryState historyState = historyViewModel.getState();
                 historyState.setCurrentUsername(usernameInputField.getText());
                 loginViewModel.setState(currentState);

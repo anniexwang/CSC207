@@ -29,14 +29,16 @@ public class TablePresenter implements TableOutputBoundary {
     @Override
     public void prepareSuccessView(TableOutputData response) {
         SelectLanguagesState selectLanguagesState = selectLanguagesViewModel.getState();
-
         HistoryState historyState = historyViewModel.getState();
+
+        // if "By Language" is selected, the next view is SelectLanguagesView
         if (response.getTableType().equals("By Language")) {
             this.selectLanguagesViewModel.setState(selectLanguagesState);
             this.selectLanguagesViewModel.firePropertyChanged();
             this.viewManagerModel.setActiveView(selectLanguagesViewModel.getViewName());
             this.viewManagerModel.firePropertyChanged();
         }
+        // else, go straight to HistoryView
         else {
             this.historyViewModel.setState(historyState);
             this.historyViewModel.firePropertyChanged();

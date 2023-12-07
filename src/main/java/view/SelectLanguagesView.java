@@ -24,8 +24,6 @@ public class SelectLanguagesView extends JPanel implements ActionListener, Prope
     private final SelectLanguagesViewModel selectLanguagesViewModel;
     private final HistoryViewModel historyViewModel;
 
-    private List<String> languages = new ArrayList<>();//read languages from csv file
-
     private final JTextField languagesInputField = new JTextField(15);
 
     final JButton go;
@@ -50,6 +48,7 @@ public class SelectLanguagesView extends JPanel implements ActionListener, Prope
         go = new JButton(selectLanguagesViewModel.GO_BUTTON_LABEL);
         buttons.add(go);
 
+        // transfer inputted text to controller in the form of a String[] when go button is pressed
         go.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 if (evt.getSource().equals(go)) {
@@ -58,6 +57,7 @@ public class SelectLanguagesView extends JPanel implements ActionListener, Prope
             }
         });
 
+        // take text in input field and set languages in SelectLanguagesState and HistoryState
         languagesInputField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -84,6 +84,8 @@ public class SelectLanguagesView extends JPanel implements ActionListener, Prope
         this.add(languageInfo);
         this.add(buttons);
     }
+
+    // make changes in historyViewModel whenever 'go' is pressed
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
         if (evt.getSource().equals(go)) {
