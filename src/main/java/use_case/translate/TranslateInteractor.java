@@ -60,7 +60,7 @@ public class TranslateInteractor implements TranslateInputBoundary {
     }
 
     // Returns the translated String given the original String through use of the Google Translate API.
-    private String translate(String original) {
+    String translate(String original) {
         try {
             // Set the API Key necessary for Google Translate API to function
             String apiKey = "AIzaSyAORNlqu0L0NZBzt-ddgWsSYWYTwEOut-A";

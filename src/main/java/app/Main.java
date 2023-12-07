@@ -7,7 +7,6 @@ import interface_adapter.Audio.AudioController;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.history.HistoryViewModel;
 import interface_adapter.table_preferences.TableViewModel;
-import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.select_languages.SelectLanguagesViewModel;
 import interface_adapter.signup.SignupViewModel;
@@ -47,7 +46,6 @@ public class Main {
 
             // ViewModels setup
             LoginViewModel loginViewModel = new LoginViewModel();
-            LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
             SignupViewModel signupViewModel = new SignupViewModel();
             TableViewModel tableViewModel = new TableViewModel();
             HistoryViewModel historyViewModel = new HistoryViewModel();
@@ -87,9 +85,6 @@ public class Main {
             applyFontToComponent(loginView, goblinFont);
             views.add(loginView, loginView.viewName);
 
-            LoggedInView loggedInView = new LoggedInView(loggedInViewModel, viewManagerModel);
-            applyFontToComponent(loggedInView, goblinFont);
-            views.add(loggedInView, loggedInView.viewName);
 
             TranslationView translationView = TranslationUseCaseFactory.create(viewManagerModel, translationViewModel, signupViewModel, tableViewModel);
             applyFontToComponent(translationView, goblinFont);

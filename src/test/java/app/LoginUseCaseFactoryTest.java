@@ -22,10 +22,11 @@ class LoginUseCaseFactoryTest {
         SignupViewModel signupViewModel = mock(SignupViewModel.class);
         LoginUserDataAccessInterface userDataAccessObject = mock(LoginUserDataAccessInterface.class);
         AudioController audioController = mock(AudioController.class);
+        interface_adapter.history.HistoryViewModel historyViewModel = mock(interface_adapter.history.HistoryViewModel.class);
 
         // Act
         var result = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, translationViewModel, signupViewModel,
-                userDataAccessObject, audioController);
+                userDataAccessObject, audioController, historyViewModel);
 
         // Assert
         assertNotNull(result);

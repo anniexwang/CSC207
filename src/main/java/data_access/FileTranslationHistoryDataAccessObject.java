@@ -20,7 +20,6 @@ public class FileTranslationHistoryDataAccessObject implements TableUserDataAcce
                 // splits the data into a string array
                 String[] parts = row.split(",", 3);
                 if (parts.length < 3) {
-                    continue;
                 }
 
                 // takes the username and the translation history portion

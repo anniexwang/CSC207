@@ -25,23 +25,16 @@ public class TableUseCaseFactory {
                                              HistoryViewModel historyViewModel,
                                              TableUserDataAccessInterface userDataAccessObject) {
 
-        try {
-            TableController tableController = createTableUseCase(viewManagerModel, tableViewModel, selectLanguagesViewModel, historyViewModel, userDataAccessObject);
 
-            return new TablePreferenceView(tableController, tableViewModel, historyViewModel);
+        TableController tableController = createTableUseCase(viewManagerModel, tableViewModel, selectLanguagesViewModel, historyViewModel, userDataAccessObject);
 
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not open user data file.");
-        }
-
-        return null;
+        return new TablePreferenceView(tableController, tableViewModel, historyViewModel);
     }
-
     private static TableController createTableUseCase(ViewManagerModel viewManagerModel,
                                                       TableViewModel tableViewModel,
                                                       SelectLanguagesViewModel selectLanguagesViewModel,
                                                       HistoryViewModel historyViewModel,
-                                                      TableUserDataAccessInterface userDataAccessObject) throws IOException {
+                                                      TableUserDataAccessInterface userDataAccessObject)  {
 
         TableOutputBoundary tableOutputBoundary = new TablePresenter(viewManagerModel, tableViewModel, selectLanguagesViewModel, historyViewModel);
 

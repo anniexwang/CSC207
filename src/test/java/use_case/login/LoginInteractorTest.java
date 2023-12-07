@@ -48,6 +48,11 @@ class LoginInteractorTest {
             public ArrayList<String> getFavorites() {
                 return null;
             }
+
+            @Override
+            public void setTranslationHistory(ArrayList<String> history) {
+
+            }
         });
 
         loginInteractor.execute(new LoginInputData(username, wrongPassword));
@@ -81,6 +86,10 @@ class LoginInteractorTest {
             public ArrayList<String> getFavorites() {
                 return null;
             }
+            @Override
+            public void setTranslationHistory(ArrayList<String> history) {
+            }
+
         });
 
         loginInteractor.execute(new LoginInputData(username, password));

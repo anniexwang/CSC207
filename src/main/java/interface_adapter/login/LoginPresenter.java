@@ -3,8 +3,7 @@ package interface_adapter.login;
 import app.SignupUseCaseFactory;
 import interface_adapter.translation.TranslationState;
 import interface_adapter.translation.TranslationViewModel;
-import interface_adapter.logged_in.LoggedInState;
-import interface_adapter.logged_in.LoggedInViewModel;
+
 import interface_adapter.ViewManagerModel;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;

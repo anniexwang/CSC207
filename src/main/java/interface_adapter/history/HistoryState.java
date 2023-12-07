@@ -9,14 +9,6 @@ public class HistoryState {
 
     private String currentUsername = "";
 
-    public HistoryState(HistoryState copy) {
-        tableType = copy.tableType;
-        tableTypeError = copy.tableTypeError;
-        sortType = copy.sortType;
-        numberLanguages = copy.numberLanguages;
-        languages = copy.languages;
-        currentUsername = copy.currentUsername;
-    }
 
     public HistoryState() {}
 

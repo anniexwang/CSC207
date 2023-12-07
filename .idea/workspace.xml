@@ -4,22 +4,158 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28ac504b-8228-4d44-a4a6-f2dba750c4ee" name="Changes" comment="Added comments to TranslateOutputData.java">
+    <list default="true" id="28ac504b-8228-4d44-a4a6-f2dba750c4ee" name="Changes" comment="bugfix for histroryviewmodel not working on empty list">
+      <change afterPath="$PROJECT_DIR$/.idea/CoverUsage.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CSC207F2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/parse_logs.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/app/TableUseCaseFactoryDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/app/TranslationUseCaseFactoryDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/data_access/FileTranslationHistoryDataAccessObjectDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/data_access/FileUserDataAccessObjectDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/entity/CommonUserDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/entity/CommonUserFactoryDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/Audio/AudioControllerDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/Audio/AudioControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/Audio/AudioStateTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/ViewManagerModelDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/history/HistoryStateTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/history/HistoryViewModelDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/history/t3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/login/LoginStateDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/select_languages/SelectLanguagesControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/select_languages/SelectLanguagesPresenterDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/select_languages/SelectLanguagesStateDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/select_languages/SelectLanguagesViewModelDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/SignupControllerDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/SignupPresenterDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/SignupStateDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/t1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/t2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/table_preferences/TablePresenterDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/table_preferences/TableStateDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/table_preferences/t1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/table_preferences/t2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/translation/TranslationControllerDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/translation/TranslationPresenterDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/translation/TranslationStateDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/translation/TranslationViewModelDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/Audio/AudioInputDataDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/Audio/AudioInteractorDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/select_languages/SelectLanguagesInteractorDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/select_languages/t2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/select_languages/t3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/signup/SignupInputDataDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/signup/SignupInteractorDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/signup/SignupOutputDataDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/translate/TranslateInputDataDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/translate/TranslateInteractorDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/translate/TranslateOutputDataDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/translate/t4.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/HistoryViewDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/LabelTextPanelDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/LoginViewDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/RainbowButtonDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/SelectLanguagesViewDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/SignupViewDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/TablePreferenceViewDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/TextAreaPanelDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/TranslationViewDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/view/ViewManagerDiffblueTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/test2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/users.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/google_cloud_translate.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mockito_core.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mockito_core.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_10_42_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_10_42_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_11_27_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_11_27_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_11_27_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_11_27_PM__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_03_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_03_AM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_03_AM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_03_AM__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/retrieve_translation/RetrieveTranslationInputBoundary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/retrieve_translation/RetrieveTranslationInputData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/retrieve_translation/RetrieveTranslationInteractor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/retrieve_translation/RetrieveTranslationOutputBoundary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/retrieve_translation/RetrieveTranslationOutputData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/retrieve_translation/RetrieveTranslationUserDataAccessInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInputBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInputBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateOutputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/history/HistoryViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/history/HistoryViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInputData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/LoginUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/LoginUseCaseFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/TableUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/TableUseCaseFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/ClearDataAccessObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/FileTranslationHistoryDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/FileTranslationHistoryDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/InMemoryUserDataAccessObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/UserRetrieveTranslationDataAccessInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/Audio/AudioPresenter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/clear/ClearController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/clear/ClearPresenter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/clear/ClearState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/clear/ClearViewModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/history/HistoryState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/history/HistoryState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/logged_in/LoggedInState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/logged_in/LoggedInViewModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/login/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/login/LoginPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/login/ViewModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/Audio/AudioOutputData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/clear/ClearInputBoundary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/clear/ClearInputData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/clear/ClearInteractor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/clear/ClearOutputBoundary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/clear/ClearOutputData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/clear/ClearUserDataAccessInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/ITranslationHistory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslationEntry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslationHistory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/Writer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/AudioManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/ClearView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/LoggedInView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/app/LoginUseCaseFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/app/LoginUseCaseFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/data_access/FileUserDataAccessObjectTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/data_access/FileUserDataAccessObjectTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/login/LoginInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/login/LoginInteractorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/LoginUseCaseFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/LoginUseCaseFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/TableUseCaseFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/TableUseCaseFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data_access/ClearDataAccessObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data_access/FileTranslationHistoryDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data_access/FileTranslationHistoryDataAccessObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data_access/InMemoryUserDataAccessObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data_access/UserRetrieveTranslationDataAccessInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/Audio/AudioPresenter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/clear/ClearController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/clear/ClearPresenter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/clear/ClearState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/clear/ClearViewModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/history/HistoryState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/history/HistoryState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/logged_in/LoggedInState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/logged_in/LoggedInViewModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginPresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/ViewModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/select_languages/SelectLanguagesViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/select_languages/SelectLanguagesViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/table_preferences/TableController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/table_preferences/TableController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/table_preferences/TablePresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/table_preferences/TablePresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/Audio/AudioOutputData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/clear/ClearInputBoundary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/clear/ClearInputData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/clear/ClearInteractor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/clear/ClearOutputBoundary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/clear/ClearOutputData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/clear/ClearUserDataAccessInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/select_languages/SelectLanguagesInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/select_languages/SelectLanguagesInteractor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/table_preferences/TableInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/table_preferences/TableInteractor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/ITranslationHistory.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/HistoryView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/HistoryView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/users.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslationEntry.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslationHistory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/Writer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/AudioManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/ClearView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/LoggedInView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/SelectLanguagesView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SelectLanguagesView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/SelectLanguagesView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SelectLanguagesView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/TablePreferenceView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/TablePreferenceView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/TablePreferenceView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/TablePreferenceView$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/TablePreferenceView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/TablePreferenceView$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/TablePreferenceView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/TablePreferenceView.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +184,9 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2Z9SFiEG0Nyo2dEQcz4KqMV7NKU" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -58,14 +196,15 @@
     "Downloaded.Files.Path.Enabled": "false",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "true",
-    "Repository.Attach.Sources": "true",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231206_0002",
-    "git-widget-placeholder": "main",
+    "com.google.cloudcode.ide_session_index": "20231207_0000",
+    "git-widget-placeholder": "Test",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Winter/IdeaProjects/CSC207F2/src/test/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -78,7 +217,22 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Winter\IdeaProjects\CSC207F2\src\test\resources" />
+      <recent name="C:\Users\Winter\IdeaProjects\CSC207F2" />
+      <recent name="C:\Users\Winter\IdeaProjects\CSC207F2\src\main\java" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Winter\IdeaProjects\CSC207F2\src\test\resources" />
+      <recent name="C:\Users\Winter\IdeaProjects\CSC207F2\src\main" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="interface_adapter.signup" />
+      <recent name="interface_adapter.Audio" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.view in translayte">
     <configuration default="true" type="DjangoTestsConfigurationType">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -98,6 +252,66 @@
       <option name="USE_OPTIONS" value="false" />
       <option name="OPTIONS" value="" />
       <method v="2" />
+    </configuration>
+    <configuration name="TranslateInputDataDiffblueTest and 2 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="translayte" />
+      <option name="TEST_OBJECT" value="pattern" />
+      <patterns>
+        <pattern testClass="use_case.translate.TranslateInputDataDiffblueTest" />
+        <pattern testClass="use_case.translate.TranslateInteractorDiffblueTest" />
+        <pattern testClass="use_case.translate.TranslateOutputDataDiffblueTest" />
+      </patterns>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TranslateInputDataDiffblueTest and 4 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="translayte" />
+      <option name="TEST_OBJECT" value="pattern" />
+      <patterns>
+        <pattern testClass="use_case.translate.TranslateInputDataDiffblueTest" />
+        <pattern testClass="use_case.translate.TranslateInteractorDiffblueTest" />
+        <pattern testClass="use_case.translate.TranslateOutputDataDiffblueTest" />
+        <pattern testClass="use_case.translate.TranslationEntryDiffblueTest" />
+        <pattern testClass="use_case.translate.TranslationHistoryDiffblueTest" />
+      </patterns>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TranslateInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="translayte" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.translate.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.translate" />
+      <option name="MAIN_CLASS_NAME" value="use_case.translate.TranslateInteractorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="view in translayte" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="translayte" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/view" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -158,82 +372,22 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <method v="2" />
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="app.Main" />
+    <configuration name="Write tests for package view" type="com.diffblue.cover.write-tests-run-configuration" factoryName="com.diffblue.cover.write-tests-run-configuration" activateToolWindowBeforeRun="false" temporary="true">
       <module name="translayte" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="All in translayte" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="translayte" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoginInteractorsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="translayte" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="use_case.login.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="use_case.login" />
-      <option name="MAIN_CLASS_NAME" value="use_case.login.LoginInteractorsTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="parse_logs.sh" type="ShConfigurationType" temporary="true">
-      <option name="SCRIPT_TEXT" value="" />
-      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
-      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/parse_logs.sh" />
-      <option name="SCRIPT_OPTIONS" value="" />
-      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
-      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
-      <option name="INTERPRETER_PATH" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="EXECUTE_IN_TERMINAL" value="true" />
-      <option name="EXECUTE_SCRIPT_FILE" value="true" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="Write tests for prefix unknown" type="com.diffblue.cover.write-tests-run-configuration" factoryName="com.diffblue.cover.write-tests-run-configuration" activateToolWindowBeforeRun="false" temporary="true">
-      <module name="translayte" />
-      <settings run-config-name="Write tests for prefix unknown" include-system-env-vars="true" skeleton-tests-only="false">
+      <settings run-config-name="Write tests for package view" include-system-env-vars="true" skeleton-tests-only="false">
         <jvm-args />
-        <selection-scope>prefix</selection-scope>
+        <selection-scope>package</selection-scope>
+        <selected-element key="view" />
       </settings>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Shell Script.parse_logs.sh" />
-        <item itemvalue="JUnit.LoginInteractorsTest" />
-        <item itemvalue="JUnit.All in translayte" />
+        <item itemvalue="JUnit.view in translayte" />
+        <item itemvalue="Diffblue Cover.Write tests for package view" />
+        <item itemvalue="JUnit.TranslateInteractorTest" />
+        <item itemvalue="JUnit.TranslateInputDataDiffblueTest and 2 more" />
+        <item itemvalue="JUnit.TranslateInputDataDiffblueTest and 4 more" />
       </list>
     </recent_temporary>
   </component>
@@ -248,6 +402,7 @@
       <workItem from="1701832701018" duration="6147000" />
       <workItem from="1701839543888" duration="8183000" />
       <workItem from="1701851816838" duration="8440000" />
+      <workItem from="1701961911458" duration="6817000" />
     </task>
     <task id="LOCAL-00001" summary="file writer">
       <option name="closed" value="true" />
@@ -389,74 +544,171 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/CSC207F$LoginUseCaseFactoryTest.ic" NAME="LoginUseCaseFactoryTest Coverage Results" MODIFIED="1701721166600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/CSC207M$SignupUseCaseFactoryTest.ic" NAME="SignupUseCaseFactoryTest Coverage Results" MODIFIED="1701311976997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$SelectLanguagesInteractorDiffblueTest_and_2_more.ic" NAME="SelectLanguagesInteractorDiffblueTest and 2 more Coverage Results" MODIFIED="1701967736493" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$SelectLanguagesOutputDataTest.ic" NAME="SelectLanguagesOutputDataTest Coverage Results" MODIFIED="1701967797266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>use_case.select_languages.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F$AudioControllerFactoryTest_and_6_more.ic" NAME="AudioControllerFactoryTest and 6 more Coverage Results" MODIFIED="1701722582595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$TableStateDiffblueTest_testConstructor2.ic" NAME="TableStateDiffblueTest.testConstructor2 Coverage Results" MODIFIED="1701966971244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.table_preferences.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$view_in_translayte.ic" NAME="view in translayte Coverage Results" MODIFIED="1701968670982" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$TranslateInteractorTest.ic" NAME="TranslateInteractorTest Coverage Results" MODIFIED="1701968529800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>use_case.translate.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/CSC207F$use_case_login.ic" NAME="use_case.login Coverage Results" MODIFIED="1701722983938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>use_case.login.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207F$java_in_translayte.ic" NAME="java in translayte Coverage Results" MODIFIED="1701738308722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$LoginInteractorsTest.ic" NAME="LoginInteractorsTest Coverage Results" MODIFIED="1701834464787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>use_case.login.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$CommonUserDiffblueTest.ic" NAME="CommonUserDiffblueTest Coverage Results" MODIFIED="1701964630604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F$LoginUseCaseFactoryTest.ic" NAME="LoginUseCaseFactoryTest Coverage Results" MODIFIED="1701721166600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F$_default_.ic" NAME="&lt;default&gt; Coverage Results" MODIFIED="1701722557803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$TableStateDiffblueTest.ic" NAME="TableStateDiffblueTest Coverage Results" MODIFIED="1701966981720" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.table_preferences.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$HistoryViewModelDiffblueTest_and_1_more.ic" NAME="HistoryViewModelDiffblueTest and 1 more Coverage Results" MODIFIED="1701965332135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F$test_in_translayte.ic" NAME="test in translayte Coverage Results" MODIFIED="1701738301055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$FileTranslationHistoryDataAccessObjectDiffblueTest.ic" NAME="FileTranslationHistoryDataAccessObjectDiffblueTest Coverage Results" MODIFIED="1701964075484" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>data_access.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/CSC207M$Main.ic" NAME="Main Coverage Results" MODIFIED="1701305953979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207M$SignupUseCaseFactoryDiffblueTest.ic" NAME="SignupUseCaseFactoryDiffblueTest Coverage Results" MODIFIED="1701483328207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$HistoryStateTest_and_1_more.ic" NAME="HistoryStateTest and 1 more Coverage Results" MODIFIED="1701965243955" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/CSC207M$AudioControllerFactoryDiffblueTest.ic" NAME="AudioControllerFactoryDiffblueTest Coverage Results" MODIFIED="1701307449765" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207F$AudioControllerFactoryDiffblueTest.ic" NAME="AudioControllerFactoryDiffblueTest Coverage Results" MODIFIED="1701719723459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/CSC207M$MainTest__1_.ic" NAME="MainTest (1) Coverage Results" MODIFIED="1701307141754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207F$AudioInteractorTest.ic" NAME="AudioInteractorTest Coverage Results" MODIFIED="1701738433197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>use_case.Audio.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207M$MainTest.ic" NAME="MainTest Coverage Results" MODIFIED="1701306425922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/CSC207F2$All_in_translayte.ic" NAME="All in translayte Coverage Results" MODIFIED="1701834442987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$TranslationUseCaseFactoryDiffblueTest.ic" NAME="TranslationUseCaseFactoryDiffblueTest Coverage Results" MODIFIED="1701962578635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207F$SignupUseCaseFactoryDiffblueTest.ic" NAME="SignupUseCaseFactoryDiffblueTest Coverage Results" MODIFIED="1701721388685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/CSC207F2$HistoryStateTest_and_3_more.ic" NAME="HistoryStateTest and 3 more Coverage Results" MODIFIED="1701965498183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$TranslateInputDataDiffblueTest_and_4_more.ic" NAME="TranslateInputDataDiffblueTest and 4 more Coverage Results" MODIFIED="1701968302839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$AudioControllerTest.ic" NAME="AudioControllerTest Coverage Results" MODIFIED="1701964979524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.Audio.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$TranslateInputDataDiffblueTest_and_2_more.ic" NAME="TranslateInputDataDiffblueTest and 2 more Coverage Results" MODIFIED="1701968421840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F$LoginInteractorDiffblueTest.ic" NAME="LoginInteractorDiffblueTest Coverage Results" MODIFIED="1701722744721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>use_case.login.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$TableUseCaseFactoryDiffblueTest.ic" NAME="TableUseCaseFactoryDiffblueTest Coverage Results" MODIFIED="1701963266510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207F$AudioTest.ic" NAME="AudioTest Coverage Results" MODIFIED="1701717351999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/CSC207F$LoginInteractorDiffblueTest_and_2_more.ic" NAME="LoginInteractorDiffblueTest and 2 more Coverage Results" MODIFIED="1701722993558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/CSC207F$AudioControllerFactoryTest_and_6_more.ic" NAME="AudioControllerFactoryTest and 6 more Coverage Results" MODIFIED="1701722582595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$SignupPresenterTest.ic" NAME="SignupPresenterTest Coverage Results" MODIFIED="1701966896908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.signup.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$AudioStateTest.ic" NAME="AudioStateTest Coverage Results" MODIFIED="1701965042496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.Audio.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/CSC207F$FileUserDataAccessObjectDiffblueTest.ic" NAME="FileUserDataAccessObjectDiffblueTest Coverage Results" MODIFIED="1701721885138" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>data_access.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207M$LoginUseCaseFactoryTest.ic" NAME="LoginUseCaseFactoryTest Coverage Results" MODIFIED="1701483246829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>app.*</FILTER>
+    <SUITE FILE_PATH="coverage/CSC207F$LoginOutputDataTest.ic" NAME="LoginOutputDataTest Coverage Results" MODIFIED="1701722971581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>use_case.login.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/CSC207F$LoginInteractorTest.ic" NAME="LoginInteractorTest Coverage Results" MODIFIED="1701722885561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>use_case.login.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207F$LoginPresenterDiffblueTest.ic" NAME="LoginPresenterDiffblueTest Coverage Results" MODIFIED="1701723590306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>interface_adapter.login.*</FILTER>
+    <SUITE FILE_PATH="coverage/CSC207F2$AudioInteractorDiffblueTest.ic" NAME="AudioInteractorDiffblueTest Coverage Results" MODIFIED="1701967552287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>use_case.Audio.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207F$LoginInteractorDiffblueTest.ic" NAME="LoginInteractorDiffblueTest Coverage Results" MODIFIED="1701722744721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>use_case.login.*</FILTER>
+    <SUITE FILE_PATH="coverage/CSC207F$AudioInteractorTest.ic" NAME="AudioInteractorTest Coverage Results" MODIFIED="1701738433197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>use_case.Audio.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207F$app_in_translayte.ic" NAME="app in translayte Coverage Results" MODIFIED="1701721621345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/CSC207M$MainTest__1_.ic" NAME="MainTest (1) Coverage Results" MODIFIED="1701307141754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/CSC207F2$FileUserDataAccessObjectDiffblueTest.ic" NAME="FileUserDataAccessObjectDiffblueTest Coverage Results" MODIFIED="1701964444597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>data_access.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207M$AudioControllerFactoryTest.ic" NAME="AudioControllerFactoryTest Coverage Results" MODIFIED="1701307538118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$signup_in_translayte.ic" NAME="signup in translayte Coverage Results" MODIFIED="1701968206413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207M$MainTest.ic" NAME="MainTest Coverage Results" MODIFIED="1701306425922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F$LoginInteractorDiffblueTest_and_2_more.ic" NAME="LoginInteractorDiffblueTest and 2 more Coverage Results" MODIFIED="1701722993558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$TableUseCaseFactoryDiffblueTest_and_1_more.ic" NAME="TableUseCaseFactoryDiffblueTest and 1 more Coverage Results" MODIFIED="1701963320290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$HistoryStateTest.ic" NAME="HistoryStateTest Coverage Results" MODIFIED="1701965304261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.history.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/CSC207F$LoginUseCaseFactoryDiffblueTest.ic" NAME="LoginUseCaseFactoryDiffblueTest Coverage Results" MODIFIED="1701721180209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207F2$LoginInteractorsTest.ic" NAME="LoginInteractorsTest Coverage Results" MODIFIED="1701834464787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>use_case.login.*</FILTER>
+    <SUITE FILE_PATH="coverage/CSC207F2$TableUseCaseFactoryTest.ic" NAME="TableUseCaseFactoryTest Coverage Results" MODIFIED="1701963153486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207F2$All_in_translayte.ic" NAME="All in translayte Coverage Results" MODIFIED="1701834442987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/CSC207M$AudioControllerFactoryTest.ic" NAME="AudioControllerFactoryTest Coverage Results" MODIFIED="1701307538118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/CSC207F2$LoginStateDiffblueTest.ic" NAME="LoginStateDiffblueTest Coverage Results" MODIFIED="1701965611597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.login.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$ViewManagerModelDiffblueTest.ic" NAME="ViewManagerModelDiffblueTest Coverage Results" MODIFIED="1701967460253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$SignupControllerDiffblueTest.ic" NAME="SignupControllerDiffblueTest Coverage Results" MODIFIED="1701966529523" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.signup.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$SignupStateDiffblueTest.ic" NAME="SignupStateDiffblueTest Coverage Results" MODIFIED="1701966771646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.signup.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$CommonUserFactoryDiffblueTest.ic" NAME="CommonUserFactoryDiffblueTest Coverage Results" MODIFIED="1701964675168" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$TableControllerTest_and_1_more.ic" NAME="TableControllerTest and 1 more Coverage Results" MODIFIED="1701967095071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$FileUserDataAccessObjectTest.ic" NAME="FileUserDataAccessObjectTest Coverage Results" MODIFIED="1701964180973" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>data_access.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$AudioControllerDiffblueTest_and_1_more.ic" NAME="AudioControllerDiffblueTest and 1 more Coverage Results" MODIFIED="1701965271302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$t3.ic" NAME="t3 Coverage Results" MODIFIED="1701965468953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.history.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$SignupPresenterDiffblueTest.ic" NAME="SignupPresenterDiffblueTest Coverage Results" MODIFIED="1701966591580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.signup.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$TablePresenterDiffblueTest.ic" NAME="TablePresenterDiffblueTest Coverage Results" MODIFIED="1701966929872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.table_preferences.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F$AudioControllerFactoryDiffblueTest.ic" NAME="AudioControllerFactoryDiffblueTest Coverage Results" MODIFIED="1701719723459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/CSC207M$AudioTest.ic" NAME="AudioTest Coverage Results" MODIFIED="1701313220066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/CSC207F$_default_.ic" NAME="&lt;default&gt; Coverage Results" MODIFIED="1701722557803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/CSC207F$LoginOutputDataTest.ic" NAME="LoginOutputDataTest Coverage Results" MODIFIED="1701722971581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>use_case.login.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207F$test_in_translayte.ic" NAME="test in translayte Coverage Results" MODIFIED="1701738301055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/CSC207M$SignupUseCaseFactoryDiffblueTest.ic" NAME="SignupUseCaseFactoryDiffblueTest Coverage Results" MODIFIED="1701483328207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/CSC207F2$java_in_translayte.ic" NAME="java in translayte Coverage Results" MODIFIED="1701962309106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207M$LoginUseCaseFactoryTest.ic" NAME="LoginUseCaseFactoryTest Coverage Results" MODIFIED="1701483246829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/CSC207M$SignupUseCaseFactoryTest.ic" NAME="SignupUseCaseFactoryTest Coverage Results" MODIFIED="1701311976997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/CSC207F$AudioTest.ic" NAME="AudioTest Coverage Results" MODIFIED="1701717351999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$TableUseCaseFactoryDiffblueTest_testCreate2.ic" NAME="TableUseCaseFactoryDiffblueTest.testCreate2 Coverage Results" MODIFIED="1701963256288" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>app.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$FileUserDataAccessObjectTest2.ic" NAME="FileUserDataAccessObjectTest2 Coverage Results" MODIFIED="1701964552583" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>data_access.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F2$SelectLanguagesControllerTest_and_3_more.ic" NAME="SelectLanguagesControllerTest and 3 more Coverage Results" MODIFIED="1701965789453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F$app_in_translayte.ic" NAME="app in translayte Coverage Results" MODIFIED="1701721621345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$SignupViewModelTest.ic" NAME="SignupViewModelTest Coverage Results" MODIFIED="1701966706578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.signup.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F$SignupUseCaseFactoryDiffblueTest.ic" NAME="SignupUseCaseFactoryDiffblueTest Coverage Results" MODIFIED="1701721388685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F$LoginPresenterDiffblueTest.ic" NAME="LoginPresenterDiffblueTest Coverage Results" MODIFIED="1701723590306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>interface_adapter.login.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CSC207F$java_in_translayte.ic" NAME="java in translayte Coverage Results" MODIFIED="1701738308722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$AudioInteractorDiffblueTest_and_1_more.ic" NAME="AudioInteractorDiffblueTest and 1 more Coverage Results" MODIFIED="1701967517610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$translation_in_translayte.ic" NAME="translation in translayte Coverage Results" MODIFIED="1701967349877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CSC207F2$TranslateInputDataDiffblueTest_and_1_more.ic" NAME="TranslateInputDataDiffblueTest and 1 more Coverage Results" MODIFIED="1701968273805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

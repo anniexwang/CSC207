@@ -18,7 +18,7 @@ class FileUserDataAccessObjectTest {
      */
     @Test
     void testConstructor() throws IOException {
-        assertFalse((new FileUserDataAccessObject("Csv Path", mock(UserFactory.class))).existsByName("42"));
+        assertFalse((new FileUserDataAccessObject("src/test/resources/users.csv", mock(UserFactory.class))).existsByName("42"));
         assertFalse((new FileUserDataAccessObject("username", mock(UserFactory.class))).existsByName("42"));
         assertThrows(RuntimeException.class, () -> new FileUserDataAccessObject("", mock(UserFactory.class)));
     }
@@ -36,7 +36,7 @@ class FileUserDataAccessObjectTest {
         when(user.getName()).thenThrow(new RuntimeException("foo"));
         when(userFactory.create(Mockito.<String>any(), Mockito.<String>any(), Mockito.<ArrayList<String>>any(),
                 Mockito.<ArrayList<String>>any())).thenReturn(user);
-        FileUserDataAccessObject fileUserDataAccessObject = new FileUserDataAccessObject("Csv Path", userFactory);
+        FileUserDataAccessObject fileUserDataAccessObject = new FileUserDataAccessObject("src/test/resources/users.csv", userFactory);
         User user2 = mock(User.class);
         when(user2.getName()).thenReturn(",");
         assertThrows(RuntimeException.class, () -> fileUserDataAccessObject.save(user2));

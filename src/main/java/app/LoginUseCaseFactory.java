@@ -4,7 +4,6 @@ import entity.CommonUserFactory;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.history.HistoryViewModel;
-import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.translation.TranslationViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
