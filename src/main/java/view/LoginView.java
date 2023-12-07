@@ -1,6 +1,8 @@
 package view;
 
 import interface_adapter.Audio.AudioController;
+import interface_adapter.history.HistoryState;
+import interface_adapter.history.HistoryViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
@@ -21,6 +23,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     public final String viewName = "log in";
     private final LoginViewModel loginViewModel;
     private final LoginController loginController;
+    private final HistoryViewModel historyViewModel;
 
 
     // UI components
@@ -41,11 +44,12 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
      * @param loginController The controller for login.
      * @param audioController The audio manager for handling audio.
      */
-    public LoginView(LoginViewModel loginViewModel, LoginController loginController, AudioController audioController) {
+    public LoginView(LoginViewModel loginViewModel, LoginController loginController, AudioController audioController, HistoryViewModel historyViewModel) {
         this.loginController = loginController;
         this.loginViewModel = loginViewModel;
         this.audioController = audioController;
         this.loginViewModel.addPropertyChangeListener(this);
+        this.historyViewModel = historyViewModel;
 
 
         // Container panel setup
@@ -109,6 +113,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
             public void keyReleased(KeyEvent e) {
                 LoginState currentState = loginViewModel.getState();
                 currentState.setUsername(usernameInputField.getText());
+                HistoryState historyState = historyViewModel.getState();
+                historyState.setCurrentUsername(usernameInputField.getText());
                 loginViewModel.setState(currentState);
             }
         });
