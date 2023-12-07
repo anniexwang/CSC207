@@ -1,5 +1,7 @@
 package use_case.select_languages;
 
-public interface SelectLanguagesUserDataAccessInterface {
+import java.io.IOException;
 
+public interface SelectLanguagesUserDataAccessInterface {
+    void updateData() throws IOException;
 }
