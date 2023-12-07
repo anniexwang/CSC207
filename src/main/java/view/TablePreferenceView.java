@@ -31,6 +31,7 @@ public class TablePreferenceView extends JPanel implements ActionListener, Prope
 
     private final JLabel sortErrorField = new JLabel();
     final JButton go;
+    private final JButton back;
 
     public TablePreferenceView(TableController tableController, TableViewModel tableViewModel, HistoryViewModel historyViewModel) {
         this.tableViewModel = tableViewModel;
@@ -55,10 +56,13 @@ public class TablePreferenceView extends JPanel implements ActionListener, Prope
 
         JPanel buttons = new JPanel();
         go = new JButton(tableViewModel.GO_BUTTON_LABEL);
+        back = new JButton(tableViewModel.BACK_BUTTON_LABEL);
         buttons.add(go);
+        buttons.add(back);
 
         tableDropDown.addActionListener(this);
         sortDropDown.addActionListener(this);
+
 
         go.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -67,6 +71,9 @@ public class TablePreferenceView extends JPanel implements ActionListener, Prope
                 }
             }
         });
+
+        // if back is pressed, go back to Translation
+        back.addActionListener(e -> tableController.backToTranslation());
 
         tableDropDown.addKeyListener(new KeyListener() {
             @Override

@@ -10,6 +10,7 @@ public class TableViewModel extends ViewModel {
     public final String TABLE_TYPE_LABEL = "Type";
     public final String SORT_TYPE_LABEL = "Sort";
     public final String GO_BUTTON_LABEL = "Go";
+    public final String BACK_BUTTON_LABEL = "Back";
 
     private TableState state = new TableState();
 

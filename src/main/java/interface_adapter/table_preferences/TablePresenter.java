@@ -3,6 +3,7 @@ package interface_adapter.table_preferences;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.history.HistoryState;
 import interface_adapter.history.HistoryViewModel;
+import interface_adapter.translation.TranslationViewModel;
 import interface_adapter.select_languages.SelectLanguagesState;
 import interface_adapter.select_languages.SelectLanguagesViewModel;
 import use_case.table_preferences.TableOutputBoundary;
@@ -15,15 +16,18 @@ public class TablePresenter implements TableOutputBoundary {
 
     private final HistoryViewModel historyViewModel;
     private ViewManagerModel viewManagerModel;
+    private final TranslationViewModel translationViewModel;
 
     public TablePresenter(ViewManagerModel viewManagerModel,
                           TableViewModel tableViewModel,
                           SelectLanguagesViewModel selectLanguagesViewModel,
-                          HistoryViewModel historyViewModel) {
+                          HistoryViewModel historyViewModel,
+                          TranslationViewModel translationViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.tableViewModel = tableViewModel;
         this.selectLanguagesViewModel = selectLanguagesViewModel;
         this.historyViewModel = historyViewModel;
+        this.translationViewModel = translationViewModel;
     }
 
     @Override
@@ -43,6 +47,11 @@ public class TablePresenter implements TableOutputBoundary {
             this.viewManagerModel.setActiveView(historyViewModel.getViewName());
             this.viewManagerModel.firePropertyChanged();
         }
+    }
+
+    public void backToTranslation() {
+        this.viewManagerModel.setActiveView(translationViewModel.getViewName()); // Use the correct view name for SignupView
+        this.viewManagerModel.firePropertyChanged();
     }
 
     @Override
