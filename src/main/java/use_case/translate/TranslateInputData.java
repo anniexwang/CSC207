@@ -10,7 +10,7 @@ public class TranslateInputData {
 
     final private String username;
     private final String api = "AIzaSyAORNlqu0L0NZBzt-ddgWsSYWYTwEOut-A";
-    Translate translate = TranslateOptions.getDefaultInstance().getService();
+    Translate translate = TranslateOptions.newBuilder().setApiKey(api).build().getService();
     public TranslateInputData(String original, String username) {
 
         this.original = original;

@@ -45,10 +45,10 @@ public class TranslateInteractor implements TranslateInputBoundary {
 
         // Call the translation service or library here
         String translated = translate(original);
-//todo: change the "en" to the language detected
         // Create a translation object
         Map<String, String> translationMap = new HashMap<>();
-        translationMap.put("en", translated);
+        String lang = translateInputData.getOriginalLang();
+        translationMap.put(lang, translated);
         LocalDateTime timeCreated = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedTimeCreated = timeCreated.format(formatter);
