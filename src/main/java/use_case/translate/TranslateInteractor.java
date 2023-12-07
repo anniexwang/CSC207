@@ -37,6 +37,7 @@ public class TranslateInteractor implements TranslateInputBoundary {
         Map<String, String> translationMap = new HashMap<>();
         String lang = translateInputData.getOriginalLang();
         translationMap.put(lang, translated);
+        // get the creation time and convert into format used throughout the program
         LocalDateTime timeCreated = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedTimeCreated = timeCreated.format(formatter);

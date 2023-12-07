@@ -19,8 +19,9 @@ public class HistoryView extends JPanel implements PropertyChangeListener {
 
     String[] columnTitles;
 
-    private HistoryViewModel historyViewModel;
+    private final HistoryViewModel historyViewModel;
 
+    // create table for translation history
     public HistoryView(HistoryViewModel historyViewModel) {
         this.historyViewModel = historyViewModel;
         this.historyViewModel.addPropertyChangeListener(this);
@@ -40,6 +41,7 @@ public class HistoryView extends JPanel implements PropertyChangeListener {
         this.add(scroll);
     }
 
+    // update the data in the table based on user inputs
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         String[][] info;

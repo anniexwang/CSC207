@@ -37,6 +37,8 @@ public class SelectLanguagesInteractor implements SelectLanguagesInputBoundary {
 
     }
 
+    // compare inputted languages to languages in csv
+    // if inputted language(s) are not in csv, they are not valid
     public boolean checkInputLanguages(String[] languages){
         boolean validLanguages = true;
         String[] languageHistory = historyViewModel.languageHistory(historyViewModel.convertToStringArray(fileData));
