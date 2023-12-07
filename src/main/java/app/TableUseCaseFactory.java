@@ -6,6 +6,7 @@ import interface_adapter.select_languages.SelectLanguagesViewModel;
 import interface_adapter.table_preferences.TableController;
 import interface_adapter.table_preferences.TablePresenter;
 import interface_adapter.table_preferences.TableViewModel;
+import interface_adapter.translation.TranslationViewModel;
 import use_case.table_preferences.TableInputBoundary;
 import use_case.table_preferences.TableInteractor;
 import use_case.table_preferences.TableOutputBoundary;
@@ -23,10 +24,11 @@ public class TableUseCaseFactory {
                                              TableViewModel tableViewModel,
                                              SelectLanguagesViewModel selectLanguagesViewModel,
                                              HistoryViewModel historyViewModel,
+                                             TranslationViewModel translationViewModel,
                                              TableUserDataAccessInterface userDataAccessObject) {
 
         try {
-            TableController tableController = createTableUseCase(viewManagerModel, tableViewModel, selectLanguagesViewModel, historyViewModel, userDataAccessObject);
+            TableController tableController = createTableUseCase(viewManagerModel, tableViewModel, selectLanguagesViewModel, historyViewModel, translationViewModel, userDataAccessObject);
 
             return new TablePreferenceView(tableController, tableViewModel, historyViewModel);
 
@@ -41,13 +43,14 @@ public class TableUseCaseFactory {
                                                       TableViewModel tableViewModel,
                                                       SelectLanguagesViewModel selectLanguagesViewModel,
                                                       HistoryViewModel historyViewModel,
+                                                      TranslationViewModel translationViewModel,
                                                       TableUserDataAccessInterface userDataAccessObject) throws IOException {
 
-        TableOutputBoundary tableOutputBoundary = new TablePresenter(viewManagerModel, tableViewModel, selectLanguagesViewModel, historyViewModel);
+        TableOutputBoundary tableOutputBoundary = new TablePresenter(viewManagerModel, tableViewModel, selectLanguagesViewModel, historyViewModel, translationViewModel);
 
         TableInputBoundary tableInteractor = new TableInteractor(
                 userDataAccessObject, tableOutputBoundary);
 
-        return new TableController(tableInteractor);
+        return new TableController(tableInteractor, (TablePresenter) tableOutputBoundary, tableViewModel );
     }
 }

@@ -31,6 +31,7 @@ public class TablePreferenceView extends JPanel implements ActionListener, Prope
 
     private final JLabel sortErrorField = new JLabel();
     final JButton go;
+    private final JButton back;
 
     public TablePreferenceView(TableController tableController, TableViewModel tableViewModel, HistoryViewModel historyViewModel) {
         this.tableViewModel = tableViewModel;
@@ -40,12 +41,10 @@ public class TablePreferenceView extends JPanel implements ActionListener, Prope
         JLabel title = new JLabel(tableViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // add dropdown options for table type
         for (int i = 0; i < tableTypes.length; i++) {
             tableDropDown.addItem(tableTypes[i]);
         }
 
-        // add dropdown options for sort type
         for (int i = 0; i < sortTypes.length; i++) {
             sortDropDown.addItem(sortTypes[i]);
         }
@@ -57,12 +56,13 @@ public class TablePreferenceView extends JPanel implements ActionListener, Prope
 
         JPanel buttons = new JPanel();
         go = new JButton(tableViewModel.GO_BUTTON_LABEL);
+        back = new JButton(tableViewModel.BACK_BUTTON_LABEL);
         buttons.add(go);
+        buttons.add(back);
 
         tableDropDown.addActionListener(this);
         sortDropDown.addActionListener(this);
 
-        // transfer selected dropdown to controller in the form of a String when go button is pressed
 
         go.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -72,7 +72,9 @@ public class TablePreferenceView extends JPanel implements ActionListener, Prope
             }
         });
 
-        // set table type when dropdown option is pressed
+        // if back is pressed, go back to Translation
+        back.addActionListener(e -> tableController.backToTranslation());
+
         tableDropDown.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -89,8 +91,6 @@ public class TablePreferenceView extends JPanel implements ActionListener, Prope
             public void keyReleased(KeyEvent e) {
             }
         });
-
-        // set sort type when dropdown option is pressed
         sortDropDown.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -117,21 +117,18 @@ public class TablePreferenceView extends JPanel implements ActionListener, Prope
         this.add(sortErrorField);
         this.add(buttons);
     }
-
     public void actionPerformed(ActionEvent evt) {
 
         System.out.println("Click " + evt.getActionCommand());
-        // set table type when table type dropdown is pressed
         if (evt.getSource().equals(tableDropDown)) {
             HistoryState historyState = historyViewModel.getState();
             historyState.setHistoryTableType((String) tableDropDown.getSelectedItem());
         }
-        //set sort type when sort type dropdown is pressed
         if (evt.getSource().equals(sortDropDown)) {
             HistoryState historyState = historyViewModel.getState();
             historyState.setHistorySortType((String) sortDropDown.getSelectedItem());
         }
-        // make changes in historyViewModel whenever 'go' is pressed
+
         if (evt.getSource().equals(go)) {
             historyViewModel.firePropertyChanged();
         }
@@ -142,6 +139,7 @@ public class TablePreferenceView extends JPanel implements ActionListener, Prope
         TableState state = (TableState) evt.getNewValue();
         if (state.getTableTypeError() != null) {
             JOptionPane.showMessageDialog(this, state.getTableTypeError());
+
         }
     }
 }

@@ -95,7 +95,7 @@ public class Main {
             applyFontToComponent(translationView, goblinFont);
             views.add(translationView, translationView.viewName);
 
-            TablePreferenceView tablePreferenceView = TableUseCaseFactory.create(viewManagerModel, tableViewModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
+            TablePreferenceView tablePreferenceView = TableUseCaseFactory.create(viewManagerModel, tableViewModel, selectLanguagesViewModel, historyViewModel, translationViewModel, translationHistoryDataAccessObject);
             views.add(tablePreferenceView, tablePreferenceView.viewName);
 
             SelectLanguagesView selectLanguagesView = SelectLanguagesUseCaseFactory.create(viewManagerModel, selectLanguagesViewModel, historyViewModel, translationHistoryDataAccessObject);
