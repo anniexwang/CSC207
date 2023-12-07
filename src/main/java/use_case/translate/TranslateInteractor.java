@@ -1,16 +1,5 @@
 package use_case.translate;
-import use_case.retrieve_translation.RetrieveTranslationInteractor;
 import com.google.cloud.translate.*;
-import entity.UserFactory;
-import use_case.login.LoginInputData;
-import use_case.login.LoginOutputBoundary;
-import use_case.login.LoginUserDataAccessInterface;
-import use_case.retrieve_translation.RetrieveTranslationOutputData;
-import use_case.signup.SignupInputBoundary;
-import use_case.translate.TranslateOutputBoundary;
-import use_case.translate.TranslateUserDataAccessInterface;
-import use_case.translate.TranslateOutputBoundary;
-import use_case.translate.TranslateUserDataAccessInterface;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -42,7 +31,6 @@ public class TranslateInteractor implements TranslateInputBoundary {
             translationPresenter.prepareFailView("Translation Field Empty");
             return;
         }
-
         // Call the translation service or library here
         String translated = translate(original);
         // Create a translation object
@@ -70,13 +58,13 @@ public class TranslateInteractor implements TranslateInputBoundary {
         translationPresenter.prepareSuccessView(translated);
     }
 
+    // Returns the translated String given the original String through use of the Google Translate API.
     private String translate(String original) {
         try {
-            // Set the API Key
+            // Set the API Key necessary for Google Translate API to function
             String apiKey = "AIzaSyAORNlqu0L0NZBzt-ddgWsSYWYTwEOut-A";
             Translate translate = TranslateOptions.newBuilder().setApiKey(apiKey).build().getService();
-            // Input's autodetected language
-            String originalLang = translate.detect(original).getLanguage();
+            // Use Google Translate API to translate the input to English.
             Translation translation = translate.translate(original,
                     Translate.TranslateOption.targetLanguage("en"));
             String translationOutputData = translation.getTranslatedText();
