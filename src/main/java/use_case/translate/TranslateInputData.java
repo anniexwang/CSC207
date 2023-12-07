@@ -1,7 +1,5 @@
 package use_case.translate;
 import com.google.cloud.translate.TranslateOptions;
-import com.google.cloud.translate.Translation;
-import data_access.UserRetrieveTranslationDataAccessInterface;
 import com.google.cloud.translate.Translate;
 
 public class TranslateInputData {
