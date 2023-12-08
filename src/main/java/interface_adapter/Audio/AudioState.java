@@ -2,10 +2,15 @@ package interface_adapter.Audio;
 
 /**
  * Represents the current state of the audio system.
+ * This class is used to manage and track the state of the audio system, specifically whether the audio is currently muted or not.
  */
 public class AudioState {
     private boolean isMuted;
 
+    /**
+     * Constructor for the AudioState class.
+     * Initializes the audio state as not muted.
+     */
     public AudioState() {
         this.isMuted = false;  // Initialize with audio not muted
     }
@@ -28,6 +33,4 @@ public class AudioState {
         isMuted = muted;
     }
 
-    // You can add more fields and methods here to represent other aspects
-    // of the audio system's state, such as volume level, current track, etc.
 }
