@@ -13,6 +13,11 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 
+/**
+ * Represents the signup view of the application.
+ * This class extends JPanel and implements ActionListener and PropertyChangeListener.
+ * It holds the state of the signup view and provides methods to handle user actions and property changes.
+ */
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     // Constants
     public final String viewName = "sign up"; // Name of the view
@@ -31,7 +36,13 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     private final AudioController audioController;
 
-    // Constructor
+    /**
+     * Constructs a SignupView instance.
+     *
+     * @param controller The controller for signup.
+     * @param signupViewModel The view model for signup.
+     * @param audioController The audio manager for handling audio.
+     */
     public SignupView(SignupController controller, SignupViewModel signupViewModel, AudioController audioController) {
         this.signupController = controller;
         this.audioController = audioController;
@@ -101,6 +112,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
         // Set background and foreground for each component
         setComponentColors(containerPanel);
+
+
 
         // Start playing background music
 
