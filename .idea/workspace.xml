@@ -4,163 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28ac504b-8228-4d44-a4a6-f2dba750c4ee" name="Changes" comment="bugfix for histroryviewmodel not working on empty list">
-      <change afterPath="$PROJECT_DIR$/.idea/CoverUsage.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CSC207F2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/parse_logs.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/app/TableUseCaseFactoryDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/app/TranslationUseCaseFactoryDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/data_access/FileTranslationHistoryDataAccessObjectDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/data_access/FileUserDataAccessObjectDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/entity/CommonUserDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/entity/CommonUserFactoryDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/Audio/AudioControllerDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/Audio/AudioControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/Audio/AudioStateTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/ViewManagerModelDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/history/HistoryStateTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/history/HistoryViewModelDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/history/t3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/login/LoginStateDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/select_languages/SelectLanguagesControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/select_languages/SelectLanguagesPresenterDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/select_languages/SelectLanguagesStateDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/select_languages/SelectLanguagesViewModelDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/SignupControllerDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/SignupPresenterDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/SignupStateDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/t1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/t2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/table_preferences/TablePresenterDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/table_preferences/TableStateDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/table_preferences/t1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/table_preferences/t2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/translation/TranslationControllerDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/translation/TranslationPresenterDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/translation/TranslationStateDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/translation/TranslationViewModelDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/Audio/AudioInputDataDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/Audio/AudioInteractorDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/select_languages/SelectLanguagesInteractorDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/select_languages/t2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/select_languages/t3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/signup/SignupInputDataDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/signup/SignupInteractorDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/signup/SignupOutputDataDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/translate/TranslateInputDataDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/translate/TranslateInteractorDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/translate/TranslateOutputDataDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/translate/t4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/view/HistoryViewDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/view/LabelTextPanelDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/view/LoginViewDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/view/RainbowButtonDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/view/SelectLanguagesViewDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/view/SignupViewDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/view/TablePreferenceViewDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/view/TextAreaPanelDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/view/TranslationViewDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/view/ViewManagerDiffblueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/test.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/test2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/users.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/google_cloud_translate.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mockito_core.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mockito_core.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_10_42_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_10_42_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_11_27_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_11_27_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_11_27_PM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_5_2023_11_27_PM__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_03_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_03_AM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_03_AM__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_6_2023_2_03_AM__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="28ac504b-8228-4d44-a4a6-f2dba750c4ee" name="Changes" comment="Created tests">
+      <change afterPath="$PROJECT_DIR$/parse_logs.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/LoginUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/LoginUseCaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/TableUseCaseFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/TableUseCaseFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/ClearDataAccessObject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/FileTranslationHistoryDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/FileTranslationHistoryDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/InMemoryUserDataAccessObject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/UserRetrieveTranslationDataAccessInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/Audio/AudioPresenter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/clear/ClearController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/clear/ClearPresenter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/clear/ClearState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/clear/ClearViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/history/HistoryState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/history/HistoryState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/logged_in/LoggedInState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/logged_in/LoggedInViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/login/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/login/LoginPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/login/ViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/Audio/AudioOutputData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/clear/ClearInputBoundary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/clear/ClearInputData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/clear/ClearInteractor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/clear/ClearOutputBoundary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/clear/ClearOutputData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/clear/ClearUserDataAccessInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/ITranslationHistory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslateInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslationEntry.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/TranslationHistory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/translate/Writer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/AudioManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/ClearView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/LoggedInView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/app/LoginUseCaseFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/app/LoginUseCaseFactoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/data_access/FileUserDataAccessObjectTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/data_access/FileUserDataAccessObjectTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/login/LoginInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/login/LoginInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/LoginUseCaseFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/LoginUseCaseFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/app/TableUseCaseFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/app/TableUseCaseFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/ClearDataAccessObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/FileTranslationHistoryDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data_access/FileTranslationHistoryDataAccessObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/InMemoryUserDataAccessObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/UserRetrieveTranslationDataAccessInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/Audio/AudioPresenter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/clear/ClearController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/clear/ClearPresenter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/clear/ClearState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/clear/ClearViewModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/history/HistoryState.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/history/HistoryState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/logged_in/LoggedInState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/logged_in/LoggedInViewModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginPresenter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/ViewModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/select_languages/SelectLanguagesViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/select_languages/SelectLanguagesViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/table_preferences/TableController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/table_preferences/TableController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/table_preferences/TablePresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/table_preferences/TablePresenter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/Audio/AudioOutputData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/clear/ClearInputBoundary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/clear/ClearInputData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/clear/ClearInteractor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/clear/ClearOutputBoundary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/clear/ClearOutputData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/clear/ClearUserDataAccessInterface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/select_languages/SelectLanguagesInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/select_languages/SelectLanguagesInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/table_preferences/TableInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/table_preferences/TableInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/ITranslationHistory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/translate/TranslateInteractor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslationEntry.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/TranslationHistory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/translate/Writer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/AudioManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/ClearView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoggedInView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/LoginView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/SelectLanguagesView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SelectLanguagesView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/SelectLanguagesView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/SelectLanguagesView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/TablePreferenceView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/TablePreferenceView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/TablePreferenceView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/TablePreferenceView$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/TablePreferenceView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/TablePreferenceView$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/view/TablePreferenceView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/TablePreferenceView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/TranslationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/TranslationView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/interface_adapter/Audio/AudioControllerDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/Audio/AudioControllerDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/interface_adapter/history/HistoryViewModelDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/history/HistoryViewModelDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/interface_adapter/history/HistoryViewModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/history/HistoryViewModelTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/interface_adapter/login/LoginStateDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/login/LoginStateDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/interface_adapter/select_languages/SelectLanguagesPresenterDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/select_languages/SelectLanguagesPresenterDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/interface_adapter/select_languages/SelectLanguagesStateDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/select_languages/SelectLanguagesStateDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/SignupControllerDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/SignupControllerDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/SignupPresenterDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/SignupPresenterDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/SignupStateDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/signup/SignupStateDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/interface_adapter/table_preferences/TablePresenterDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/table_preferences/TablePresenterDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/interface_adapter/table_preferences/TableStateDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/table_preferences/TableStateDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/interface_adapter/translation/TranslationControllerDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/translation/TranslationControllerDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/interface_adapter/translation/TranslationPresenterDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/translation/TranslationPresenterDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/interface_adapter/translation/TranslationStateDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/interface_adapter/translation/TranslationStateDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/signup/SignupInteractorDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/signup/SignupInteractorDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/translate/TranslateInteractorDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/translate/TranslateInteractorDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/view/HistoryViewDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/view/HistoryViewDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/view/LabelTextPanelDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/view/LabelTextPanelDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/view/LoginViewDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/view/LoginViewDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/view/SelectLanguagesViewDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/view/SelectLanguagesViewDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/view/SignupViewDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/view/SignupViewDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/view/TablePreferenceViewDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/view/TablePreferenceViewDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/view/TranslationViewDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/view/TranslationViewDiffblueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/view/ViewManagerDiffblueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/view/ViewManagerDiffblueTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OPEN_IN_BROWSER" value="true" />
+    <option name="OUTPUT_DIRECTORY" value="C:\Users\Winter\IdeaProjects\CSC207F2\htmlReport" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -201,10 +81,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231207_0000",
+    "com.google.cloudcode.ide_session_index": "20231207_0001",
     "git-widget-placeholder": "Test",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Winter/IdeaProjects/CSC207F2/src/test/resources",
+    "last_opened_file_path": "C:/Users/Winter/IdeaProjects/CSC207F2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -219,8 +99,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Winter\IdeaProjects\CSC207F2\src\test\resources" />
       <recent name="C:\Users\Winter\IdeaProjects\CSC207F2" />
+      <recent name="C:\Users\Winter\IdeaProjects\CSC207F2\src\test\resources" />
       <recent name="C:\Users\Winter\IdeaProjects\CSC207F2\src\main\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -232,7 +112,7 @@
       <recent name="interface_adapter.Audio" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.view in translayte">
+  <component name="RunManager" selected="Shell Script.parse_logs.sh">
     <configuration default="true" type="DjangoTestsConfigurationType">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -260,20 +140,6 @@
         <pattern testClass="use_case.translate.TranslateInputDataDiffblueTest" />
         <pattern testClass="use_case.translate.TranslateInteractorDiffblueTest" />
         <pattern testClass="use_case.translate.TranslateOutputDataDiffblueTest" />
-      </patterns>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TranslateInputDataDiffblueTest and 4 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="translayte" />
-      <option name="TEST_OBJECT" value="pattern" />
-      <patterns>
-        <pattern testClass="use_case.translate.TranslateInputDataDiffblueTest" />
-        <pattern testClass="use_case.translate.TranslateInteractorDiffblueTest" />
-        <pattern testClass="use_case.translate.TranslateOutputDataDiffblueTest" />
-        <pattern testClass="use_case.translate.TranslationEntryDiffblueTest" />
-        <pattern testClass="use_case.translate.TranslationHistoryDiffblueTest" />
       </patterns>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -361,6 +227,21 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <configuration name="parse_logs.sh" type="ShConfigurationType" temporary="true">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/src/main/parse_logs.sh" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/src/main" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="Tox" factoryName="Tox">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -383,11 +264,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Shell Script.parse_logs.sh" />
         <item itemvalue="JUnit.view in translayte" />
         <item itemvalue="Diffblue Cover.Write tests for package view" />
         <item itemvalue="JUnit.TranslateInteractorTest" />
         <item itemvalue="JUnit.TranslateInputDataDiffblueTest and 2 more" />
-        <item itemvalue="JUnit.TranslateInputDataDiffblueTest and 4 more" />
       </list>
     </recent_temporary>
   </component>
@@ -402,7 +283,7 @@
       <workItem from="1701832701018" duration="6147000" />
       <workItem from="1701839543888" duration="8183000" />
       <workItem from="1701851816838" duration="8440000" />
-      <workItem from="1701961911458" duration="6817000" />
+      <workItem from="1701961911458" duration="11420000" />
     </task>
     <task id="LOCAL-00001" summary="file writer">
       <option name="closed" value="true" />
@@ -452,7 +333,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701918601032</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Created tests">
+      <option name="closed" value="true" />
+      <created>1701968880763</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1701968880763</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,7 +365,8 @@
     <MESSAGE value="Added comments to TranslateInputData.java" />
     <MESSAGE value="Added comments to TranslateInteractor.java" />
     <MESSAGE value="Added comments to TranslateOutputData.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added comments to TranslateOutputData.java" />
+    <MESSAGE value="Created tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

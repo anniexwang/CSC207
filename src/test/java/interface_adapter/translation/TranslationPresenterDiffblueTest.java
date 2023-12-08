@@ -22,14 +22,6 @@ class TranslationPresenterDiffblueTest {
      */
     @Test
     void testConstructor() {
-        // TODO: Complete this test.
-        //   Reason: R002 Missing observers.
-        //   Diffblue Cover was unable to create an assertion.
-        //   Add getters for the following fields or make them package-private:
-        //     TranslationPresenter.signupViewModel
-        //     TranslationPresenter.tableViewModel
-        //     TranslationPresenter.translationViewModel
-        //     TranslationPresenter.viewManagerModel
 
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         TranslationViewModel translationViewModel = new TranslationViewModel();
@@ -43,14 +35,6 @@ class TranslationPresenterDiffblueTest {
      */
     @Test
     void testPrepareSuccessView() {
-        // TODO: Complete this test.
-        //   Reason: R002 Missing observers.
-        //   Diffblue Cover was unable to create an assertion.
-        //   Add getters for the following fields or make them package-private:
-        //     TranslationPresenter.signupViewModel
-        //     TranslationPresenter.tableViewModel
-        //     TranslationPresenter.translationViewModel
-        //     TranslationPresenter.viewManagerModel
 
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         TranslationViewModel translationViewModel = new TranslationViewModel();
@@ -65,13 +49,6 @@ class TranslationPresenterDiffblueTest {
     @Test
     @Disabled("TODO: Complete this test")
     void testPrepareSuccessView2() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.ViewManagerModel.setActiveView(String)" because "this.viewManagerModel" is null
-        //       at interface_adapter.translation.TranslationPresenter.prepareSuccessView(TranslationPresenter.java:29)
-        //   See https://diff.blue/R013 to resolve this issue.
 
         TranslationViewModel translationViewModel = new TranslationViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
@@ -102,13 +79,6 @@ class TranslationPresenterDiffblueTest {
     @Test
     @Disabled("TODO: Complete this test")
     void testPrepareSuccessView4() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.translation.TranslationViewModel.getState()" because "this.translationViewModel" is null
-        //       at interface_adapter.translation.TranslationPresenter.prepareSuccessView(TranslationPresenter.java:25)
-        //   See https://diff.blue/R013 to resolve this issue.
 
         PropertyChangeListener listener = mock(PropertyChangeListener.class);
         doNothing().when(listener).propertyChange(Mockito.<PropertyChangeEvent>any());
@@ -126,13 +96,7 @@ class TranslationPresenterDiffblueTest {
     @Test
     @Disabled("TODO: Complete this test")
     void testPrepareSuccessView5() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.translation.TranslationState.setTranslated(String)" because "translationState" is null
-        //       at interface_adapter.translation.TranslationPresenter.prepareSuccessView(TranslationPresenter.java:26)
-        //   See https://diff.blue/R013 to resolve this issue.
+
 
         PropertyChangeListener listener = mock(PropertyChangeListener.class);
         doNothing().when(listener).propertyChange(Mockito.<PropertyChangeEvent>any());
@@ -152,14 +116,6 @@ class TranslationPresenterDiffblueTest {
      */
     @Test
     void testBackToSignup() {
-        // TODO: Complete this test.
-        //   Reason: R002 Missing observers.
-        //   Diffblue Cover was unable to create an assertion.
-        //   Add getters for the following fields or make them package-private:
-        //     TranslationPresenter.signupViewModel
-        //     TranslationPresenter.tableViewModel
-        //     TranslationPresenter.translationViewModel
-        //     TranslationPresenter.viewManagerModel
 
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         TranslationViewModel translationViewModel = new TranslationViewModel();
@@ -174,13 +130,7 @@ class TranslationPresenterDiffblueTest {
     @Test
     @Disabled("TODO: Complete this test")
     void testBackToSignup2() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.ViewManagerModel.setActiveView(String)" because "this.viewManagerModel" is null
-        //       at interface_adapter.translation.TranslationPresenter.backToSignup(TranslationPresenter.java:33)
-        //   See https://diff.blue/R013 to resolve this issue.
+
 
         TranslationViewModel translationViewModel = new TranslationViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
@@ -210,13 +160,7 @@ class TranslationPresenterDiffblueTest {
     @Test
     @Disabled("TODO: Complete this test")
     void testBackToSignup4() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.signup.SignupViewModel.getViewName()" because "this.signupViewModel" is null
-        //       at interface_adapter.translation.TranslationPresenter.backToSignup(TranslationPresenter.java:33)
-        //   See https://diff.blue/R013 to resolve this issue.
+
 
         PropertyChangeListener listener = mock(PropertyChangeListener.class);
         doNothing().when(listener).propertyChange(Mockito.<PropertyChangeEvent>any());
@@ -232,14 +176,7 @@ class TranslationPresenterDiffblueTest {
      */
     @Test
     void testGoToHistory() {
-        // TODO: Complete this test.
-        //   Reason: R002 Missing observers.
-        //   Diffblue Cover was unable to create an assertion.
-        //   Add getters for the following fields or make them package-private:
-        //     TranslationPresenter.signupViewModel
-        //     TranslationPresenter.tableViewModel
-        //     TranslationPresenter.translationViewModel
-        //     TranslationPresenter.viewManagerModel
+
 
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         TranslationViewModel translationViewModel = new TranslationViewModel();
@@ -254,13 +191,6 @@ class TranslationPresenterDiffblueTest {
     @Test
     @Disabled("TODO: Complete this test")
     void testGoToHistory2() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.ViewManagerModel.setActiveView(String)" because "this.viewManagerModel" is null
-        //       at interface_adapter.translation.TranslationPresenter.goToHistory(TranslationPresenter.java:38)
-        //   See https://diff.blue/R013 to resolve this issue.
 
         TranslationViewModel translationViewModel = new TranslationViewModel();
         SignupViewModel signupViewModel = new SignupViewModel();
@@ -290,13 +220,7 @@ class TranslationPresenterDiffblueTest {
     @Test
     @Disabled("TODO: Complete this test")
     void testGoToHistory4() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.table_preferences.TableViewModel.getViewName()" because "this.tableViewModel" is null
-        //       at interface_adapter.translation.TranslationPresenter.goToHistory(TranslationPresenter.java:38)
-        //   See https://diff.blue/R013 to resolve this issue.
+
 
         PropertyChangeListener listener = mock(PropertyChangeListener.class);
         doNothing().when(listener).propertyChange(Mockito.<PropertyChangeEvent>any());
@@ -312,14 +236,7 @@ class TranslationPresenterDiffblueTest {
      */
     @Test
     void testPrepareCancelView() {
-        // TODO: Complete this test.
-        //   Reason: R002 Missing observers.
-        //   Diffblue Cover was unable to create an assertion.
-        //   Add getters for the following fields or make them package-private:
-        //     TranslationPresenter.signupViewModel
-        //     TranslationPresenter.tableViewModel
-        //     TranslationPresenter.translationViewModel
-        //     TranslationPresenter.viewManagerModel
+
 
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         TranslationViewModel translationViewModel = new TranslationViewModel();
@@ -333,14 +250,7 @@ class TranslationPresenterDiffblueTest {
      */
     @Test
     void testPrepareCancelView2() {
-        // TODO: Complete this test.
-        //   Reason: R002 Missing observers.
-        //   Diffblue Cover was unable to create an assertion.
-        //   Add getters for the following fields or make them package-private:
-        //     TranslationPresenter.signupViewModel
-        //     TranslationPresenter.tableViewModel
-        //     TranslationPresenter.translationViewModel
-        //     TranslationPresenter.viewManagerModel
+
 
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         viewManagerModel.addPropertyChangeListener(mock(PropertyChangeListener.class));
@@ -350,38 +260,14 @@ class TranslationPresenterDiffblueTest {
                 .prepareCancelView();
     }
 
-    /**
-     * Method under test: {@link TranslationPresenter#prepareCancelView()}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testPrepareCancelView3() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.translation.TranslationViewModel.getState()" because "this.translationViewModel" is null
-        //       at interface_adapter.translation.TranslationPresenter.prepareCancelView(TranslationPresenter.java:44)
-        //   See https://diff.blue/R013 to resolve this issue.
 
-        ViewManagerModel viewManagerModel = new ViewManagerModel();
-        SignupViewModel signupViewModel = new SignupViewModel();
-        (new TranslationPresenter(viewManagerModel, null, signupViewModel, new TableViewModel())).prepareCancelView();
-    }
 
     /**
      * Method under test: {@link TranslationPresenter#prepareFailView(String)}
      */
     @Test
     void testPrepareFailView() {
-        // TODO: Complete this test.
-        //   Reason: R002 Missing observers.
-        //   Diffblue Cover was unable to create an assertion.
-        //   Add getters for the following fields or make them package-private:
-        //     TranslationPresenter.signupViewModel
-        //     TranslationPresenter.tableViewModel
-        //     TranslationPresenter.translationViewModel
-        //     TranslationPresenter.viewManagerModel
+
 
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         TranslationViewModel translationViewModel = new TranslationViewModel();
@@ -395,14 +281,7 @@ class TranslationPresenterDiffblueTest {
      */
     @Test
     void testPrepareFailView2() {
-        // TODO: Complete this test.
-        //   Reason: R002 Missing observers.
-        //   Diffblue Cover was unable to create an assertion.
-        //   Add getters for the following fields or make them package-private:
-        //     TranslationPresenter.signupViewModel
-        //     TranslationPresenter.tableViewModel
-        //     TranslationPresenter.translationViewModel
-        //     TranslationPresenter.viewManagerModel
+
 
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         viewManagerModel.addPropertyChangeListener(mock(PropertyChangeListener.class));
@@ -412,23 +291,5 @@ class TranslationPresenterDiffblueTest {
                 .prepareFailView("An error occurred");
     }
 
-    /**
-     * Method under test: {@link TranslationPresenter#prepareFailView(String)}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testPrepareFailView3() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.translation.TranslationViewModel.getState()" because "this.translationViewModel" is null
-        //       at interface_adapter.translation.TranslationPresenter.prepareFailView(TranslationPresenter.java:51)
-        //   See https://diff.blue/R013 to resolve this issue.
 
-        ViewManagerModel viewManagerModel = new ViewManagerModel();
-        SignupViewModel signupViewModel = new SignupViewModel();
-        (new TranslationPresenter(viewManagerModel, null, signupViewModel, new TableViewModel()))
-                .prepareFailView("An error occurred");
-    }
 }

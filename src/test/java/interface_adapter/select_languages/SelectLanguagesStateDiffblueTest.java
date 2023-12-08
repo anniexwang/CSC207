@@ -44,21 +44,5 @@ class SelectLanguagesStateDiffblueTest {
         assertNull(actualSelectLanguagesState.getLanguagesError());
     }
 
-    /**
-     * Method under test:
-     * {@link SelectLanguagesState#SelectLanguagesState(SelectLanguagesState)}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testConstructor3() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot read field "languages" because "copy" is null
-        //       at interface_adapter.select_languages.SelectLanguagesState.<init>(SelectLanguagesState.java:10)
-        //   See https://diff.blue/R013 to resolve this issue.
 
-        new SelectLanguagesState(null);
-    }
 }

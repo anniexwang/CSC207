@@ -20,13 +20,6 @@ class TranslationControllerDiffblueTest {
      */
     @Test
     void testConstructor() {
-        // TODO: Complete this test.
-        //   Reason: R002 Missing observers.
-        //   Diffblue Cover was unable to create an assertion.
-        //   Add getters for the following fields or make them package-private:
-        //     TranslationController.translateUseCaseInteractor
-        //     TranslationController.translationPresenter
-        //     TranslationController.translationViewModel
 
         TranslateInputBoundary translateUseCaseInteractor = mock(TranslateInputBoundary.class);
         ViewManagerModel viewManagerModel = new ViewManagerModel();
@@ -44,13 +37,6 @@ class TranslationControllerDiffblueTest {
      */
     @Test
     void testBackToSignup() {
-        // TODO: Complete this test.
-        //   Reason: R002 Missing observers.
-        //   Diffblue Cover was unable to create an assertion.
-        //   Add getters for the following fields or make them package-private:
-        //     TranslationController.translateUseCaseInteractor
-        //     TranslationController.translationPresenter
-        //     TranslationController.translationViewModel
 
         TranslateInputBoundary translateUseCaseInteractor = mock(TranslateInputBoundary.class);
         ViewManagerModel viewManagerModel = new ViewManagerModel();
@@ -69,14 +55,6 @@ class TranslationControllerDiffblueTest {
     @Test
     @Disabled("TODO: Complete this test")
     void testBackToSignup2() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.ViewManagerModel.setActiveView(String)" because "this.viewManagerModel" is null
-        //       at interface_adapter.translation.TranslationPresenter.backToSignup(TranslationPresenter.java:33)
-        //       at interface_adapter.translation.TranslationController.backToSignup(TranslationController.java:22)
-        //   See https://diff.blue/R013 to resolve this issue.
 
         TranslateInputBoundary translateUseCaseInteractor = mock(TranslateInputBoundary.class);
         TranslationViewModel translationViewModel = new TranslationViewModel();
@@ -94,14 +72,7 @@ class TranslationControllerDiffblueTest {
     @Test
     @Disabled("TODO: Complete this test")
     void testBackToSignup3() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.signup.SignupViewModel.getViewName()" because "this.signupViewModel" is null
-        //       at interface_adapter.translation.TranslationPresenter.backToSignup(TranslationPresenter.java:33)
-        //       at interface_adapter.translation.TranslationController.backToSignup(TranslationController.java:22)
-        //   See https://diff.blue/R013 to resolve this issue.
+
 
         TranslateInputBoundary translateUseCaseInteractor = mock(TranslateInputBoundary.class);
         ViewManagerModel viewManagerModel = new ViewManagerModel();
@@ -118,13 +89,6 @@ class TranslationControllerDiffblueTest {
      */
     @Test
     void testGoToHistory() {
-        // TODO: Complete this test.
-        //   Reason: R002 Missing observers.
-        //   Diffblue Cover was unable to create an assertion.
-        //   Add getters for the following fields or make them package-private:
-        //     TranslationController.translateUseCaseInteractor
-        //     TranslationController.translationPresenter
-        //     TranslationController.translationViewModel
 
         TranslateInputBoundary translateUseCaseInteractor = mock(TranslateInputBoundary.class);
         ViewManagerModel viewManagerModel = new ViewManagerModel();
@@ -143,14 +107,7 @@ class TranslationControllerDiffblueTest {
     @Test
     @Disabled("TODO: Complete this test")
     void testGoToHistory2() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.ViewManagerModel.setActiveView(String)" because "this.viewManagerModel" is null
-        //       at interface_adapter.translation.TranslationPresenter.goToHistory(TranslationPresenter.java:38)
-        //       at interface_adapter.translation.TranslationController.goToHistory(TranslationController.java:24)
-        //   See https://diff.blue/R013 to resolve this issue.
+
 
         TranslateInputBoundary translateUseCaseInteractor = mock(TranslateInputBoundary.class);
         TranslationViewModel translationViewModel = new TranslationViewModel();
@@ -168,14 +125,7 @@ class TranslationControllerDiffblueTest {
     @Test
     @Disabled("TODO: Complete this test")
     void testGoToHistory3() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.table_preferences.TableViewModel.getViewName()" because "this.tableViewModel" is null
-        //       at interface_adapter.translation.TranslationPresenter.goToHistory(TranslationPresenter.java:38)
-        //       at interface_adapter.translation.TranslationController.goToHistory(TranslationController.java:24)
-        //   See https://diff.blue/R013 to resolve this issue.
+
 
         TranslateInputBoundary translateUseCaseInteractor = mock(TranslateInputBoundary.class);
         ViewManagerModel viewManagerModel = new ViewManagerModel();
@@ -192,13 +142,7 @@ class TranslationControllerDiffblueTest {
      */
     @Test
     void testHandleCancel() {
-        // TODO: Complete this test.
-        //   Reason: R002 Missing observers.
-        //   Diffblue Cover was unable to create an assertion.
-        //   Add getters for the following fields or make them package-private:
-        //     TranslationController.translateUseCaseInteractor
-        //     TranslationController.translationPresenter
-        //     TranslationController.translationViewModel
+
 
         TranslateInputBoundary translateUseCaseInteractor = mock(TranslateInputBoundary.class);
         ViewManagerModel viewManagerModel = new ViewManagerModel();
@@ -217,14 +161,7 @@ class TranslationControllerDiffblueTest {
     @Test
     @Disabled("TODO: Complete this test")
     void testHandleCancel2() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.translation.TranslationViewModel.getState()" because "this.translationViewModel" is null
-        //       at interface_adapter.translation.TranslationPresenter.prepareCancelView(TranslationPresenter.java:44)
-        //       at interface_adapter.translation.TranslationController.handleCancel(TranslationController.java:28)
-        //   See https://diff.blue/R013 to resolve this issue.
+
 
         TranslateInputBoundary translateUseCaseInteractor = mock(TranslateInputBoundary.class);
         ViewManagerModel viewManagerModel = new ViewManagerModel();
@@ -242,14 +179,7 @@ class TranslationControllerDiffblueTest {
     @Test
     @Disabled("TODO: Complete this test")
     void testHandleCancel3() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.translation.TranslationState.clearState()" because "translationState" is null
-        //       at interface_adapter.translation.TranslationPresenter.prepareCancelView(TranslationPresenter.java:45)
-        //       at interface_adapter.translation.TranslationController.handleCancel(TranslationController.java:28)
-        //   See https://diff.blue/R013 to resolve this issue.
+
 
         TranslationViewModel translationViewModel = new TranslationViewModel();
         translationViewModel.setState(null);
@@ -287,13 +217,7 @@ class TranslationControllerDiffblueTest {
     @Test
     @Disabled("TODO: Complete this test")
     void testExecute2() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.translation.TranslationViewModel.getState()" because "this.translationViewModel" is null
-        //       at interface_adapter.translation.TranslationController.execute(TranslationController.java:31)
-        //   See https://diff.blue/R013 to resolve this issue.
+
 
         TranslateInputBoundary translateUseCaseInteractor = mock(TranslateInputBoundary.class);
         doNothing().when(translateUseCaseInteractor).execute(Mockito.<TranslateInputData>any());

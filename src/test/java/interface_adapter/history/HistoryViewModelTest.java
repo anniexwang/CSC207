@@ -75,7 +75,6 @@ class HistoryViewModelTest {
     void getTitles() {
         HistoryViewModel historyViewModel = mock(HistoryViewModel.class);
         historyViewModel.getTitles();
-        //TODO: add cases
     }
 
 

@@ -63,23 +63,6 @@ class TranslationStateDiffblueTest {
         assertEquals(TranslationViewModel.TRANSLATE_OUTPUT, actualTranslationState.getUsername());
     }
 
-    /**
-     * Method under test:
-     * {@link TranslationState#TranslationState(TranslationState)}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testConstructor3() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot read field "original" because "copy" is null
-        //       at interface_adapter.translation.TranslationState.<init>(TranslationState.java:15)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        new TranslationState(null);
-    }
 
     /**
      * Method under test: {@link TranslationState#clearState()}

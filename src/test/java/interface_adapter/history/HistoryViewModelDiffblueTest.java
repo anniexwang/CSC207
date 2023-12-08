@@ -93,25 +93,6 @@ class HistoryViewModelDiffblueTest {
         assertTrue(historyViewModel.getData().isEmpty());
     }
 
-    /**
-     * Method under test: {@link HistoryViewModel#getData()}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testGetData3() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.history.HistoryState.getCurrentUsername()" because "this.state" is null
-        //       at interface_adapter.history.HistoryViewModel.getData(HistoryViewModel.java:53)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        HistoryViewModel historyViewModel = new HistoryViewModel();
-        historyViewModel.setState(null);
-        historyViewModel.addPropertyChangeListener(mock(PropertyChangeListener.class));
-        historyViewModel.getData();
-    }
 
     /**
      * Methods under test:
@@ -152,23 +133,6 @@ class HistoryViewModelDiffblueTest {
     }
 
     /**
-     * Method under test: {@link HistoryViewModel#separateToColumns(String[])}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testSeparateToColumns3() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
-        //       at interface_adapter.history.HistoryViewModel.separateToColumns(HistoryViewModel.java:144)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        (new HistoryViewModel()).separateToColumns(new String[]{});
-    }
-
-    /**
      * Method under test: {@link HistoryViewModel#maxColumnLength(String[][])}
      */
     @Test
@@ -205,25 +169,7 @@ class HistoryViewModelDiffblueTest {
         assertEquals(0, historyViewModel.getTitles().length);
     }
 
-    /**
-     * Method under test: {@link HistoryViewModel#getTitles()}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testGetTitles3() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.history.HistoryState.getTableType()" because "this.state" is null
-        //       at interface_adapter.history.HistoryViewModel.getTitles(HistoryViewModel.java:184)
-        //   See https://diff.blue/R013 to resolve this issue.
 
-        HistoryViewModel historyViewModel = new HistoryViewModel();
-        historyViewModel.setState(null);
-        historyViewModel.addPropertyChangeListener(mock(PropertyChangeListener.class));
-        historyViewModel.getTitles();
-    }
 
     /**
      * Method under test: {@link HistoryViewModel#convertToStringArray(ArrayList)}
@@ -346,111 +292,6 @@ class HistoryViewModelDiffblueTest {
         assertEquals(0, historyViewModel.convertToStringArray(new ArrayList<>()).length);
     }
 
-    /**
-     * Method under test: {@link HistoryViewModel#convertToStringArray(ArrayList)}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testConvertToStringArray4() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
-        //       at interface_adapter.history.HistoryViewModel.separateToColumns(HistoryViewModel.java:144)
-        //       at interface_adapter.history.HistoryViewModel.convertToStringArray(HistoryViewModel.java:226)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        HistoryViewModel historyViewModel = new HistoryViewModel();
-
-        ArrayList<List<String>> data = new ArrayList<>();
-        data.add(new ArrayList<>());
-        historyViewModel.convertToStringArray(data);
-    }
-
-    /**
-     * Method under test: {@link HistoryViewModel#convertToStringArray(ArrayList)}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testConvertToStringArray5() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
-        //       at interface_adapter.history.HistoryViewModel.separateToColumns(HistoryViewModel.java:144)
-        //       at interface_adapter.history.HistoryViewModel.convertToStringArray(HistoryViewModel.java:226)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        HistoryViewModel historyViewModel = new HistoryViewModel();
-
-        ArrayList<List<String>> data = new ArrayList<>();
-        data.add(new ArrayList<>());
-        data.add(new ArrayList<>());
-        historyViewModel.convertToStringArray(data);
-    }
-
-    /**
-     * Method under test: {@link HistoryViewModel#convertToStringArray(ArrayList)}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testConvertToStringArray6() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
-        //       at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
-        //       at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
-        //       at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
-        //       at java.base/java.util.Objects.checkIndex(Objects.java:385)
-        //       at java.base/java.util.ArrayList.get(ArrayList.java:427)
-        //       at interface_adapter.history.HistoryViewModel.convertToStringArray(HistoryViewModel.java:224)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        HistoryViewModel historyViewModel = new HistoryViewModel();
-
-        ArrayList<String> stringList = new ArrayList<>();
-        stringList.add("foo");
-
-        ArrayList<List<String>> data = new ArrayList<>();
-        data.add(stringList);
-        data.add(new ArrayList<>());
-        historyViewModel.convertToStringArray(data);
-    }
-
-    /**
-     * Method under test: {@link HistoryViewModel#convertToStringArray(ArrayList)}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testConvertToStringArray7() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
-        //       at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:100)
-        //       at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:106)
-        //       at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:302)
-        //       at java.base/java.util.Objects.checkIndex(Objects.java:385)
-        //       at java.base/java.util.ArrayList.get(ArrayList.java:427)
-        //       at interface_adapter.history.HistoryViewModel.convertToStringArray(HistoryViewModel.java:224)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        HistoryViewModel historyViewModel = new HistoryViewModel();
-
-        ArrayList<String> stringList = new ArrayList<>();
-        stringList.add("}");
-        stringList.add("foo");
-
-        ArrayList<List<String>> data = new ArrayList<>();
-        data.add(stringList);
-        data.add(new ArrayList<>());
-        historyViewModel.convertToStringArray(data);
-    }
 
     /**
      * Method under test: {@link HistoryViewModel#languageHistory(String[][])}
@@ -673,28 +514,6 @@ class HistoryViewModelDiffblueTest {
         assertArrayEquals(new String[]{"foo"}, actualSortResult[0]);
     }
 
-    /**
-     * Method under test: {@link HistoryViewModel#sort(String[][])}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testSort4() throws ParseException {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.text.ParseException: Unparseable date: "foo"
-        //       at java.base/java.text.DateFormat.parse(DateFormat.java:399)
-        //       at interface_adapter.history.HistoryViewModel.sort(HistoryViewModel.java:288)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        HistoryState state = new HistoryState();
-        state.setHistorySortType((String) "Time Created");
-
-        HistoryViewModel historyViewModel = new HistoryViewModel();
-        historyViewModel.setState(state);
-        historyViewModel.sort(new String[][]{new String[]{"foo"}});
-    }
 
     /**
      * Method under test: {@link HistoryViewModel#sort(String[][])}
@@ -723,89 +542,9 @@ class HistoryViewModelDiffblueTest {
         assertArrayEquals(new String[]{"Data"}, actualSortResult[0]);
     }
 
-    /**
-     * Method under test: {@link HistoryViewModel#sort(String[][])}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testSort7() throws ParseException {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
-        //       at interface_adapter.history.HistoryViewModel.sort(HistoryViewModel.java:263)
-        //   See https://diff.blue/R013 to resolve this issue.
 
-        HistoryState state = new HistoryState();
-        state.setHistorySortType((String) "Alphabetical");
 
-        HistoryViewModel historyViewModel = new HistoryViewModel();
-        historyViewModel.setState(state);
-        historyViewModel.sort(new String[][]{new String[]{}});
-    }
 
-    /**
-     * Method under test: {@link HistoryViewModel#sort(String[][])}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testSort8() throws ParseException {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 0
-        //       at interface_adapter.history.HistoryViewModel.sort(HistoryViewModel.java:288)
-        //   See https://diff.blue/R013 to resolve this issue.
 
-        HistoryState state = new HistoryState();
-        state.setHistorySortType((String) "Time Created");
 
-        HistoryViewModel historyViewModel = new HistoryViewModel();
-        historyViewModel.setState(state);
-        historyViewModel.sort(new String[][]{new String[]{}});
-    }
-
-    /**
-     * Method under test: {@link HistoryViewModel#sort(String[][])}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testSort9() throws ParseException {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
-        //       at interface_adapter.history.HistoryViewModel.sort(HistoryViewModel.java:315)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        HistoryState state = new HistoryState();
-        state.setHistorySortType((String) "Word Size");
-
-        HistoryViewModel historyViewModel = new HistoryViewModel();
-        historyViewModel.setState(state);
-        historyViewModel.sort(new String[][]{new String[]{}});
-    }
-
-    /**
-     * Method under test: {@link HistoryViewModel#sort(String[][])}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testSort10() throws ParseException {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.history.HistoryState.getSortType()" because "this.state" is null
-        //       at interface_adapter.history.HistoryViewModel.sort(HistoryViewModel.java:249)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        HistoryViewModel historyViewModel = new HistoryViewModel();
-        historyViewModel.setState(null);
-        historyViewModel.addPropertyChangeListener(mock(PropertyChangeListener.class));
-        historyViewModel.sort(new String[][]{new String[]{"Data"}});
-    }
 }

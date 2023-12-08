@@ -44,33 +44,7 @@ class LoginViewDiffblueTest {
                 (new LoginView(loginViewModel, loginController, audioController, new HistoryViewModel())).viewName);
     }
 
-    /**
-     * Method under test:
-     * {@link LoginView#LoginView(LoginViewModel, LoginController, AudioController, HistoryViewModel)}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testConstructor2() throws UnsupportedEncodingException {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "interface_adapter.login.LoginViewModel.addPropertyChangeListener(java.beans.PropertyChangeListener)" because "this.loginViewModel" is null
-        //       at view.LoginView.<init>(LoginView.java:51)
-        //   See https://diff.blue/R013 to resolve this issue.
 
-        LoginInputBoundary loginUseCaseInteractor = mock(LoginInputBoundary.class);
-        ViewManagerModel viewManagerModel = new ViewManagerModel();
-        TranslationViewModel translationViewModel = new TranslationViewModel();
-        SignupViewModel signupViewModel = new SignupViewModel();
-        LoginController loginController = new LoginController(loginUseCaseInteractor,
-                new LoginPresenter(viewManagerModel, translationViewModel, signupViewModel, new LoginViewModel()));
-
-        AudioController audioController = new AudioController(
-                new AudioInteractor(new AudioInputData("AXAXAXAX".getBytes("UTF-8"))));
-        new LoginView(null, loginController, audioController, new HistoryViewModel());
-
-    }
 
     /**
      * Method under test:
@@ -92,35 +66,7 @@ class LoginViewDiffblueTest {
                 (new LoginView(loginViewModel, loginController, audioController, new HistoryViewModel())).viewName);
     }
 
-    /**
-     * Method under test:
-     * {@link LoginView#LoginView(LoginViewModel, LoginController, AudioController, HistoryViewModel)}
-     */
-    @Test
-    @Disabled("TODO: Complete this test")
-    void testConstructor4() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "use_case.Audio.AudioInteractor.isMuted()" because "this.audioInteractor" is null
-        //       at interface_adapter.Audio.AudioController.isMuted(AudioController.java:22)
-        //       at view.LoginView.createMuteButton(LoginView.java:181)
-        //       at view.LoginView.<init>(LoginView.java:88)
-        //   See https://diff.blue/R013 to resolve this issue.
 
-        LoginViewModel loginViewModel = new LoginViewModel();
-        LoginInputBoundary loginUseCaseInteractor = mock(LoginInputBoundary.class);
-        ViewManagerModel viewManagerModel = new ViewManagerModel();
-        TranslationViewModel translationViewModel = new TranslationViewModel();
-        SignupViewModel signupViewModel = new SignupViewModel();
-        LoginController loginController = new LoginController(loginUseCaseInteractor,
-                new LoginPresenter(viewManagerModel, translationViewModel, signupViewModel, new LoginViewModel()));
-
-        AudioController audioController = new AudioController(null);
-        new LoginView(loginViewModel, loginController, audioController, new HistoryViewModel());
-
-    }
 
     /**
      * Method under test:
@@ -149,8 +95,6 @@ class LoginViewDiffblueTest {
      */
     @Test
     void testActionPerformed() throws UnsupportedEncodingException {
-        // TODO: Complete this test.
-        //   Diffblue AI was unable to find a test
 
         LoginViewModel loginViewModel = new LoginViewModel();
         LoginInputBoundary loginUseCaseInteractor = mock(LoginInputBoundary.class);
@@ -171,8 +115,6 @@ class LoginViewDiffblueTest {
      */
     @Test
     void testPropertyChange() throws UnsupportedEncodingException {
-        // TODO: Complete this test.
-        //   Diffblue AI was unable to find a test
 
         LoginViewModel loginViewModel = new LoginViewModel();
         LoginInputBoundary loginUseCaseInteractor = mock(LoginInputBoundary.class);

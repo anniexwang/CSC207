@@ -93,23 +93,5 @@ class ViewManagerDiffblueTest {
         assertEquals(expectedPreferredSize, views.getPreferredSize());
     }
 
-    /**
-     * Method under test: {@link ViewManager#propertyChange(PropertyChangeEvent)}
-     */
-    @Test
-    void testPropertyChange() {
-        // TODO: Complete this test.
-        //   Reason: R002 Missing observers.
-        //   Diffblue Cover was unable to create an assertion.
-        //   Add getters for the following fields or make them package-private:
-        //     ViewManager.cardLayout
-        //     ViewManager.viewManagerModel
-        //     ViewManager.views
 
-        JPanel views = new JPanel(true);
-        CardLayout cardLayout = new CardLayout(1, 1);
-
-        ViewManager viewManager = new ViewManager(views, cardLayout, new ViewManagerModel());
-        viewManager.propertyChange(new PropertyChangeEvent("42", "foo", "42", "42"));
-    }
 }

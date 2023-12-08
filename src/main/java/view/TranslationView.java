@@ -2,7 +2,7 @@ package view;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.translation.*;
-import interface_adapter.clear.*;
+
 
 import javax.swing.*;
 import javax.swing.text.*;
