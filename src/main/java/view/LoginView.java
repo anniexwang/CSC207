@@ -17,6 +17,8 @@ import java.util.Objects;
 
 /**
  * Represents the login view of the application.
+ * This class extends JPanel and implements ActionListener and PropertyChangeListener.
+ * It holds the state of the login view and provides methods to handle user actions and property changes.
  */
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
     // Constants and view models
@@ -24,7 +26,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     private final LoginViewModel loginViewModel;
     private final LoginController loginController;
     private final HistoryViewModel historyViewModel;
-
 
     // UI components
     final JTextField usernameInputField = new JTextField(15);
@@ -43,6 +44,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
      * @param loginViewModel The view model for login.
      * @param loginController The controller for login.
      * @param audioController The audio manager for handling audio.
+     * @param historyViewModel The view model for history.
      */
     public LoginView(LoginViewModel loginViewModel, LoginController loginController, AudioController audioController, HistoryViewModel historyViewModel) {
         this.loginController = loginController;
@@ -50,7 +52,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         this.audioController = audioController;
         this.loginViewModel.addPropertyChangeListener(this);
         this.historyViewModel = historyViewModel;
-
 
         // Container panel setup
         JPanel containerPanel = new JPanel();
@@ -129,14 +130,11 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
             }
         });
 
-
-
         // Initialize and start the timer to periodically update mute button text
         int delay = 1000; // Delay in milliseconds (1 second)
         muteButtonUpdateTimer = new Timer(delay, e -> updateMuteButtonText());
         muteButtonUpdateTimer.start();
     }
-
 
     /**
      * Updates the text of the mute button based on the current mute status.
@@ -145,10 +143,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         if (audioController != null) {
             muteButton.setText(audioController.isMuted() ? "Unmute" : "Mute");
         }
-
     }
-
-
 
     /**
      * Handles the login action.
