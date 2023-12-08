@@ -2,44 +2,33 @@ package data_access;
 
 import entity.User;
 import entity.UserFactory;
-//import use_case.clear_users.ClearUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
-//import use_case.table_preferences.TableUserDataAccessInterface;
 import use_case.translate.TranslateUserDataAccessInterface;
 
-
 import java.io.*;
-import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * This class is responsible for reading and writing user data to a CSV file.
+ * It implements the SignupUserDataAccessInterface, LoginUserDataAccessInterface, and TranslateUserDataAccessInterface.
+ */
 public class FileUserDataAccessObject implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, TranslateUserDataAccessInterface {
     private final File csvFile;
-
     private final Map<String, Integer> headers = new LinkedHashMap<>();
-
     private final Map<String, User> accounts = new HashMap<>();
-
     private UserFactory userFactory;
 
-    //private helper to get rid of the brackets when reading the csv file
-    private ArrayList<String> parseCsvField(String field) {
-        if (field == null || field.isEmpty()) {
-            return new ArrayList<>();
-        }
-
-        // Remove leading and trailing brackets if they exist
-        String trimmedField = field.replaceAll("^\\[|\\]$", "");
-
-        // Split the string by semicolons into an array and create a list
-        return new ArrayList<>(Arrays.asList(trimmedField.split(";")));
-    }
-
+    /**
+     * Constructor for the FileUserDataAccessObject.
+     * It reads the CSV file and stores the data.
+     *
+     * @param csvPath The path to the CSV file.
+     * @param userFactory The UserFactory instance.
+     * @throws IOException If an I/O error occurs reading from the file.
+     */
     public FileUserDataAccessObject(String csvPath, UserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
-
-        this.userFactory = userFactory;
-
         csvFile = new File(csvPath);
         headers.put("username", 0);
         headers.put("password", 1);
@@ -49,46 +38,68 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         if (!csvFile.exists() || csvFile.length() == 0) {
             save();
         } else {
-            try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
-                String header = reader.readLine();
-                String row;
-                while ((row = reader.readLine()) != null) {
-                    String[] parts = row.split(",", 3); // Split into 3 parts: username, password, and the rest
-                    if (parts.length < 3) {
-                        continue; // Invalid row format
-                    }
+            readCsvFile();
+        }
+    }
 
-                    String username = parts[0].trim();
-                    String password = parts[1].trim();
-                    String restOfRow = parts[2].trim();
-
-                    // Custom logic to extract translation_history and favorites
-                    // Assuming translation_history always starts with [[ and ends with ]]
-                    int endIndex = restOfRow.indexOf("]],") + 2;
-                    String translationHistoryRaw = restOfRow.substring(0, endIndex);
-                    String favoritesRaw = restOfRow.substring(endIndex + 1).trim();
-
-                    ArrayList<String> translationHistory = parseTranslationHistory(translationHistoryRaw);
-                    ArrayList<String> favorites = new ArrayList<>();
-
-                    User user = userFactory.create(username, password, translationHistory, favorites);
-                    accounts.put(username, user);
+    /**
+     * Reads the CSV file and stores the data.
+     *
+     * @throws IOException If an I/O error occurs reading from the file.
+     */
+    private void readCsvFile() throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
+            String header = reader.readLine();
+            String row;
+            while ((row = reader.readLine()) != null) {
+                String[] parts = row.split(",", 3); // Split into 3 parts: username, password, and the rest
+                if (parts.length < 3) {
+                    continue; // Invalid row format
                 }
+
+                String username = parts[0].trim();
+                String password = parts[1].trim();
+                String restOfRow = parts[2].trim();
+
+                // Custom logic to extract translation_history and favorites
+                int endIndex = restOfRow.indexOf("]],") + 2;
+                String translationHistoryRaw = restOfRow.substring(0, endIndex);
+                String favoritesRaw = restOfRow.substring(endIndex + 1).trim();
+
+                ArrayList<String> translationHistory = parseTranslationHistory(translationHistoryRaw);
+                ArrayList<String> favorites = new ArrayList<>();
+
+                User user = userFactory.create(username, password, translationHistory, favorites);
+                accounts.put(username, user);
             }
         }
     }
 
+    /**
+     * Saves a user to the CSV file.
+     *
+     * @param user The user to save.
+     */
     @Override
     public void save(User user) {
         accounts.put(user.getName(), user);
         this.save();
     }
 
+    /**
+     * Gets a user from the CSV file.
+     *
+     * @param username The username of the user to get.
+     * @return The user with the given username, or null if no such user exists.
+     */
     @Override
     public User get(String username) {
         return accounts.get(username);
     }
 
+    /**
+     * Saves all users to the CSV file.
+     */
     private void save() {
         BufferedWriter writer;
         try {
@@ -114,13 +125,25 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         }
     }
 
-    // Helper method to format an ArrayList into a CSV-compatible string
+    /**
+     * Formats a list for CSV.
+     *
+     * @param list The list to format.
+     * @return The formatted list.
+     */
     private String formatListForCsv(ArrayList<String> list) {
         if (list.isEmpty()) {
             return "[]"; // Return empty brackets for an empty list
         }
         return "[" + String.join(",", list) + "]";
     }
+
+    /**
+     * Adds a translation to a user's translation history.
+     *
+     * @param username The username of the user.
+     * @param translation The translation to add.
+     */
     @Override
     public void addTranslation(String username, List<Object> translation) {
         User user = get(username);
@@ -137,8 +160,14 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
             // Save the user
             save(user);
         }
-}
+    }
 
+    /**
+     * Parses a translation history from a CSV file.
+     *
+     * @param field The field to parse.
+     * @return The parsed translation history.
+     */
     private ArrayList<String> parseTranslationHistory(String field) {
         ArrayList<String> translationHistory = new ArrayList<>();
         if (field == null || field.isEmpty()) {
@@ -174,6 +203,12 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
 
         return translationHistory;
     }
+
+    /**
+     * Updates the accounts from the CSV file.
+     *
+     * @throws IOException If an I/O error occurs reading from the file.
+     */
     public void updateAccounts() throws IOException {
         accounts.clear();
 
@@ -191,7 +226,6 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
                 String restOfRow = parts[2].trim();
 
                 // Custom logic to extract translation_history and favorites
-                // Assuming translation_history always starts with [[ and ends with ]]
                 int endIndex = restOfRow.indexOf("]],") + 2;
                 String translationHistoryRaw = restOfRow.substring(0, endIndex);
                 String favoritesRaw = restOfRow.substring(endIndex + 1).trim();
@@ -206,17 +240,13 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     }
 
     /**
-     * Return whether a user exists with username identifier.
-     * @param identifier the username to check.
-     * @return whether a user exists with username identifier
+     * Checks if a user exists by their username.
+     *
+     * @param identifier The username of the user.
+     * @return True if the user exists, false otherwise.
      */
     @Override
     public boolean existsByName(String identifier) {
         return accounts.containsKey(identifier);
     }
-
 }
-
-
-
-
