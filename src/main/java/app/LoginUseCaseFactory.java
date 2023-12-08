@@ -21,10 +21,28 @@ import interface_adapter.Audio.AudioController;
 import javax.swing.*;
 import java.io.IOException;
 
+/**
+ * Factory class for creating an instance of LoginView.
+ * This class encapsulates the creation logic of LoginView,
+ * isolating the client classes from the implementation details.
+ */
 public class LoginUseCaseFactory {
 
+    // Private constructor to prevent instantiation
     private LoginUseCaseFactory() {}
 
+    /**
+     * Creates an instance of LoginView.
+     *
+     * @param viewManagerModel The ViewManagerModel instance.
+     * @param loginViewModel The LoginViewModel instance.
+     * @param translationViewModel The TranslationViewModel instance.
+     * @param signupViewModel The SignupViewModel instance.
+     * @param userDataAccessObject The LoginUserDataAccessInterface instance.
+     * @param audioController The AudioController instance.
+     * @param historyViewModel The HistoryViewModel instance.
+     * @return An instance of LoginView.
+     */
     public static LoginView create(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
@@ -32,15 +50,26 @@ public class LoginUseCaseFactory {
             SignupViewModel signupViewModel,
             LoginUserDataAccessInterface userDataAccessObject,
             AudioController audioController,
-            HistoryViewModel historyViewModel) { // Add AudioManager as a parameter
+            HistoryViewModel historyViewModel) {
 
+        // Create an instance of LoginController
+        LoginController loginController = createLoginUseCase(
+                viewManagerModel, loginViewModel, translationViewModel, signupViewModel, userDataAccessObject);
 
-            LoginController loginController = createLoginUseCase(
-                    viewManagerModel, loginViewModel, translationViewModel, signupViewModel, userDataAccessObject);
-            return new LoginView(loginViewModel, loginController, audioController, historyViewModel); // Pass AudioManager to LoginView
-
+        // Create and return an instance of LoginView
+        return new LoginView(loginViewModel, loginController, audioController, historyViewModel);
     }
 
+    /**
+     * Creates an instance of LoginController.
+     *
+     * @param viewManagerModel The ViewManagerModel instance.
+     * @param loginViewModel The LoginViewModel instance.
+     * @param translationViewModel The TranslationViewModel instance.
+     * @param signupViewModel The SignupViewModel instance.
+     * @param userDataAccessObject The LoginUserDataAccessInterface instance.
+     * @return An instance of LoginController.
+     */
     private static LoginController createLoginUseCase(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
@@ -48,14 +77,18 @@ public class LoginUseCaseFactory {
             SignupViewModel signupViewModel,
             LoginUserDataAccessInterface userDataAccessObject) {
 
+        // Create an instance of LoginPresenter
         LoginOutputBoundary loginOutputBoundary = new LoginPresenter(
                 viewManagerModel, translationViewModel, signupViewModel, loginViewModel);
 
+        // Create an instance of CommonUserFactory
         UserFactory userFactory = new CommonUserFactory();
 
+        // Create an instance of LoginInteractor
         LoginInputBoundary loginInteractor = new LoginInteractor(
                 userDataAccessObject, loginOutputBoundary);
 
+        // Create and return an instance of LoginController
         return new LoginController(loginInteractor, (LoginPresenter) loginOutputBoundary);
     }
 }
