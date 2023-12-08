@@ -17,7 +17,7 @@ public class SignupState {
         repeatPasswordError = copy.repeatPasswordError;
     }
 
-    // Because of the previous copy constructor, the default constructor must be explicit.
+
     public SignupState() {}
 
     public String getUsername() {

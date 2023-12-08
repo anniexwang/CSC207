@@ -2,6 +2,10 @@ package use_case.Audio;
 
 import java.io.IOException;
 
+/**
+ * This interface represents the data access operations for the audio use case.
+ * It provides a method to load audio data from a file.
+ */
 public interface AudioUserDataAccessInterface {
     /**
      * Loads audio data from a given file path.

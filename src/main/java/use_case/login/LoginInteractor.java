@@ -2,7 +2,11 @@ package use_case.login;
 
 import entity.User;
 
-// LoginInteractor class handles the login logic.
+/**
+ * This class handles the login logic of the application.
+ * It communicates with the LoginUserDataAccessInterface to fetch user data and validate login credentials.
+ * It also communicates with the LoginOutputBoundary to prepare the view based on the login result.
+ */
 public class LoginInteractor implements LoginInputBoundary {
     // Data access object for user data, typically interfacing with a database.
     final LoginUserDataAccessInterface userDataAccessObject;
@@ -10,14 +14,27 @@ public class LoginInteractor implements LoginInputBoundary {
     // Presenter for handling the output of the login process.
     final LoginOutputBoundary loginPresenter;
 
-    // Constructor initializes the interactor with a data access object and a presenter.
+    /**
+     * Constructor for the LoginInteractor class.
+     * It initializes the interactor with a data access object and a presenter.
+     *
+     * @param userDataAccessInterface The data access object for user data.
+     * @param loginOutputBoundary The presenter for handling the output of the login process.
+     */
     public LoginInteractor(LoginUserDataAccessInterface userDataAccessInterface,
                            LoginOutputBoundary loginOutputBoundary) {
         this.userDataAccessObject = userDataAccessInterface;
         this.loginPresenter = loginOutputBoundary;
     }
 
-    // execute method processes the login request.
+    /**
+     * Processes the login request.
+     * It validates the username and password provided in the LoginInputData.
+     * If the login is successful, it prepares the success view.
+     * If the login fails, it prepares the failure view with an appropriate error message.
+     *
+     * @param loginInputData The LoginInputData instance containing the username and password.
+     */
     @Override
     public void execute(LoginInputData loginInputData) {
         // Extracting username and password from the input data.
